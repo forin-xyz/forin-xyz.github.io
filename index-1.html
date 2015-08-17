@@ -24,6 +24,46 @@ clang: 错误提示效果更优的编译器
 <li>
 python3: 绝佳的胶水语言，sh编程的取代者
 </li>
+<li>
+shell,ternimal
+</li>
+<li>
+音乐(音频):
+<p>Rhythmbox</p>
+<a href="https://github.com/LiuLang/kwplayer">酷我音乐盒 kwplayer</a>
+<p>命令行播放器: mpd 和 mpc</p>
+</li>
+<li>
+电影(视频):
+<p>vlc</p>
+<p>mplayer, smplayer</p>
+<p>
+</li>
+<li>
+网盘:
+<p>国内: 快盘</p>
+<p>国内: <a href="https://github.com/houtianze/bypy">百度网盘</a></p>
+<p>国外: Dropbox</p>
+</li>
+<li> 版本控制 
+<p>git</p>
+<p>github</p>
+</li>
+<li> Blog， 静态网页生成
+<p>Nikola</p>
+</li>
+<li> 文件管理
+<p>emacs的dired模式 和 Midnight Commander</p>
+我也用git将个人用户的配置文件（在/home/username/下的配置文件）给备份到Github的服务器上，这里必需使用第三方服务器同步配置，因为我使用了多台电脑。具体操作可写成长篇大论，这里不展开了。
+</li>
+<li>
+硬盘备份使用Clonezilla
+<p>只是备份操作系统的话用以下命令:</p>
+<pre>
+tar zcvpf mylinux.tgz --exclude=/proc/* --exclude=/lost+found --exclude='mylinux.tgz' --exclude=/mnt/* --exclude=/home/username/* --exclude=/sys/* /
+</pre>
+<p>如果使用clonezilla备份操作系统的， 建议将/目录和/home目录放在两个分区内。</p>
+</li>
 </ul>
 </BODY>
 </HTML>
