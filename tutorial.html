@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta content="专为互联网从业者,数据科学家等计算机科学技术从业者打造的首页" name="description">
+        <meta content="首页,互联网,IT,大数据,linux,数据库,python,数据科学,计算机科学,算法,在线学习" name="keywords">
+        <title>专为你打造的互联网首页</title>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <!--你自己的样式文件 -->
+        <link href="#css/your-style.css" rel="stylesheet">
+        <!-- 以下两个插件用于在IE8以及以下版本浏览器支持HTML5元素和媒体查询，如果不需要用可以移除 -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <style>
+          body {
+              padding-top: 100px;
+              background-color: #efe;
+          }
+          nav {
+
+          }
+          div .container {
+              padding-top: 30px;
+              padding-bottom: 30px;
+          }
+          div #div-search {
+              padding: 20px;
+              background-color: #afb;
+              -moz-border-radius: 7px 0px 0px 7px;      /* Gecko browsers */
+              -webkit-border-radius: 7px 0px 0px 7px ;   /* Webkit browsers */
+              border-radius: 7px 0px 0px 7px;            /* W3C syntax */
+          }
+          div #website-quick-view {
+              color: #fecba9;
+              padding: 20px;
+              text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4), 0px 0px 30px rgba(0, 0, 0, 0.075);
+              background-color: #000;
+              -moz-border-radius: 0px 7px 7px 0px;      /* Gecko browsers */
+              -webkit-border-radius: 0px 7px 7px 0px;   /* Webkit browsers */
+              border-radius: 0px 7px 7px 0px;            /* W3C syntax */
+              background: transparent linear-gradient(45deg, #020031 0px, #6D3353 100%) repeat scroll 0% 0%;
+              box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.2) inset, 0px -3px 7px rgba(0, 0, 0, 0.2) inset;
+
+          }
+          div .col-sm-3 {
+              padding: 5px;
+              text-align: right;
+          }
+        </style>
+    </head>
+    <body>
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#"><strong><em>forin.xyz</em></strong></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">搜索 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li>
+              <form class="form-inline" role="search" action="http://s.taobao.com/search" target="_blank">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="淘宝" name="q">
+                </div>
+              </form>
+            </li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      <form class="navbar-form navbar-left" role="search" action="http://www.baidu.com/s" target="_blank">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="百度一下" name="wd">
+        </div>
+      </form>
+      <form class="navbar-form navbar-left" role="search" action="https://www.google.com/search" target="_blank">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="谷歌搜索" name="q">
+        </div>
+      </form>
+      <form class="navbar-form navbar-left" role="search" action="http://stackoverflow.com/search" target="_blank">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="StackoverFlow" name="q">
+        </div>
+      </form>
+            </div><!-- /.navbar-collapse -->
+        </div>
+      </nav>
+      <div class="main">
+        <div class="container">
+          <h1 class="text-center">专为IT人员打造的互联网首页</h1>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 text-center" id="div-search">
+              <form class="form-horizontal">
+                <div class="form-group">
+                <div class="col-sm-4">
+                <select class="form-control btn btn-default btn-block" id="search-select">
+                  <option select="selected">百度</option>
+                  <option>Bing</option>
+                  <option>谷歌</option>
+                  <option>雅虎</option>
+                  <option>淘宝</option>
+                  <option>Github</option>
+                  <option>StackOverflow</option>
+                  <option>有道</option>
+                  <option>京东</option>
+                  <option>亚马逊</option>
+                </select>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" name="q" class="form-control" placeholder="搜一搜"/>
+                </div>
+                <div class="col-sm-4">
+                  <button class="form-control btn-primary btn-block" id="search-btn">
+                    百度一下
+                  </button>
+                </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-8" id="website-quick-view">
+               <div class="row">
+                <div class="col-sm-3">
+                  <a href="https://github.com/" target="_blank" class="h4">
+                    <img src="static/img/website-brand/github.png" alt=" "/>
+                    <em>Github</em>
+                  </a>
+                </div>
+                <div class="col-sm-3">
+                  <a href="http://www.oschina.net/" target="_blank" class="h4">          <img src="static/img/website-brand/oschina.ico">
+                    <em>开源中国</em>
+                  </a>
+                </div>
+                <div class="col-sm-3">
+                  <a class="h4" href="http://www.infoq.com/" target="_blank">
+                    <em>infoQ</em>
+                    <img src="static/img/website-brand/infoq.png" alt=" ">
+                  </a>
+                </div>
+                <div class="col-sm-3">
+                  <a class="h4" href="https://www.ted.com/" target="_blank">
+                    <em>Ted</em>
+                    <img src="static/img/website-brand/ted.png" alt=" ">
+                  </a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <a href="https://news.ycombinator.com/" target="_blank" class="h4">
+                    <img src="static/img/website-brand/hackernews.png" alt=" ">
+                    <em>HackerNews</em>
+                  </a>
+                </div>
+                <div class="col-sm-3">
+                  <a href="http://geek.csdn.net/hotest" target="_blank" class="h4">
+                    <img src="static/img/website-brand/csdn.png" alt=" ">
+                    <em>极客头条</em>
+                  </a>
+                </div>
+                <div class="col-sm-3">
+                  <a href="http://www.reddit.com/" target="_blank" class="h4">
+                    <em>reddit</em>
+                    <img src="static/img/website-brand/reddit.png">
+                  </a>
+                </div>
+                <div class="col-sm-3">
+                  <a href="http://www.douban.com/" target="_blank" class="h4">
+                    <em>豆瓣</em>
+                    <img src="static/img/website-brand/douban.ico" alt=" ">
+                  </a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <a href="http://stackoverflow.com/" target="_blank" class="h4">
+                    <img src="static/img/website-brand/stackoverflow.png" alt=" ">
+                    <em>StackOverflow</em>
+                  </a>
+                </div>
+                <div class="col-sm-3">
+                  <a href="http://www.cnblogs.com/" target="_blank" class="h4">
+                    <img src="static/img/website-brand/cnblogs.png" alt=" ">
+                    <em>博客园</em>
+                  </a>
+                </div>
+                <div class="col-sm-3">
+                  <a href="#" taget="_blank" class="h4">
+                    <em>Quora</em>
+                    <img src="static/img/website-brand/quora.png">
+                  </a>
+                </div>
+                <div class="col-sm-3">
+                  <a href="http://www.zhihu.com/" target="_blank" class="h4">
+                    <em>知乎</em>
+                    <img src="static/img/website-brand/zhihu.png">
+                  </a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <a href="http://blogs.scientificamerican.com/" target="_blank" class="h4">
+                    <img src="static/img/website-brand/scientificamerican.png">
+                    <em>ScientificAmerican</em>
+                  </a>
+                </div>
+                <div class="col-sm-3">
+                  <a href="http://www.v2ex.com/" target="_blank" class="h4">
+                    <img src="static/img/website-brand/v2ex.png">
+                    <em>V2EX</em>
+                  </a>
+                </div>
+                <div class="col-sm-3">
+                  <a href="https://www.tumblr.com/" target="_blank" class="h4">
+                    <em>Trumblr</em>
+                    <img src="static/img/website-brand/trumblr.png">
+                  </a>
+                </div>
+                <div class="col-sm-3">
+                  <a href="http://www.jianshu.com/" target="_blank" class="h4">
+                    <em>简书</em>
+                    <img src="static/img/website-brand/jianshu.png">
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix visible-xs-block"></div>
+          </div>
+        </div>
+        <div class="container" id="online-learning-site">
+          <h2 class="text-center">在线学习网站<small>互联网时代，学习成本越来越低！</small></h2>
+          <div class="row">
+            <div class="col-md-3">
+              <p class="h3">
+                <a href="https://www.coursera.org" target="_blank">Coursera</a>
+              </p>
+              <p class="lead">Coursera 是一个教育平台，它与全世界最顶尖的大学和机构合作，提供任何人可学习的免费在线课程。</p>
+            </div>
+            <div class="col-md-3">
+              <p class="h3">
+                <a href="#" target="_blank">edX</a>
+              </p>
+              <p class="lead">Coursera 是一个教育平台，它与全世界最顶尖的大学和机构合作，提供任何人可学习的免费在线课程。</p>
+            </div>
+            <div class="col-md-3">
+              <p class="h3">
+                <a href="https://www.coursera.org" target="_blank">Udacity</a>
+              </p>
+              <p class="lead">Coursera 是一个教育平台，它与全世界最顶尖的大学和机构合作，提供任何人可学习的免费在线课程。</p>
+            </div>
+            <div class="col-md-3">
+              <p class="h3">
+                <a href="https://www.khanacademy.org/" target="_blank">Khan Academy</a>
+              </p>
+              <p>可汗学院(Khan Academy)，是一家教育性非营利组织，主旨在于利用网络影片进行免费授课，现有关于数学、历史、金融、物理、化学、生物、天文学等科目的内容，教学影片超过2000段，机构的使命是加快各年龄学生的学习速度。</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <p class="h3">
+              <a href="http://www.imooc.com/" target="_blank">慕课网</a>
+              </p>
+              <p class="lead">慕课网(IMOOC)是国内最大的IT技能学习平台，慕课网提供了丰富的计算机技术视频教程资源公开课。</p>
+            </div>
+            <div class="col-md-3">
+              <p class="h3">
+              <a href="https://www.shiyanlou.com/" target="_blank">实验楼</a>
+              </p>
+              <p class="lead">实验楼是国内第一家以实验为核心的IT在线教育平台，以就业为导向，为IT从业者提供动手实践环境和热门课程。</p>
+            </div>
+             <div class="col-md-3">
+              <p class="h3">
+              <a href="httpue = p1ww.jikexueyuan.com/" target="_blank">极客学院</a>
+              </p>
+              <p>IT职业在线教育学习视频课程, 为开发者提供全面最新最实战IT职业课程,IT职业教程,涵盖android开发教程,安卓开发教程,cocos2dx 教程,ios教程,html5教程,flash教程,python基础教程,typescript开发教程,ui设计教程等IT职业视频教程.</p>
+            </div>
+             <div class="col-md-3">
+              <p class="h3">
+              <a href="http://www.gbtags.com/gb/gblibrary.htm" target="_blank">极客标签</a>
+              </p>
+              <p>精心设计的编程学习路径，帮助了解基础编程相关知识点，更快更高效更准确的学习代码。 极客标签首创的互动式代码学习体验课程库，360度全方位满足JS/CSS/HTML,Java,Objective-C,PHP等编程语言实战学习</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <p class="h3">
+              <a href="http://www.icourse163.org/" target="_blank">中国大学MOOC</a>
+              </p>
+              <p>中国大学MOOC(慕课) 是爱课程网携手云课堂打造的在线学习平台，每一个有提升愿望的人，都可以在这里学习中国最好的大学课程，学完还能获得认证证书。中国大学MOOC是国内最好的中文MOOC学习平台，拥有来自于39所985高校的顶级课程，最好最全的大学课程，与名师零距离。</p>
+            </div>
+            <div class="col-md-3">
+              <p class="h3">
+              <a href="http://www.xuetangx.com/" target="_blank">学堂在线</a>
+              </p>
+              <p>学堂在线是免费公开的MOOC（大规模开放在线课程）平台，是国家教育部MOOC研究中心官方合作平台，致力于通过来自国内外一流名校开设的免费网络学习课程，为公众提供系统的高等教育，让每一个中国人都有机会享受优质教育资源。通过和清华大学在线教育研究中心、以及国内外知名大学的紧密合作，学堂在线将不断增加课程的种类和丰富程度。</p>
+            </div>
+            <div class="col-md-3">
+              <p class="h3">
+                <a href="http://www.chinesemooc.org/" target="_blank">华文慕课</a>
+              </p>
+              <p>华文慕课是一个以中文为主的慕课（MOOC）服务平台，旨在为全球华人服务。平台由北京大学与阿里巴巴集团联合打造。</p>
+            </div>
+            <div class="col-md-3">
+              <p class="h3">
+                <a href="http://mooc.guokr.com/" target="_blank">MOOC学院</a>
+              </p>
+              <p>MOOC学院集合Coursera，edX，udacity,学堂在线等平台所有课程的点评讨论社区。</p>
+              <p class="h3">
+                <a href="http://www.mooc.cn/" target="_blank">MOOC中国</a>
+              </p>
+              <p>MOOC中国是为国内小伙伴推荐最好慕课的中文慕课网</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <p class="h3">
+              <a href="http://open.163.com/" target="_blank">网易公开课</a>
+              </p>
+              <p>云课堂是网易公司研发的一款大型在线教育平台服务，该平台面向学习者提供海量免费、优质课程，创新的个性化学习体验， 自由开放的交流互动环境。继网易公开课后，云课堂是网易公司在教育领域的又一重量级产品。</p>
+            </div>
+            <div class="col-md-3">
+              <p class="h3">
+              <a href="http://www.duobei.com/" target="_blank">多贝公开课</a>
+              </p>
+              <p>多贝公开课提供实用类公开课程及课程表。你可以标记学习进度、向老师提问，与同学们一起评分、分享笔记。多贝公开课将为你营造一个和老师、同学平等交流的学习社区。</p>
+            </div>
+            <div class="col-md-3">
+              <p class="h3">
+              <a href="http://www.icourses.cn/home/" target="_blank">爱课程网</a>
+              </p>
+              <p>“爱课程”网是教育部、财政部 “十二五”期间启动实施的“高等学校本科教学质量与教学改革工程”支持建设的高等教育课程资源共享平台。</p>
+            </div>
+             <div class="col-md-3">
+              <p class="h3">
+              <a href="http://www.howzhi.com/" target="_blank">好知网</a>
+              </p>
+              <p>好知网是一个综合性在线学习平台。这里有大量的在线课程，课程涵盖计算机知识，企业管理，摄影，photoshop，职业技能，运动、外语、美食，时尚，手工艺，公开课，职业资格考试等。</p>
+             </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <p class="h3">
+                <a href="https://www.codecademy.com/" target="_blank">codecademy</a>
+              </p>
+              <p class="lead">Learn to code interactively, for free.</p>
+            </div>
+          </div>
+        </div>
+        <div class="container" id="usual-website">
+          <h2 class="text-center">技术网站大全</h2>
+          <div class="row">
+            <div class="col-md-3">
+              <a class="lead" href="Github" target="_blank">Github</a>
+              <p class="message-info">Github</p>
+            </div>
+            <div class="col-md-3"><a class="lead" href="StackoverFlow" target="_blank">StackoverFlow</a></div>
+            <div class="col-md-3"><a class="lead" href="Quora" target="_blank">Quora</a></div>
+            <div class="col-md-3"><a class="lead" href="CSDN" target="_blank">CSDN</a></div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><a class="lead" href="hackernews">HackerNews</a></div>
+            <div class="col-md-3"><a class="lead" href="emcasWiki" target="_blank">emacsWiki</a></div>
+            <div class="col-md-3"><a class="lead" href="v2ex" target="_blank">v2ex</a></div>
+            <div class="cil-md-3"><a class="lead" href="http://segmentfault.com/4" target="_blank">segmentdefault</a></div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><a class="lead" href="something">something</a></div>
+        </div>
+          <p class="lead text-center">TODO:在每一个coursera下推荐一门课程.</p>
+        <p class="lead text-center">TODO:把介绍或者描述变成弹出框，这样可以节约很多空间。
+          目前没有这个打算， 等以后变得非常多的时候可以这么考虑
+          </p>
+        </div>
+      <footer>
+        <h4 class="text-center"></h4>
+      </footer>
+        <!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->
+        <script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+        <!-- 包括所有bootstrap的js插件或者可以根据需要使用的js插件调用　-->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+            <title>Title</title>
+
+    <script type="text/javascript">
+      $(function() {
+
+          $("#btn-search").click(function() {
+              //var a = $('a')[0];
+              href = "http://www.apple.com"
+              var a = $("<a href=\""+href+"\" target='_blank'>Apple</a>").get(0);
+              var e = document.createEvent('MouseEvents');
+              e.initEvent( 'click', true, true );
+              //该方法将分派一个合成事件，它由 Document.createEvent() 创建，由 Event 接口或它的某个子接口定义的初始化方法初始化。
+              a.dispatchEvent(e);
+          });
+        $('#search-select').change(function(){
+          var p1=$(this).children('option:selected').val();//这就是selected的值
+          $('#search-btn').value = p1;
+        });
+      });
+    </script>
+
+
+    </body>
+</html>
