@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = 'forin.xyz'
 SITENAME = '耕有田，读有书'
-SITEURL = ''
+SITEURL = 'output'
 
 GITHUB_URL = 'http://github.com/forin-xyz/'
 
