@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = 'forin.xyz'
 SITENAME = '耕有田，读有书'
-SITEURL = 'output'
+SITEURL = ''
 
 GITHUB_URL = 'http://github.com/forin-xyz/'
 
@@ -16,6 +16,8 @@ GITHUB_URL = 'http://github.com/forin-xyz/'
 
 # 主题
 THEME = 'notmyidea'
+
+THEME_STATIC_DIR = 'output/theme'
 
 # 生成的page名
 SLUGIFY_SOURCE = 'basename'
