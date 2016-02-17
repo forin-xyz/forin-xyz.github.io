@@ -33,9 +33,16 @@
     {% endif %}
     {% if DUOSHUO_SITENAME and SITEURL and article.status != "draft" %}
     <div class="comments">
-      <h2>Comments !</h2>
+      <div class="ds-share" data-thread-key="{{ article.title }}-key" data-title="{{ article.title }}" data-url="{{ SITEURL }}/{{ article.url }}">
+        <div class="ds-share-aside-left">
+      <div class="ds-share-aside-inner">
+      </div>
+      <div class="ds-share-aside-toggle">分享到</div>
+    </div>
+      </div>
+      <h2>评论 !</h2>
       <!-- Duoshuo Comment BEGIN -->
-      <div class="ds-thread" data-thread-key="{{ article.title }}-key" data-title="{{ article.title }}" data-url="{{ SITEURL }}{{ article.url }}"></div>
+      <div class="ds-thread" data-thread-key="{{ article.title }}-key" data-title="{{ article.title }}" data-url="{{ SITEURL }}/{{ article.url }}"></div>
       <!-- 多说评论框 end -->
       <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
       <script type="text/javascript">
