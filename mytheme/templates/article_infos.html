@@ -1,11 +1,11 @@
 <footer class="post-info">
         <abbr class="published" title="{{ article.date.isoformat() }}">
-                Published: {{ article.locale_date }}
+                发表于: {{ article.locale_date }}
         </abbr>
         {% if article.modified %}
 		<br />
         <abbr class="modified" title="{{ article.modified.isoformat() }}">
-                Updated: {{ article.locale_modified }}
+                修改于: {{ article.locale_modified }}
         </abbr>
         {% endif %}
 
