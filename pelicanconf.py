@@ -4,9 +4,9 @@ from __future__ import unicode_literals
 
 AUTHOR = 'forin.xyz'
 SITENAME = '耕有田，读有书'
-SITEURL = ''
+SITEURL = 'output'
 
-GITHUB_URL = 'http://github.com/forin-xyz/output/'
+GITHUB_URL = 'http://github.com/forin-xyz/'
 
 # 元数据
 # DEFAULT_METADATA = {
@@ -36,6 +36,9 @@ DEFAULT_DATE_FORMAT = '%Y年%m月%d日 星期%a'
 STATIC_PATHS = ['blog', 'downloads', 'images', 'pdfs']
 # 文章路径
 ARTICLE_PATHS = ['blog', 'math', 'computer']
+
+THEME = 'mytheme'
+DUOSHUO_SITENAME = "耕有田，读有书"
 
 
 ARTICLE_SAVE_AS = '{date:%Y}/{slug}.html'
