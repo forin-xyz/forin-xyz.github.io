@@ -43,7 +43,7 @@ DUOSHUO_SITENAME = "耕有田，读有书"
 
 
 ARTICLE_SAVE_AS = '{date:%Y}/{date:%m}/{slug}.html'
-ARTICLE_URL = '{date:%Y}/{slug}.html'
+ARTICLE_URL = '{date:%Y}/{date:%m}/{slug}.html'
 
 # 静态文件
 # STATIC_PATHS = ['images', 'pdfs']
