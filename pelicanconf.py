@@ -6,7 +6,7 @@ AUTHOR = 'forin.xyz'
 SITENAME = '耕有田，读有书'
 SITEURL = ''
 
-GITHUB_URL = 'http://github.com/forin-xyz/'
+GITHUB_URL = 'http://github.com/forin-xyz/output/'
 
 # 元数据
 # DEFAULT_METADATA = {
