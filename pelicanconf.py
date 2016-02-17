@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = 'forin.xyz'
 SITENAME = '耕有田，读有书'
-SITEURL = 'output'
+SITEURL = 'http://forin-xyz.github.io'
 
 GITHUB_URL = 'http://github.com/forin-xyz/'
 
@@ -17,6 +17,7 @@ GITHUB_URL = 'http://github.com/forin-xyz/'
 # 主题
 THEME = 'mytheme'
 THEME_STATIC_DIR = 'output/theme'
+
 
 # 生成的page名
 SLUGIFY_SOURCE = 'basename'
@@ -41,7 +42,7 @@ ARTICLE_PATHS = ['计算机科学', '数学', 'computer']
 DUOSHUO_SITENAME = "耕有田，读有书"
 
 
-ARTICLE_SAVE_AS = '{date:%Y}/{slug}.html'
+ARTICLE_SAVE_AS = '{date:%Y}/{date:%m}/{slug}.html'
 ARTICLE_URL = '{date:%Y}/{slug}.html'
 
 # 静态文件
