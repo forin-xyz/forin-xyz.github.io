@@ -1,12 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
+from plugins import render_math
 
 AUTHOR = 'forin-xyz'
 SITENAME = '耕有田，读有书'
 SITEURL = 'http://forin-xyz.github.io/output'
 
 GITHUB_URL = 'http://github.com/forin-xyz/'
+
+PLUGIN_PATHS = ["plugins"]
+
+PLUGINS = ["render_math"]
 
 # 元数据
 # DEFAULT_METADATA = {
