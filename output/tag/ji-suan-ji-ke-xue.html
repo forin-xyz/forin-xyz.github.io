@@ -79,9 +79,8 @@ x, &amp;   &amp;x \gt 0\\
 <p>随机选取一个误分类点\((x_{i}, y_{i})\), 其损失函数对应的梯度为:
 </p>
 <div class="math">$$\begin(aligned)\delta_{w} L_{i}(w, b) &amp;= -y_{i}x_{i}\\
-$$</div>
-<p>\delta_{b} L_{i}(w, b) &amp;= -y_{i}
-\end{aligned}$$</p>
+\delta_{b} L_{i}(w, b) &amp;= -y_{i}
+\end{aligned}$$</div>
 <p>这样对应的迭代函数为:</p>
 <div class="math">$$w \gets w + \eta y_{i}x_{i}$$</div>
 <div class="math">$$b \gets b + \eta y_{i}$$</div>
