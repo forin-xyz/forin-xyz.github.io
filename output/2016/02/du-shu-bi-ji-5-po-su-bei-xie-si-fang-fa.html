@@ -56,10 +56,10 @@
 </p>
 <div class="math">$$ P(A_{i}|B) = \frac{P(B|A_{i})P(A_{i})}{\sum\limits_{i=0}{n}P(B|A_{i})P(A_{i})} $$</div>
 <p>
-这就是贝叶斯公式, 其中<span class="math">\(\{A_{i}\}\)</span>为完备事件组,即<span class="math">\(\cup\limits_{i}A_{i} = \Omega, A_{i}A_{j} = \phi,(i \ne j), P(A_{i}) &gt; 0\)</span>.</p>
+这就是贝叶斯公式, 其中<span class="math">\(\{A_{i}\}\)</span>为完备事件组,即<span class="math">\(\bigcup \limits_{i}A_{i} = \Omega, A_{i}A_{j} = \phi,(i \ne j), P(A_{i}) &gt; 0\)</span>.</p>
 <h3>朴素贝叶斯方法的基本描述</h3>
-<p>输入空间<span class="math">\(\mathcal(X) \subseteq mathrm(R)^{n}\)</span>是n维向量的几何
-输出空间<span class="math">\(\mathcal(Y) = \{c_{1}, c_{2}, \cdots, c_{K}\}\)</span>是类标记组合
+<p>输入空间<span class="math">\(\mathcal{X} \subseteq \mathrm{R}^{n}\)</span>是n维向量的几何
+输出空间<span class="math">\(\mathcal{Y} = \{c_{1}, c_{2}, \cdots, c_{K}\}\)</span>是类标记组合
 朴素贝叶斯方法是求特定输入下的后验概率最大化。</p>
 <h3>特征条件相互独立假设</h3>
 <p>朴素贝叶斯方法对条件概率分布做了互相独立的假设，即在输出一定的条件下，实例点的特征分量彼此相互独立，即：
@@ -109,9 +109,9 @@ f(x) =&amp; \arg \min\limits_{c_{k}}P(y \neq c_{k}|X=x)
 其中<span class="math">\(a_{jl}\)</span>表示第j个特征可能取得的第l个值。
 将上述两式带入到朴素贝叶斯分类器模型就可以得到极大似然估计。</p>
 <h4>朴素贝叶斯方法的极大似然估计算法</h4>
-<p>naive Bayes algorithm 朴素贝叶斯算法</p>
+<p><em>naive Bayes algorithm</em> <strong>朴素贝叶斯算法</strong></p>
 <blockquote>
-<p>输入: 训练数据集<span class="math">\(T=\{(x_{1},y{1}), \cdots, (x_{N}, y_{N})\}\)</span>,其中<span class="math">\(x_{i}=(x_{i}^(1), \cdots, x_{i}^(n))^{T}\)</span>, <span class="math">\(x_{i}^{j}\)</span>是第i个样本的第j个特征, <span class="math">\(x_{i}^{(j)} \in {a_{j1}, \cdots, a_{jS_{j}}}\)</span>, <span class="math">\(a_{jh}是第j个特征可能取得的第l个值, $y_{i} \in \{c_{1}, \cdots, c_{K}\}\)</span>; 实例<span class="math">\(x\)</span>.</p>
+<p>输入: 训练数据集<span class="math">\(T=\{(x_{1},y{1}), \cdots, (x_{N}, y_{N})\}\)</span>,其中<span class="math">\(x_{i}=(x_{i}^{(1)}, \cdots, x_{i}^{(n)})^{T}\)</span>, <span class="math">\(x_{i}^{(j)}\)</span>是第i个样本的第j个特征, <span class="math">\(x_{i}^{(j)} \in {a_{j1}, \cdots, a_{jS_{j}}}\)</span>, <span class="math">\(a_{jh}是第j个特征可能取得的第l个值, $y_{i} \in \{c_{1}, \cdots, c_{K}\}\)</span>; 实例<span class="math">\(x\)</span>.</p>
 <p>输出: 实例x的分类</p>
 <p>(1) 计算先验概率和条件概率</p>
 <p>
