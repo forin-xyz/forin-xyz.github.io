@@ -93,14 +93,18 @@ x, &amp;   &amp;x \gt 0\\
 <p>其中\(\eta (0 &lt; \eta \leq 1)\)是步长，在统计学习中又称为学习率(learning rate)。</p>
 <h4>感知机学习算法的原始形式</h4>
 <blockquote>
-<p>输入：\(T={(x_{1},y_{1}),(x_{2},y_{2}), \cdots ,(x_{N},y_{N})}\)（其中\(x_{i} \in R^n\)，\(y_{i}\)∈Y={-1,+1}，i=1,2...N，学习速率为η）
-输出：w, b;感知机模型f(x)=sign(w·x+b)
-(1) 初始化w=0,b=0
-(2) 在训练数据集中选取（xi, yi）
-(3) 如果\(y_{i}(w \cdot x_{i} + b ) \leq 0\)
-         <div class="math">$$w = w + {\eta}y_{i}x_{i}$$</div>
+<p>输入：\(T={(x_{1},y_{1}),(x_{2},y_{2}), \cdots ,(x_{N},y_{N})}\)（其中\(x_{i} \in R^n\)，\(y_{i}\)∈Y={-1,+1}，i=1,2...N，学习速率为η）</p>
+<p>输出：w, b;感知机模型f(x)=sign(w·x+b)</p>
+<p>(1) 初始化w=0,b=0</p>
+<p>(2) 在训练数据集中选取（xi, yi）</p>
+<p>(3) 如果\(y_{i}(w \cdot x_{i} + b ) \leq 0\)</p>
+<p>
+<div class="math">$$w = w + {\eta}y_{i}x_{i}$$</div>
+</p>
+<p>
 <div class="math">$$b = b + {\eta}y_{i}$$</div>
-  (4) 转至（2）</p>
+</p>
+<p>(4) 转至（2）</p>
 </blockquote>
 <h3>感知机学习算法的原始形式的python源码</h3>
 <p><a href="https://github.com/forin-xyz/statistical-learning-method/blob/master/perceptron_origin.py" title="gihub">感知机学习算法原始形式</a></p>
@@ -153,7 +157,7 @@ w &amp;= \sum\limits_{i=1}^{N}\alpha_{i}y_{i}x_{i}\\
 b &amp;= \sum\limits_{i=1}^{N}\alpha_{i}y_{i}
 \end{aligned}$$</div>
 <p>
-这里，\(\appha_{i} \geq 0\), 当 \(\eta = 1\)时，表示第i个实例点由于误分而进行更新的次数</p>
+这里，\(\alpha_{i} \geq 0\), 当 \(\eta = 1\)时，表示第i个实例点由于误分而进行更新的次数</p>
 <h4>感知机学习算法的对偶形式</h4>
 <blockquote>
 <p>输入：T={(x1,y1),(x2,y2)...(xN,yN)}（其中xi∈X=Rn，yi∈Y={-1, +1}，i=1,2...N，学习速率为η）</p>
@@ -162,7 +166,7 @@ b &amp;= \sum\limits_{i=1}^{N}\alpha_{i}y_{i}
 <p>(2) 在训练数据集中选取（xi, yi）</p>
 <p>(3) 如果 \(y_{i}(\sum\limits_{j=1}^{N}{\alpha_{j}y{j}x_{j}\cdot x_{i}} + b) \leq 0\)</p>
 <p>
-<div class="math">$$alpha_{i} = \apha_{i} + \eta$$</div>
+<div class="math">$$alpha_{i} = \alpha_{i} + \eta$$</div>
 </p>
 <p>
 <div class="math">$$b = b + {\eta}y_{i}$$</div>
@@ -246,31 +250,31 @@ b &amp;= \sum\limits_{i=1}^{N}\alpha_{i}y_{i}
 \end{aligned}$$</div>
 <p>上面的规划问题等价于下面的凸二次规划问题(convex quadratic programming)</p>
 <h2>中英文词汇对照表</h2>
-<p>感知机 perceptron
-线性分类模型 linear classification model
-支持向量机 support vector machine, SVM
-分离超平面 separating hyperplane
-输入空间 input space
-输出空间 output space
-特征空间 feature space
-权值向量 weight vector
-偏置 bias
-梯度下降法 gradient descent
-线性支持向量机 linear support vector machine
-非线性支持向量机 non-linear support vector machine
-线性可分支持向量机 linear support vector machine in linearly in linearly separable case
-硬间隔最大化 hard margin maximization
-软间隔最大化 soft margin maximization
-核技巧 kenerl trick
-核函数 kenerl function
-核方法 kenerl method
-线性可分数据集 linearly separable data set
-损失函数 loss function
-经验损失函数 empirical loss function
-学习率 learning rate
-几何间隔 geometric margin
-函数间隔 functional margin
-凸二次规划问题 convex quadratic programming</p>
+<p>感知机 perceptron</p>
+<p>线性分类模型 linear classification model</p>
+<p>支持向量机 support vector machine, SVM</p>
+<p>分离超平面 separating hyperplane</p>
+<p>输入空间 input space</p>
+<p>输出空间 output space</p>
+<p>特征空间 feature space</p>
+<p>权值向量 weight vector</p>
+<p>偏置 bias</p>
+<p>梯度下降法 gradient descent</p>
+<p>线性支持向量机 linear support vector machine</p>
+<p>非线性支持向量机 non-linear support vector machine</p>
+<p>线性可分支持向量机 linear support vector machine in linearly in linearly separable case</p>
+<p>硬间隔最大化 hard margin maximization</p>
+<p>软间隔最大化 soft margin maximization</p>
+<p>核技巧 kenerl trick</p>
+<p>核函数 kenerl function</p>
+<p>核方法 kenerl method</p>
+<p>线性可分数据集 linearly separable data set</p>
+<p>损失函数 loss function</p>
+<p>经验损失函数 empirical loss function</p>
+<p>学习率 learning rate</p>
+<p>几何间隔 geometric margin</p>
+<p>函数间隔 functional margin</p>
+<p>凸二次规划问题 convex quadratic programming</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
