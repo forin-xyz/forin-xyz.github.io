@@ -76,7 +76,7 @@
 </p>
 <div class="math">$$\lbrack x\rbrack_{+} = \begin{cases}
 x, &amp;   &amp;x \gt 0\\
-0, &amp;   &amp;0 \leq 0
+0, &amp;   &amp;x \leq 0
 \end{cases}$$</div>
 <p>于是感知机模型就等价于最优化问题</p>
 <div class="math">$$\min{L(w, b)},$$</div>
@@ -108,8 +108,8 @@ x, &amp;   &amp;x \gt 0\\
 </p>
 <p>(4) 转至（2）</p>
 </blockquote>
-<h3>感知机学习算法的原始形式的python源码</h3>
-<p><a href="https://github.com/forin-xyz/statistical-learning-method/blob/master/perceptron_origin.py" title="gihub">感知机学习算法原始形式</a></p>
+<h3>感知机学习的原始形式的python实现</h3>
+<p><a href="https://github.com/forin-xyz/statistical-learning-method/blob/master/perceptron_origin.py" title="gihub">感知机学习的原始形式</a></p>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 <span class="k">def</span> <span class="nf">perceptron_origin_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -176,8 +176,8 @@ b &amp;= \sum\limits_{i=1}^{N}\alpha_{i}y_{i}
 <p>(4) 转至（2）</p>
 </blockquote>
 <p>考虑到对偶形式中训练实例仅以内积形式存在，为了方便，我们可以预先将训练集中实例间的内积计算出来并保存</p>
-<h4>感知机学习算法对偶形式的python实现</h4>
-<p><a href="https://github.com/forin-xyz/statistical-learning-method/blob/master/perceptron_couple.py" title="gihub">感知机学习算法对偶形式</a></p>
+<h4>感知机学习对偶形式的python实现</h4>
+<p><a href="https://github.com/forin-xyz/statistical-learning-method/blob/master/perceptron_couple.py" title="gihub">感知机学习的对偶形式</a></p>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 <span class="k">def</span> <span class="nf">perceptron_couple_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -247,8 +247,8 @@ b &amp;= \sum\limits_{i=1}^{N}\alpha_{i}y_{i}
 <p>于是感知机问题就转化为线性可分支持向量机问题，等价于下面的优化问题:
 </p>
 <div class="math">$$\begin{aligned}
-&amp;\max\limits_{w,b}   &amp;\gamma\\
-&amp;s.t.  &amp;y_{i}(\frac{w}{\left \| w \right \|} \cdot x_{i} + \frac{b}{\left \| w \right \|}) \geq \gamma, i=1,2,\cdots,N
+\max\limits_{w,b}&amp;   \gamma\\&amp;
+s.t.&amp;  y_{i}(\frac{w}{\left \| w \right \|} \cdot x_{i} + \frac{b}{\left \| w \right \|}) \geq \gamma, i=1,2,\cdots,N&amp;
 \end{aligned}$$</div>
 <p>上面的规划问题等价于下面的凸二次规划问题(convex quadratic programming)</p>
 <h2>中英文词汇对照表</h2>

@@ -1,0 +1,47 @@
+Title: 《统计学习方法》读书笔记5-朴素贝叶斯方法，含python源码
+Date: 2016-02-18 23:00
+Category: 机器学习
+Tags: 机器学习, 朴素贝叶斯, Naive Bayes, python, 计算机科学, 数学原理, 读书笔记
+Summary: 朴素贝叶斯方法(Naive Bayesian Method)是基于贝叶斯定理与特征 条件独立假设的分类方法，是一种常见和高效的学习方法。
+
+## 原理
+
+### 贝叶斯定理
+
+事件A和事件B同时发生的概率等于事件B发生的概率与事件A在事件B已经发生的条件下发生的概率的乘积, 即
+$$ P(A, B) = P(AB) = P(A|B)P(B) $$
+
+### 贝叶斯公式
+
+$$ P(A_{i}|B) = \frac{P(B|A_{i})P(A_{i})}{P(B)} $$
+其中
+$$ P(B) = \sum\limits_{i=0}{n}P(B|A_{i})P(A_{i}) $$
+于是
+$$ P(A_{i}|B) = \frac{P(B|A_{i})P(A_{i})}{\sum\limits_{i=0}{n}P(B|A_{i})P(A_{i})} $$
+这就是贝叶斯公式, 其中$\{A_{i}\}$为完备事件组,即$\cup\limits_{i}A_{i} = \Omega, A_{i}A_{j} = \phi,(i \ne j), P(A_{i}) > 0$.
+
+### 特征条件相互独立假设
+
+朴素贝叶斯方法对条件概率分布做了互相独立的假设，即在输出一定的条件下，实例点的特征分量彼此相互独立，即：
+$$
+$$
+
+## 中英文对照
+
+朴素贝叶斯方法 Naive Bayesian Method
+
+类标记 class label
+
+贝叶斯定理 bayes theorem
+
+贝叶斯公式 Bayes Rule
+
+先验概率 Prior Probability
+
+后验概率 Posterior Probability
+
+极大似然估计 Maximum Likelihood Estimation, ELM
+
+贝叶斯估计 Bayesian Estimation
+
+
