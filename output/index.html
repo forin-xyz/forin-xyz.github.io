@@ -54,7 +54,7 @@
 <p>对应于特征空间\(R^n\)中的一个超平面，其中\(w\)是超平面的法向量，\(b\)是超平面的截距。这个超平面恰好将特征空间的点分为两个部分，分别对应于正、负两类实例。</p>
 <h3>数据集的线性可分性</h3>
 <p>给定一个数据集</p>
-<div class="math">$$T = \{(x_{1},y_{1}),(x_{2},y_{2}),\cdot s, (x_{N},y_{N})\},$$</div>
+<div class="math">$$T = \{(x_{1},y_{1}),(x_{2},y_{2}),\cdots, (x_{N},y_{N})\},$$</div>
 <p>其中, \(x_{i}\)属于特征空间的点，如果存在某个超平面\(S\)</p>
 <div class="math">$$w \cdot \mathit{x} + b = 0$$</div>
 <p>能够完全将数据集的实例点正确分类即对所有的\(i\)都有$$\mathit{y}<em i="i">{i}(w \cdot \mathit{x</em>} + b) &gt;0, 则称线性数据集\(T\)为线性可分数据集(linearly separable data set); 否则, 称数据集\(T\)线性可分。</p>
@@ -88,7 +88,7 @@ x, &amp;   &amp;x \gt 0\\
 <p>其中\(\eta (0 &lt; \eta \leq 1)\)是步长，在统计学习中又称为学习率(learning rate)。</p>
 <h4>感知机学习算法的原始形式</h4>
 <blockquote>
-<p>输入：\(T={(x_{1},y_{1}),(x_{2},y_{2}), \cdot s ,(x_{N},y_{N})}\)（其中\(x_{i} \in R^n\)，\(y_{i}\)∈Y={-1,+1}，i=1,2...N，学习速率为η）
+<p>输入：\(T={(x_{1},y_{1}),(x_{2},y_{2}), \cdots ,(x_{N},y_{N})}\)（其中\(x_{i} \in R^n\)，\(y_{i}\)∈Y={-1,+1}，i=1,2...N，学习速率为η）
 输出：w, b;感知机模型f(x)=sign(w·x+b)
 (1) 初始化w=0,b=0
 (2) 在训练数据集中选取（xi, yi）
@@ -156,12 +156,12 @@ b &amp;= \sum\limits_{i=1}^{N}\alpha_{i}y_{i}
 <p>(1) 初始化\(\alpha=0,b=0\)</p>
 <p>(2) 在训练数据集中选取（xi, yi）</p>
 <p>(3) 如果 \(y_{i}(\sum\limits_{j=1}^{N}{\alpha_{j}y{j}x_{j}\cdot x_{i}} + b) \leq 0\)</p>
-<div class="highlight"><pre><span class="x">      </span><span class="p">$$</span><span class="nv">alpha_</span><span class="err">{</span><span class="x">i} = \apha_</span><span class="err">{</span><span class="x">i} + \eta</span><span class="p">$$</span><span class="x"></span>
-
-<span class="x">      </span><span class="p">$$</span><span class="nv">b</span><span class="x"> = b + </span><span class="err">{</span><span class="x">\eta}y_</span><span class="err">{</span><span class="x">i}</span><span class="p">$$</span><span class="x"></span>
-</pre></div>
-
-
+<p>
+<div class="math">$$alpha_{i} = \apha_{i} + \eta$$</div>
+</p>
+<p>
+<div class="math">$$b = b + {\eta}y_{i}$$</div>
+</p>
 <p>(4) 转至（2）</p>
 </blockquote>
 <p>考虑到对偶形式中训练实例仅以内积形式存在，为了方便，我们可以预先将训练集中实例间的内积计算出来并保存</p>
@@ -237,7 +237,7 @@ b &amp;= \sum\limits_{i=1}^{N}\alpha_{i}y_{i}
 </p>
 <div class="math">$$\begin{aligned}
 &amp;\max\limits_{w,b}   &amp;\gamma\\
-&amp;s.t.  &amp;y_{i}(\frac{w}{\left \| w \right \|} \cdot x_{i} + \frac{b}{\left \| w \right \|}) \geq \gamma, i=1,2,\cdot s,N
+&amp;s.t.  &amp;y_{i}(\frac{w}{\left \| w \right \|} \cdot x_{i} + \frac{b}{\left \| w \right \|}) \geq \gamma, i=1,2,\cdots,N
 \end{aligned}$$</div>
 <p>上面的规划问题等价于下面的凸二次规划问题(convex quadratic programming)</p>
 <h2>中英文词汇对照表</h2>
