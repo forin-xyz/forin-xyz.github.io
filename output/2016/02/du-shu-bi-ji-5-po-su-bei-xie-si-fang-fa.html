@@ -31,8 +31,8 @@
 
     <div class="entry-content">
 <footer class="post-info">
-        <abbr class="published" title="2016-02-19T23:00:00+08:00">
-                发表于: 2016年02月19日 星期五
+        <abbr class="published" title="2016-02-21T23:00:00+08:00">
+                发表于: 2016年02月21日 星期日
         </abbr>
 
         <address class="vcard author">
@@ -73,7 +73,7 @@ $$</div>
 <p>将特征条件相互独立代入到贝叶斯公式， 有
 </p>
 <div class="math">$$
-P(Y=c_{k}|X=x)=\frac{P(Y=c_{k})}\prod\limits_{j=1}{n}P(X^{j}=x^{j}|Y=c_{k})}{\sum_{k}{P(Y=c_k)}\prod_{j}{P(X^{j}=x^{j}|Y=c_{k})}}
+P(Y=c_{k}|X=x)=\frac{P(Y=c_{k})\prod\limits_{j=1}{n}P(X^{j}=x^{j}|Y=c_{k})}{\sum_{k}{P(Y=c_k)}\prod_{j}{P(X^{j}=x^{j}|Y=c_{k})}}
 $$</div>
 <p>
 朴素贝叶斯分类器就是选取在给定的输入的情况下，将后验概率最大的类最为输出的分类的方法，又
@@ -104,14 +104,14 @@ f(x) =&amp; \arg \min\limits_{c_{k}}P(y \neq c_{k}|X=x)
 <p>
 其中<span class="math">\(freq\)</span>为频数函数。
 </p>
-<div class="math">$$P(X^(j)=a_{jl}|c_{k})=\frac{freq(x^(j)=a_{jl},c_{k})}{freq(c_{k})}$$</div>
+<div class="math">$$P(X^{(j)}=a_{jl}|c_{k})=\frac{freq(x^{(j)}=a_{jl},c_{k})}{freq(c_{k})}$$</div>
 <p>
 其中<span class="math">\(a_{jl}\)</span>表示第j个特征可能取得的第l个值。
 将上述两式带入到朴素贝叶斯分类器模型就可以得到极大似然估计。</p>
 <h4>朴素贝叶斯方法的极大似然估计算法</h4>
 <p>naive Bayes algorithm 朴素贝叶斯算法</p>
 <blockquote>
-<p>输入: 训练数据集<span class="math">\(T=\{(x_{1},y{1}), \cdots, (x_{N}, y_{N})\}\)</span>,其中<span class="math">\(x_{i}=(x_{i}^(1), \cdots, x_{i}^(n))^{T}\)</span>, <span class="math">\(x_{i}^{j}\)</span>是第i个样本的第j个特征, <span class="math">\(x_{i}^(j) \in {a_{j1}, \cdots, a_{jS_{j}}}\)</span>, <span class="math">\(a_{jh}是第j个特征可能取得的第l个值, $y_{i} \in \{c_{1}, \cdots, c_{K}\}\)</span>; 实例<span class="math">\(x\)</span>.</p>
+<p>输入: 训练数据集<span class="math">\(T=\{(x_{1},y{1}), \cdots, (x_{N}, y_{N})\}\)</span>,其中<span class="math">\(x_{i}=(x_{i}^(1), \cdots, x_{i}^(n))^{T}\)</span>, <span class="math">\(x_{i}^{j}\)</span>是第i个样本的第j个特征, <span class="math">\(x_{i}^{(j)} \in {a_{j1}, \cdots, a_{jS_{j}}}\)</span>, <span class="math">\(a_{jh}是第j个特征可能取得的第l个值, $y_{i} \in \{c_{1}, \cdots, c_{K}\}\)</span>; 实例<span class="math">\(x\)</span>.</p>
 <p>输出: 实例x的分类</p>
 <p>(1) 计算先验概率和条件概率</p>
 <p>
@@ -122,7 +122,7 @@ f(x) =&amp; \arg \min\limits_{c_{k}}P(y \neq c_{k}|X=x)
 </p>
 <p>(2) 对于给定的实例, 计算</p>
 <p>
-<div class="math">$$P(c_{k})\prod\limits_{j=1}{n}P(x^(j)|c_{k})$$</div>
+<div class="math">$$P(c_{k})\prod\limits_{j=1}{n}P(x^{(j)}|c_{k})$$</div>
 </p>
 <p>(3) 取上面结果最大的类作为实例<span class="math">\(x\)</span>的类输出。</p>
 </blockquote>
@@ -186,7 +186,7 @@ f(x) =&amp; \arg \min\limits_{c_{k}}P(y \neq c_{k}|X=x)
 <p>贝叶斯估计等价于在随机变量各个取值的频数上赋予一个正数</p>
 <div class="math">$$\lambda$$</div>
 <p>.</p>
-<div class="math">$$P_{\lambda}(X^(j)=a_{jl}|c_{k})=\frac{freq(x^(j)=a_{jl},c_{k})+\lambda}{freq(c_{k})+S_{j}\lambda}$$</div>
+<div class="math">$$P_{\lambda}(X^{(j)}=a_{jl}|c_{k})=\frac{freq(x^{(j)}=a_{jl},c_{k})+\lambda}{freq(c_{k})+S_{j}\lambda}$$</div>
 <p>
 其中<span class="math">\(S_{j}\)</span>表示第j个特征可能取值的集合的元素个数。
 </p>
