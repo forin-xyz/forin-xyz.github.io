@@ -88,17 +88,16 @@ $$</div>
 <p>直到\(y_{i}(w*x_{i} + b) \leq 0\)为止。</p>
 <p>其中\(\eta (0 &lt; \eta \leq 1)\)是步长，在统计学习中又称为学习率(learning rate)。</p>
 <h4>感知机学习算法的原始形式</h4>
-<div class="highlight"><pre><span class="x">输入：\\(T=</span><span class="err">{</span><span class="x">(x_</span><span class="err">{</span><span class="x">1},y_</span><span class="err">{</span><span class="x">1}),(x_</span><span class="err">{</span><span class="x">2},y_</span><span class="err">{</span><span class="x">2}), \cdots ,(x_</span><span class="err">{</span><span class="x">N},y_</span><span class="err">{</span><span class="x">N})}\\)（其中\\(x_</span><span class="err">{</span><span class="x">i} \in R^n\\)，\\(y_</span><span class="err">{</span><span class="x">i}\\)∈Y=</span><span class="err">{</span><span class="x">-1,+1}，i=1,2...N，学习速率为η）</span>
-<span class="x">输出：w, b;感知机模型f(x)=sign(w·x+b)</span>
-<span class="x">(1) 初始化w=0,b=0</span>
-<span class="x">(2) 在训练数据集中选取（xi, yi）</span>
-<span class="x">(3) 如果\\(y_</span><span class="err">{</span><span class="x">i}(w \* x_</span><span class="err">{</span><span class="x">i} + b ) \leq 0\\)</span>
-<span class="x">       </span><span class="p">$$</span><span class="nv">w</span><span class="x"> = w + </span><span class="err">{</span><span class="x">\eta}y_</span><span class="err">{</span><span class="x">i}x_</span><span class="err">{</span><span class="x">i}</span><span class="p">$$</span><span class="x"></span>
-<span class="x">       </span><span class="p">$$</span><span class="nv">b</span><span class="x"> = b + </span><span class="err">{</span><span class="x">\eta}y_</span><span class="err">{</span><span class="x">i}</span><span class="p">$$</span><span class="x"></span>
-<span class="x">(4) 转至（2）</span>
-</pre></div>
-
-
+<blockquote>
+<p>输入：\(T={(x_{1},y_{1}),(x_{2},y_{2}), \cdots ,(x_{N},y_{N})}\)（其中\(x_{i} \in R^n\)，\(y_{i}\)∈Y={-1,+1}，i=1,2...N，学习速率为η）
+输出：w, b;感知机模型f(x)=sign(w·x+b)
+(1) 初始化w=0,b=0
+(2) 在训练数据集中选取（xi, yi）
+(3) 如果\(y_{i}(w * x_{i} + b ) \leq 0\)
+         <div class="math">$$w = w + {\eta}y_{i}x_{i}$$</div>
+<div class="math">$$b = b + {\eta}y_{i}$$</div>
+  (4) 转至（2）</p>
+</blockquote>
 <h3>感知机学习算法的原始形式的python源码</h3>
 <div class="highlight"><pre><span class="p">[</span><span class="err">感知机学习算法原始形式</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">forin</span><span class="o">-</span><span class="n">xyz</span><span class="o">/</span><span class="n">statistical</span><span class="o">-</span><span class="n">learning</span><span class="o">-</span><span class="n">method</span><span class="o">/</span><span class="n">blob</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">perceptron_origin</span><span class="o">.</span><span class="n">py</span> <span class="s">&quot;gihub&quot;</span><span class="p">)</span>
 
@@ -154,17 +153,16 @@ b &amp;= \sum\limits_{i=1}^{N}\alpha_{i}y_{i}
 <p>
 这里，\(\appha_{i} \geq 0\), 当 \(\eta = 1\)时，表示第i个实例点由于误分而进行更新的次数</p>
 <h4>感知机学习算法的对偶形式</h4>
-<div class="highlight"><pre><span class="x">输入：T=</span><span class="err">{</span><span class="x">(x1,y1),(x2,y2)...(xN,yN)}（其中xi∈X=Rn，yi∈Y=</span><span class="err">{</span><span class="x">-1, +1}，i=1,2...N，学习速率为η）</span>
-<span class="x">输出：a,b;感知机模型f(x)=sign(w·x+b)</span>
-<span class="x">(1) 初始化\\(\alpha=0,b=0\\)</span>
-<span class="x">(2) 在训练数据集中选取（xi, yi）</span>
-<span class="x">(3) 如果 \\(y_</span><span class="err">{</span><span class="x">i}(\sum\limits_</span><span class="err">{</span><span class="x">j=1}^</span><span class="err">{</span><span class="x">N}</span><span class="err">{</span><span class="x">\alpha_</span><span class="err">{</span><span class="x">j}y</span><span class="err">{</span><span class="x">j}x_</span><span class="err">{</span><span class="x">j}\*x_</span><span class="err">{</span><span class="x">i}} + b) \leq 0\\)</span>
-<span class="x">       </span><span class="p">$$</span><span class="nv">alpha_</span><span class="err">{</span><span class="x">i} = \apha_</span><span class="err">{</span><span class="x">i} + \eta</span><span class="p">$$</span><span class="x"></span>
-<span class="x">       </span><span class="p">$$</span><span class="nv">b</span><span class="x"> = b + </span><span class="err">{</span><span class="x">\eta}y_</span><span class="err">{</span><span class="x">i}</span><span class="p">$$</span><span class="x"></span>
-<span class="x">(4) 转至（2）</span>
-</pre></div>
-
-
+<blockquote>
+<p>输入：T={(x1,y1),(x2,y2)...(xN,yN)}（其中xi∈X=Rn，yi∈Y={-1, +1}，i=1,2...N，学习速率为η）
+   输出：a,b;感知机模型f(x)=sign(w·x+b)
+   (1) 初始化\(\alpha=0,b=0\)
+   (2) 在训练数据集中选取（xi, yi）
+   (3) 如果 \(y_{i}(\sum\limits_{j=1}^{N}{\alpha_{j}y{j}x_{j}*x_{i}} + b) \leq 0\)
+          <div class="math">$$alpha_{i} = \apha_{i} + \eta$$</div>
+<div class="math">$$b = b + {\eta}y_{i}$$</div>
+   (4) 转至（2）</p>
+</blockquote>
 <p>考虑到对偶形式中训练实例仅以内积形式存在，为了方便，我们可以预先将训练集中实例间的内积计算出来并保存</p>
 <h4>感知机学习算法对偶形式的python实现</h4>
 <p><a href="https://github.com/forin-xyz/statistical-learning-method/blob/master/perceptron_couple.py" title="gihub">感知机学习算法对偶形式</a></p>
