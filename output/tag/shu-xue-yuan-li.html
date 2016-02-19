@@ -57,7 +57,7 @@
 <div class="math">$$T = \{(x_{1},y_{1}),(x_{2},y_{2}),\cdots, (x_{N},y_{N})\},$$</div>
 <p>其中, \(x_{i}\)属于特征空间的点，如果存在某个超平面\(S\)</p>
 <div class="math">$$w \cdot \mathit{x} + b = 0$$</div>
-<p>能够完全将数据集的实例点正确分类即对所有的\(i\)都有$$\mathit{y}<em i="i">{i}(w \cdot \mathit{x</em>} + b) &gt;0, 则称线性数据集\(T\)为线性可分数据集(linearly separable data set); 否则, 称数据集\(T\)线性可分。</p>
+<p>能够完全将数据集的实例点正确分类即对所有的\(i\)都有$$\mathit{y}<em i="i">{i}(w \cdot \mathit{x}</em> + b) &gt;0, 则称线性数据集\(T\)为线性可分数据集(linearly separable data set); 否则, 称数据集\(T\)线性可分。</p>
 <h3>感知机的损失函数</h3>
 <p>对于正确分类的点，其损失函数应该为0, 对于错误分类的点, 其损失函数应该大于0，整个的经验损失函数就是训练集中所有实例点的损失函数的和。</p>
 <p>如果训练集是可分线性数据集，感知机模型就是寻找到一个能够将正实例点和负实例点完全分开的分离超平面，亦即是的整个经验损失函数为0。</p>
@@ -78,7 +78,7 @@ x, &amp;   &amp;x \gt 0\\
 <p>感知机学习算法是误分类驱动的，具体采用随机梯度下降法(stochastic gradient descent). 具体而言就是每一次对其中一个误分类点使用梯度下降法使其的经验损失函数值减小。</p>
 <p>随机选取一个误分类点\((x_{i}, y_{i})\), 其损失函数对应的梯度为:
 </p>
-<div class="math">$$\begin(aligned)\delta_{w} L_{i}(w, b) &amp;= -y_{i}x_{i}\\
+<div class="math">$$\begin{aligned}\delta_{w} L_{i}(w, b) &amp;= -y_{i}x_{i}\\
 \delta_{b} L_{i}(w, b) &amp;= -y_{i}
 \end{aligned}$$</div>
 <p>这样对应的迭代函数为:</p>
@@ -161,7 +161,7 @@ b &amp;= \sum\limits_{i=1}^{N}\alpha_{i}y_{i}
 <p>(2) 在训练数据集中选取（xi, yi）</p>
 <p>(3) 如果 \(y_{i}(\sum\limits_{j=1}^{N}{\alpha_{j}y{j}x_{j}\cdot x_{i}} + b) \leq 0\)</p>
 <p>
-<div class="math">$$alpha_{i} = \alpha_{i} + \eta$$</div>
+<div class="math">$$\alpha_{i} = \alpha_{i} + \eta$$</div>
 </p>
 <p>
 <div class="math">$$b = b + {\eta}y_{i}$$</div>
