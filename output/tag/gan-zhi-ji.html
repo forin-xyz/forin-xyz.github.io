@@ -151,14 +151,18 @@ b &amp;= \sum\limits_{i=1}^{N}\alpha_{i}y_{i}
 这里，\(\appha_{i} \geq 0\), 当 \(\eta = 1\)时，表示第i个实例点由于误分而进行更新的次数</p>
 <h4>感知机学习算法的对偶形式</h4>
 <blockquote>
-<p>输入：T={(x1,y1),(x2,y2)...(xN,yN)}（其中xi∈X=Rn，yi∈Y={-1, +1}，i=1,2...N，学习速率为η）
-   输出：a,b;感知机模型f(x)=sign(w·x+b)
-   (1) 初始化\(\alpha=0,b=0\)
-   (2) 在训练数据集中选取（xi, yi）
-   (3) 如果 \(y_{i}(\sum\limits_{j=1}^{N}{\alpha_{j}y{j}x_{j}\cdot x_{i}} + b) \leq 0\)
-          <div class="math">$$alpha_{i} = \apha_{i} + \eta$$</div>
-<div class="math">$$b = b + {\eta}y_{i}$$</div>
-   (4) 转至（2）</p>
+<p>输入：T={(x1,y1),(x2,y2)...(xN,yN)}（其中xi∈X=Rn，yi∈Y={-1, +1}，i=1,2...N，学习速率为η）</p>
+<p>输出：a,b;感知机模型f(x)=sign(w·x+b)</p>
+<p>(1) 初始化\(\alpha=0,b=0\)</p>
+<p>(2) 在训练数据集中选取（xi, yi）</p>
+<p>(3) 如果 \(y_{i}(\sum\limits_{j=1}^{N}{\alpha_{j}y{j}x_{j}\cdot x_{i}} + b) \leq 0\)</p>
+<div class="highlight"><pre><span class="x">      </span><span class="p">$$</span><span class="nv">alpha_</span><span class="err">{</span><span class="x">i} = \apha_</span><span class="err">{</span><span class="x">i} + \eta</span><span class="p">$$</span><span class="x"></span>
+
+<span class="x">      </span><span class="p">$$</span><span class="nv">b</span><span class="x"> = b + </span><span class="err">{</span><span class="x">\eta}y_</span><span class="err">{</span><span class="x">i}</span><span class="p">$$</span><span class="x"></span>
+</pre></div>
+
+
+<p>(4) 转至（2）</p>
 </blockquote>
 <p>考虑到对偶形式中训练实例仅以内积形式存在，为了方便，我们可以预先将训练集中实例间的内积计算出来并保存</p>
 <h4>感知机学习算法对偶形式的python实现</h4>
