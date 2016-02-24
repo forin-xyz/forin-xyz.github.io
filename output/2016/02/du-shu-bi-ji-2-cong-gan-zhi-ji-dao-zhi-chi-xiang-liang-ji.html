@@ -42,7 +42,7 @@
 <p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/gan-zhi-ji.html">感知机</a> <a href="http://forin-xyz.github.io/output/tag/perceptron.html">perceptron</a> <a href="http://forin-xyz.github.io/output/tag/zhi-chi-xiang-liang-ji.html">支持向量机</a> <a href="http://forin-xyz.github.io/output/tag/super-vector-machines.html">super vector machines</a> <a href="http://forin-xyz.github.io/output/tag/svm.html">SVM</a> <a href="http://forin-xyz.github.io/output/tag/python.html">python</a> <a href="http://forin-xyz.github.io/output/tag/ji-suan-ji-ke-xue.html">计算机科学</a> <a href="http://forin-xyz.github.io/output/tag/shu-xue-yuan-li.html">数学原理</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> </p>
 </footer><!-- /.post-info -->      <h2>感知机</h2>
 <h3>感知机的定义</h3>
-<p>从输入空间\( \mathit{X} \subseteq R^n\)到输出空间\(\mathit{Y} \subseteq {+1, -1}\)的函数
+<p>从输入空间\( \mathit{X} \subseteq R^n\)到输出空间\(\mathit{Y} \subseteq { +1, -1 }\)的函数
 </p>
 <div class="math">$$f(x)=sign(w\cdot \mathit{x} + b)$$</div>
 <p>被称为感知机。输入x表示实例的特征向量，输出y表示实例的类别，w和b为感知机模型的参数，分别叫做权值向量和偏置。\(sign(x)\)是符号函数，即
@@ -247,7 +247,7 @@ b &amp;= \sum\limits_{i=1}^{N}\alpha_{i}y_{i}
 <p>于是感知机问题就转化为线性可分支持向量机问题，等价于下面的优化问题:
 </p>
 <div class="math">$$\begin{aligned}
-\max\limits_{w,b}&amp;   \gamma\\&amp;
+\max\limits_{w,b}&amp;   \gamma&amp;\\
 s.t.&amp;  y_{i}(\frac{w}{\left \| w \right \|} \cdot x_{i} + \frac{b}{\left \| w \right \|}) \geq \gamma, i=1,2,\cdots,N&amp;
 \end{aligned}$$</div>
 <p>上面的规划问题等价于下面的凸二次规划问题(convex quadratic programming)</p>
