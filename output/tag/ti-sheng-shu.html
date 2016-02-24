@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+        <meta charset="utf-8" />
+        <title>耕有田，读有书 - 提升树</title>
+        <link rel="stylesheet" href="http://forin-xyz.github.io/output/theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+<a href="http://github.com/forin-xyz/">
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
+</a>
+        <header id="banner" class="body">
+                <h1><a href="http://forin-xyz.github.io/output/">耕有田，读有书 </a></h1>
+                <nav><ul>
+                    <li><a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a></li>
+                    <li><a href="http://forin-xyz.github.io/output/category/python.html">Python</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-7-ti-sheng-fang-fa.html">《统计学习方法》读书笔记7-提升方法，含python实现代码</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2016-02-24T23:00:00+08:00">
+                发表于: 2016年02月24日 星期三
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
+        </address>
+<p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
+<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/ti-sheng-fang-fa.html">提升方法</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> <a href="http://forin-xyz.github.io/output/tag/adaboost.html">AdaBoost</a> <a href="http://forin-xyz.github.io/output/tag/ti-sheng-shu.html">提升树</a> <a href="http://forin-xyz.github.io/output/tag/boosting-tree.html">boosting tree</a> </p>
+</footer><!-- /.post-info --><h2>AdaBoost算法</h2>
+<h3>提升方法的基本思路</h3>
+<p>Kearns和Valient:</p>
+<blockquote>
+<p><strong>强可学习</strong>: 在概率近似正确学习(PAC)的框架下，一个概念（类），如果存在一个多项式的学习算法能够学习它，并且正确率很高，那么就称这个概念是抢可学习的。</p>
+<p><strong>弱可学习</strong>:一个概念，如果存在一个多项式的学习算法可以学习它，学习的正确率仅比随机猜测略好,那么就称这个概念是弱可学习的。</p>
+<p>在概率近似正确学习框架下, 强可学习与弱可学习是等价的。</p>
+</blockquote>
+<p>根据这一理论，我们自然而然的想到是否可以通过容易发现的“弱学习算法”来提升为“强学习算法”。</p>
+<p>这类想法中最具代表性的就是AdaBoost algorithm，他通过改变样本的权值，反复学习得到弱分类器，然后这些弱分类器按照一定的权值组合成一个强分类器。</p>
+<p>具体的想法如下:</p>
+<blockquote>
+<p>1、提高前一轮弱分类器错误分类样本的去呀不照顾</p>
+<p>2、加大分类误差率小的弱分类器的权值，减小分类误差率小的弱分类器权值</p>
+</blockquote>
+<h3>AdaBoost 算法</h3>
+<p>假设给定一个二类分类的训练数据集
+</p>
+<div class="math">$$T=\{(x_{1}, y_{1}), (x_{2}, y_{2}), \cdots, (x_{N}, y_{N})\}$$</div>
+<p>
+其中，每个样本点由实例与标记组成。 实例<span class="math">\(x_{i} \in \mathcal{X} \subseteq boldsymbol{R}^n\)</span>, 类标记<span class="math">\(y_{i} \in \mathcal{Y}=\{ -1, +1\}\)</span>。</p>
+<p><strong> AdaBoost 算法 </strong></p>
+<blockquote>
+<p>输入: 训练数据集T; 弱学习算法</p>
+<p>输出: 最终分类器<span class="math">\(G(x)\)</span></p>
+<p>(1) 初始化训练的权值分布
+<div class="math">$$D_{1} = (w_{11}, \cdots, w_{1i}, \cdots, w_{1N}), w_{1i} = \frac{1}{N}$$</div>
+</p>
+<p>(2) 对m = 1, 2, ..., M</p>
+<p>(a)使用权值分布<span class="math">\(D_{m}\)</span>的训练数据集学习, 得到基本分类器
+<div class="math">$$G_{m}(x): \mathcal{x} \to {-1, +1}$$</div>
+</p>
+<p>(b)计算<span class="math">\(G_{m}\)</span>在训练数据集上的分类误差率
+<div class="math">$$e_{m} = P(G_{m}(x) \ne y_{i}) = \sum\limits_{i=1}^{N}{w_{mi}I(G_m(x_{i} \ne y_{i}$$</div>
+</p>
+<p>(c)更新<span class="math">\(G_{m}\)</span>的系数
+<div class="math">$$\alpha_{m} = \frac{1}{2} \ln{\frac{1-e_{m}}{e_{m}}}$$</div>
+</p>
+<p>(d)更新训练数据集的权值分布
+<div class="math">$$D_{m+1} = ( \cdots, w_{m+1, i}, \cdots )$$</div>
+</p>
+<p>
+<div class="math">$$w_{m+1, i} = \frac{w_mi}{Z_{m}}e^{-\alpha _{m}y_{i}G_{m}(x_{i})}$$</div>
+</p>
+<p>其中, <span class="math">\(Z_{m}\)</span>是规范化因子,它可以是<span class="math">\(D_{m}\)</span>成为一个概率分布
+<div class="math">$$Z_{m} = \sum\limits_{i=1}^{N}{w_{mi}e^{-\alpha _{m}y_{i}G_{m}(x_{i})}}$$</div>
+</p>
+<p>(3) 构建基本分类器的线性组合
+<div class="math">$$f(x) = \sum\limits_{m=1}^{M}{\alpha_{m}G_{m}(x)}$$</div>
+</p>
+<p>并得到最终分类器
+<div class="math">$$G(x) = sign(f(x))$$</div>
+</p>
+</blockquote>
+<p>在上述算法中,分类误差率
+</p>
+<div class="math">$$e_{m} = \sum\limits_{G(x_{i} \ne y_{i})}{w_{mi}},$$</div>
+<p>
+也就是分类误差率等于被分类器<span class="math">\(G_{m}\)</span>误分类样本的权值之和.</p>
+<p>当<span class="math">\(e_{m} \leq \frac{1}{2}\)</span>时, <span class="math">\(\alpha_{m} \geq 0\)</span>且<span class="math">\(\alpha_{m}\)</span>的值随着<span class="math">\(e_{m}\)</span>的减小而增大，所以分类误差率越小的基本分类器在最终分类器中的作用越大。</p>
+<p><span class="math">\(D_{m+1}\)</span>其实等价于
+</p>
+<div class="math">$$w_{m+1, i} =
+\begin{cases}
+\frac{w_{mi}}{Z_{m}}e^{-\alpha_{m}},&amp;  &amp;G_{m}(x_{i}) \ne y_{i}\\
+\frac{w_{mi}}{Z_{m}}e^{\alpha_{m}},&amp;  &amp;G_{m}(x_{i}) \eq \y_{1}
+\end{cases}$$</div>
+<p>很容易就可以看到, 被<span class="math">\(G_{m}\)</span>误分类的样本权重得以扩张而正确分类的样本权重却得以缩小。(误分类样本权重/原分类样本权值)/(正确分类样本权重/原分类样本权重)<span class="math">\(e^{2\alpha_{m}}=\frac{e_{m}}{1-e_{m}}\)</span>. 因此, 误分类率越大,错误样本权重被放大的程度也就越大。</p>
+<p>线性组合<span class="math">\(f(x)\)</span>表示最终分类器是M个基本分类器的加权表决, f(x)的绝对值表示确信度，f(x)的符号表示类的标记。</p>
+<h3>AdaBoost 的python实现</h3>
+<p><a href="https://github.com/forin-xyz/statistical-learning-method/blob/master/AdaBoost.py" title="gihub">AdaBoost algorithm的python实现</a></p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
+
+<span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">error_rate</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">gm</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">d</span> <span class="ow">is</span>  <span class="bp">None</span><span class="p">:</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">gm</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">!=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">e</span> <span class="o">+=</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">e</span>
+
+<span class="k">def</span> <span class="nf">AdaBoost_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    X,y 训练数据集</span>
+
+<span class="sd">    g</span>
+
+<span class="sd">    callable, 接收三个变量，</span>
+<span class="sd">    分别是训练数据X,y 以及权值训练数据的权值d</span>
+<span class="sd">    输出也是一个callable对象,表示得到的基本分类器</span>
+
+<span class="sd">    Return:</span>
+<span class="sd">    基本分类器、基本分类器的权重以及</span>
+<span class="sd">    最终的分类器f, 是一个callable对象</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">alpha_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">glist</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
+    <span class="n">gm</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">error_rate</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">gm</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="kp">log</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">e</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">alpha_list</span><span class="o">.</span><span class="kp">append</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">glist</span><span class="o">.</span><span class="kp">append</span><span class="p">(</span><span class="n">gm</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="kp">sign</span><span class="p">(</span><span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="n">t</span><span class="p">,</span> <span class="p">[</span><span class="n">a</span><span class="o">*</span><span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">alpha_list</span><span class="p">,</span> <span class="n">glist</span><span class="p">))]))</span>
+    <span class="n">lll</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="nb">any</span><span class="p">(</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">!=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))</span> <span class="p">)</span> <span class="ow">and</span> <span class="n">lll</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">lll</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">gm</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">!=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">e</span> <span class="o">**</span> <span class="n">alpha</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">e</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">zm</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="kp">sum</span><span class="p">()</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">d</span> <span class="o">/</span> <span class="n">zm</span>
+        <span class="n">gm</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">gm</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">!=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="n">e</span> <span class="o">+=</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="kp">log</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">e</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">alpha_list</span><span class="o">.</span><span class="kp">append</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">glist</span><span class="o">.</span><span class="kp">append</span><span class="p">(</span><span class="n">gm</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="kp">sign</span><span class="p">(</span><span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="n">t</span><span class="p">,</span> <span class="p">[</span><span class="n">a</span><span class="o">*</span><span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">alpha_list</span><span class="p">,</span> <span class="n">glist</span><span class="p">))]))</span>
+    <span class="k">return</span> <span class="n">alpha_list</span><span class="p">,</span> <span class="n">glist</span><span class="p">,</span> <span class="n">f</span>
+
+<span class="k">def</span> <span class="nf">test_classify</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+    <span class="n">vs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span>
+    <span class="n">g1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="kp">sign</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">v</span><span class="p">)</span>
+    <span class="n">g2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="kp">sign</span><span class="p">(</span><span class="n">v</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vs</span><span class="p">:</span>
+        <span class="n">gv1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="p">:</span> <span class="n">g1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">gv2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="p">:</span> <span class="n">g2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">e1</span> <span class="o">=</span> <span class="n">error_rate</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">gv1</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+        <span class="n">e2</span> <span class="o">=</span> <span class="n">error_rate</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">gv2</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">e1</span> <span class="o">&lt;</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="n">e1</span>
+            <span class="n">g</span> <span class="o">=</span> <span class="n">gv1</span>
+        <span class="k">if</span> <span class="n">e2</span> <span class="o">&lt;</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="n">e2</span>
+            <span class="n">g</span> <span class="o">=</span> <span class="n">gv2</span>
+    <span class="k">return</span> <span class="n">g</span>
+
+<span class="k">def</span> <span class="nf">test_AdaBoost_train</span><span class="p">():</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">]</span>
+    <span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="p">]</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">test_classify</span>
+    <span class="n">alpha_list</span><span class="p">,</span> <span class="n">glist</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="n">AdaBoost_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">alpha_list</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">alpha_list</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">([</span><span class="mf">0.4236</span><span class="p">,</span> <span class="mf">0.6496</span><span class="p">,</span> <span class="mf">0.7541</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="kp">sum</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">1e5</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;test AdaBoost_train successfully!&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;test AdaBoost_train failed!&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">test_AdaBoost_train</span><span class="p">()</span>
+</pre></div>
+
+
+<h3>AdaBoost 训练误差分析</h3>
+<p><strong>定理1(AdaBoost的误差界)</strong> AdaBoost算法的最终分类器的训练误差界为
+</p>
+<div class="math">$$
+\frac{1}{N}\sum\limits_{i=1}^{N}I(G(x_{i} \ne y_{i})) \leq \frac{1}{N}\sum\limits_{i=1}{N}e^(-y_{i}f(x_{i})) = \prod\limits_{m}{Z_{m}}
+$$</div>
+<p>证明:</p>
+<blockquote>
+<p>当<span class="math">\(G(x_{i}) \ne y_{i}\)</span>时, <span class="math">\(y_{i}f(x_{i})=&lt;0\)</span>, <span class="math">\(I(G(x_{i}) \ne y_{i}) = 1 =&lt; e^{-y_{i}f(x_{i})}\)</span></p>
+<p>当<span class="math">\(G(x_{i}) \eq y_{i}\)</span>时, <span class="math">\(I(G(x_{i}) \ne y_{i}) = 0 &lt; e^{-y_{i}f(x_{i})}\)</span></p>
+<p>于是左边的不等式得到了证明</p>
+<p>至于右边的等式, 有
+<div class="math">$$\begin{aligned}\frac{1}{N}\sum\limits_{i}exp(-y_{i}f(x_{i}))&amp;\\
+=&amp;\sum\limits_{i}w_{1i}\prod\limits_{m}{exp(-\alpha_{m}y_{i}G_{m}(x_{i}))}\\
+=&amp;Z_{1}\sum\limits_{i}w_{2i}\prod\limits_{m=2}^{M}{exp(-\alpha_{m}y_{i}G_{m}(x_{i}))}
+=&amp;Z_{1}Z_{2}\cdots\Z_{M}
+=&amp;\prod\limits_{m}{Z_{m}}
+\end{aligned}$$</div>
+</p>
+<p>于是右边也得到了证明</p>
+</blockquote>
+<p>这一定理说明，可以在每一轮选取适当的<span class="math">\(G_{m}\)</span>使得<span class="math">\(Z_{m}\)</span>最小，从而使得训练误差下降最快。</p>
+<p><strong>定理2(二类分类问题AdaBoost的训练误差界)</strong>
+</p>
+<div class="math">$$
+\prod\limits_{m=1}^{M}{Z_{m}} = \prod\limits_{m=1}^{M}{2\sqrt{e_{m}(1-e_{m})}} = \prod\limits_{m=1}^{M}{\sqrt{(1-4*\gamma_{m}^2)}} = \leq exp(-2\sum\limits_{m=1}^{M}(\gamma_{m}))
+$$</div>
+<p>
+这里<span class="math">\(\gamma_{m} = \frac{1}{2} - e_{m}\)</span>.</p>
+<p>证明提示:</p>
+<blockquote>
+<p>可以由<span class="math">\(e^x\)</span>和<span class="math">\(\sqrt{1-x}\)</span>在<span class="math">\(x=0\)</span>附近的泰勒展开式推出不等式<span class="math">\(\sqrt{(1-4\gamma_{m})^2} \leq exp(-2\gamma_{m}^2)\)</span></p>
+</blockquote>
+<p>Ada 是 adaptive的简写，是适应的意思</p>
+<p><strong>推论(训练误差指数下降)</strong>
+如果存在<span class="math">\(\gamma \ge 0\)</span>, 对所有的m都有<span class="math">\(\gamma_{m}
+\geq \gamma\)</span>,则
+</p>
+<div class="math">$$
+\frac{1}{N}\sum_{i=1}{N}{I(G(x_{i}) \ne y_{i})} \leq exp(-2M\gamma ^{2})
+$$</div>
+<h2>AdaBoost 算法的解释</h2>
+<p>AdaBoost算法还可以解释为模型为加法模型，损失函数为指数函数，学习算法为前向分步算法式的二类分类算法。</p>
+<p>加法模型:
+</p>
+<div class="math">$$
+f(x)=\sum\limits_{m=1}{M}\beta_{m}b(x;\gamma_{m})
+$$</div>
+<p>学习加法模型等价与经验风险最小化的优化问题
+</p>
+<div class="math">$$
+\min\limits_{\beta_{m},\gamma_{m}}{\sum\limits_{i=1}^{N}L(y_{i}, f(x_{i}))}
+$$</div>
+<h2>提升树</h2>
+<h2>中英文对照</h2>
+<p>提升 boosting</p>
+<p>提升树 boosting tree</p>
+<p>强可学习 strong learnable</p>
+<p>弱可学习 weakly learnable</p>
+<p>概率近似正确 probably approximately correct, PAC</p>
+<p>加法模型 additive model</p>
+<p>假设空间 hypothesis space</p>
+<p>前向分步算法 forward stagewise algorithm</p>
+<p>决策树桩 decision stump</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://forin-xyz.github.io/tutorial.html">我的导航</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="http://weibo.com/u/1756830393">微博</a></li>
+                            <li><a href="http://github.com/forin-xyz">github</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
