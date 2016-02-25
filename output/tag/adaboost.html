@@ -55,7 +55,7 @@
 </p>
 <div class="math">$$T=\{(x_{1}, y_{1}), (x_{2}, y_{2}), \cdots, (x_{N}, y_{N})\}$$</div>
 <p>
-其中，每个样本点由实例与标记组成。 实例<span class="math">\(x_{i} \in \mathcal{X} \subseteq boldsymbol{R}^n\)</span>, 类标记<span class="math">\(y_{i} \in \mathcal{Y}=\{ -1, +1\}\)</span>。</p>
+其中，每个样本点由实例与标记组成。 实例<span class="math">\(x_{i} \in \mathcal{X} \subseteq \boldsymbol{R}^n\)</span>, 类标记<span class="math">\(y_{i} \in \mathcal{Y}=\{ -1, +1\}\)</span>。</p>
 <p><strong> AdaBoost 算法 </strong></p>
 <blockquote>
 <p>输入: 训练数据集T; 弱学习算法</p>
@@ -68,7 +68,7 @@
 <div class="math">$$G_{m}(x): \mathcal{x} \to {-1, +1}$$</div>
 </p>
 <p>(b)计算<span class="math">\(G_{m}\)</span>在训练数据集上的分类误差率
-<div class="math">$$e_{m} = P(G_{m}(x) \ne y_{i}) = \sum\limits_{i=1}^{N}{w_{mi}I(G_m(x_{i} \ne y_{i}$$</div>
+<div class="math">$$e_{m} = P(G_{m}(x) \ne y_{i}) = \sum\limits_{i=1}^{N}{w_{mi}I(G_m(x_{i}) \ne y_{i})}$$</div>
 </p>
 <p>(c)更新<span class="math">\(G_{m}\)</span>的系数
 <div class="math">$$\alpha_{m} = \frac{1}{2} \ln{\frac{1-e_{m}}{e_{m}}}$$</div>
