@@ -24,138 +24,141 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-8-kjin-lin-fa.html">《统计学习方法》读书笔记8-k近邻法及python实现</a></h1>
+                    <h1 class="entry-title"><a href="http://forin-xyz.github.io/output/2016/03/scikit-learnjian-yao.html">scikit-learn简要</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2016-02-28T23:00:00+08:00">
-                发表于: 2016年02月28日 星期日
+        <abbr class="published" title="2016-03-03T23:00:00+08:00">
+                发表于: 2016年03月03日 星期四
         </abbr>
 
         <address class="vcard author">
                 By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
         </address>
-<p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
-<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/kjin-lin-fa.html">k近邻法</a> <a href="http://forin-xyz.github.io/output/tag/k-nearest-neighbor-method.html">k-nearest neighbor method</a> <a href="http://forin-xyz.github.io/output/tag/k-nn.html">k-NN</a> <a href="http://forin-xyz.github.io/output/tag/kdshu.html">kd树</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> </p>
-</footer><!-- /.post-info --><h2>k近邻算法</h2>
-<p><strong> k 近邻法 </strong></p>
-<blockquote>
-<p>输入: 训练数据集T, 其中特征空间<span class="math">\(\mathcal{X} \subseteq \boldsystem{R}^n\)</span>, 输出空间<span class="math">\(\mathcal{Y} \subseteq \{c_1, c_2, \cdots, c_K\}\)</span>.</p>
-<p>待预测实例特征向量<span class="math">\(x\)</span> 以及参数k</p>
-<p>输出: 实例<span class="math">\(x\)</span>所属的类<span class="math">\(y\)</span></p>
-<p>(1) 在训练集T中找出与x最邻近的k个点构成几何<span class="math">\(N_k(x)\)</span></p>
-<p>(2) 在集合<span class="math">\(N_k(x)\)</span>中根据多数表决决定x所属的类
+<p>In <a href="http://forin-xyz.github.io/output/category/python.html">Python</a>.</p>
+<p>tags: <a href="http://forin-xyz.github.io/output/tag/python.html">python</a> <a href="http://forin-xyz.github.io/output/tag/scikit-learn.html">scikit-learn</a> <a href="http://forin-xyz.github.io/output/tag/machine-learning.html">machine learning</a> <a href="http://forin-xyz.github.io/output/tag/supervised-learning.html">supervised learning</a> <a href="http://forin-xyz.github.io/output/tag/non-supervised-learning.html">non-supervised learning</a> <a href="http://forin-xyz.github.io/output/tag/classfication.html">classfication</a> <a href="http://forin-xyz.github.io/output/tag/prediction.html">prediction</a> <a href="http://forin-xyz.github.io/output/tag/clustering.html">clustering</a> <a href="http://forin-xyz.github.io/output/tag/dimensionality.html">dimensionality</a> </p>
+</footer><!-- /.post-info --><h2>分类 Classfication</h2>
+<h3>线性模型 Generalized Linear Models</h3>
+<h4>线性回归 -&gt; 普通最小二乘法 Linear Regression -&gt; Oridinary Least Squares</h4>
 <div class="math">$$
-y = \arg \max \limits_{c_j}{ freq(y = c_j, (x_i, y_i) \in N_k(x))}
+min\limits_w || Xw - y ||_2^2
 $$</div>
-</p>
-</blockquote>
-<p>当k=1时, 称为最近邻算法，此时将训练数据集中与x最近邻的点的类作为x的类。</p>
-<h3>k近邻算法的python实现</h3>
-<p><a href="https://github.com/forin-xyz/statistical-learning-method/blob/master/k_nearest_neighbor.py" title="gihub">k近邻算法</a></p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-
-<span class="k">def</span> <span class="nf">kNN_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">yk</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="kp">argsort</span><span class="p">(((</span><span class="n">X</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="kp">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">]</span>
-    <span class="n">yunique</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">unique</span><span class="p">(</span><span class="n">yk</span><span class="p">)</span>
-    <span class="n">yend</span> <span class="o">=</span> <span class="n">yunique</span><span class="p">[(</span><span class="n">yk</span> <span class="o">-</span> <span class="n">yunique</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="kp">newaxis</span><span class="p">])</span><span class="o">.</span><span class="kp">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="kp">argmax</span><span class="p">()]</span>
-    <span class="k">return</span> <span class="n">yend</span>
-
-<span class="k">def</span> <span class="nf">test_kNN_train</span><span class="p">():</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-    <span class="p">]</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="p">]</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>
-    <span class="n">ypredit</span> <span class="o">=</span> <span class="n">kNN_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">ypredit</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;test kNN_train sucessfully&#39;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;test kNN_train failed!&#39;</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">test_kNN_train</span><span class="p">()</span>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c"># clf -&gt; classfication</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c"># fit(X, y) -&gt; 学习模型</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span> <span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">LinearRegression</span><span class="p">(</span><span class="n">copy_X</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c"># 非常数项系数</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span><span class="o">.</span><span class="n">coef_</span>
+<span class="n">array</span><span class="p">([</span> <span class="mf">0.5</span><span class="p">,</span>  <span class="mf">0.5</span><span class="p">])</span>
 </pre></div>
 
 
-<h2>k近邻模型</h2>
-<h3>距离度量</h3>
-<p><span class="math">\(L_p\)</span>距离　或者　Ｍinkowski距离:
-</p>
+<h4>脊回归 Ridge Regression -&gt; 带惩罚函数的最小二乘法 Least Squares by imposing a penalty on the size of coefficients.</h4>
 <div class="math">$$
-L_p(x_i, x_j) = (\sum\limits_{l=1}{n}{\abs{x_{i}^{l} - x_{j}^{l}}^p})^{\frac{1}{p}}
+min\limits_w {|| Xw - y ||_2^2 + \alpha ||w||_2^2}, \alpha \geq 0
 $$</div>
-<p>
-这里<span class="math">\(p \geq 1\)</span></p>
-<p>欧式距离 Euclidean distance:
-</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">Ridge</span> <span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span> <span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> 
+<span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">copy_X</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+      <span class="n">normalize</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s">&#39;auto&#39;</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span><span class="o">.</span><span class="n">coef_</span>
+<span class="n">array</span><span class="p">([</span> <span class="mf">0.34545455</span><span class="p">,</span>  <span class="mf">0.34545455</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c"># 常数项系数 or 截距</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span><span class="o">.</span><span class="n">intercept_</span> 
+<span class="mf">0.13636</span><span class="o">.</span>
+</pre></div>
+
+
+<h5>获取正则项或惩罚函数系数 -&gt; 交叉验证 Cross Validation</h5>
+<p>..</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c"># 多了一个后缀CV</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">RidgeCV</span><span class="p">(</span><span class="n">alphas</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>       
+<span class="n">RidgeCV</span><span class="p">(</span><span class="n">alphas</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">],</span> <span class="n">cv</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">normalize</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span><span class="o">.</span><span class="n">alpha_</span>                                      
+<span class="mf">0.1</span>
+</pre></div>
+
+
+<h4>Lasson 拉索</h4>
+<p>估计稀疏系数时会有用, 他更倾向于使用较少的参数值, 如果问题需要减少变量个数, 它将是非常有用的.</p>
 <div class="math">$$
-L_2(x_i, x_j) = (\sum\limits_{l=1}{n}{\abs{x_{i}^{l} - x_{j}^{l}}^2})^{\frac{1}{2}}
+min\limits_w {\frac{1}{2n_samples}{|| Xw - y ||_2^2 + \alpha \lVert w \rVert_1}}, \alpha \geq 0
 $$</div>
-<p>曼哈顿距离 Manhattan distance
-</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">copy_X</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+   <span class="n">normalize</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">precompute</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+   <span class="n">selection</span><span class="o">=</span><span class="s">&#39;cyclic&#39;</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">warm_start</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="c"># 预测</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">array</span><span class="p">([</span> <span class="mf">0.8</span><span class="p">])</span>
+</pre></div>
+
+
+<h5>确定正则项系数</h5>
+<h6>使用交叉验证</h6>
+<p><strong>LassoCV</strong></p>
+<p><strong>LassoLarsCV</strong></p>
+<h6>基于信息标准的模型选择 Information-criteria based model selection</h6>
+<p><strong>LassoLarsIC</strong></p>
+<h4>Elastic Net</h4>
 <div class="math">$$
-L_2(x_i, x_j) = \sum\limits_{l=1}{n}{\abs{x_{i}^{l} - x_{j}^{l}}}
+min\limits_w {\frac{1}{2n_samples}{|| Xw - y ||_2^2 + \alpha \rho \lVert w \rVert _1 + \alpha (1 -  \rho) \lVert w \rVert _2^2 }}, \alpha \geq 0, \rho \geq 0
 $$</div>
-<p>当<span class="math">\(p=\infty\)</span>时,
-</p>
-<div class="math">$$
-L_{\infty}(x_i, x_j) = \max\limits_{l}{\abs{x_{i}^{l} - x_{j}^{l}}}
-$$</div>
-<h3>k的选择</h3>
-<p>如果选择较小的k值,就相当于用较小的邻域中的训练实例进行预测,"学习"的近似误差(approximation error)会减小, 但缺点是"学习"的估计误差(estimation error)会增大,预测结果会对近邻的实例点敏感.
-如果邻近的实例点恰巧是噪声,预测就会出错.
-换句话说,k值的减小就意味着整体模型变得复杂,容易产生过拟合</p>
-<p>如果选择较大的k值,就相当于用较大的邻域进行预测,其优点是可以减小学习的估计误差,但缺点是学习的近似误差会增大. 这时与实例脚癣的训练实例也会对预测起作用,使预测发生错误,k值的增大意味着整体的模型变得简单.</p>
-<p>若k=N, 那么无论输入实例是什么, 它都会简单的预测它属于训练中最多的类.</p>
-<h3>分类决策规则</h3>
-<p>多数表决等价于风险函数为0-1损失函数的经验风险最小化</p>
-<h2>k近邻法的实现:kd树</h2>
-<p><strong>算法2 构造平衡kd树</strong></p>
+<h4>Multi-task Lasso</h4>
+<h4>Least Angle Regression</h4>
+<h4>LARS Lasso</h4>
+<h3>线性和二次判别分析 Linear and Quadratic Discriminant Analysis</h3>
+<h3>Kernle Ridge Regrssion 带核脊回归</h3>
+<h3>支持向量机 Support Machines</h3>
+<h3>随机梯度下降法 Stochastic Gredient Descent</h3>
+<h3>k近邻 Nearest Neighbors</h3>
+<h3>Gaussian Process 高斯过程</h3>
+<h3>Cross decomposion</h3>
+<h3>朴素贝叶斯 Naive Bayes</h3>
+<h3>决策树 Decision Trees</h3>
+<h3>Ensemble Methods</h3>
+<h3>Multiclass and multilabel algorithms 多类多标签算法</h3>
+<h3>特征选择 feature selection</h3>
+<h3>Semi-Supervised</h3>
+<h3>Isotonic Regression</h3>
+<h3>Probability calibration</h3>
+<h2>Clustering 聚类</h2>
+<h2>降维 Dimensionality reduction</h2>
+<h3>主成分分析 Principal component analysis (PCA)</h3>
+<h4>Exact PCA and probabilistic interpretation</h4>
+<p>Linear dimensionality reduction using Singular Value Decomposition of the data and keeping only the most significant singular vectors to project the data to a lower dimensional space.</p>
+<p>算法(PCA):</p>
 <blockquote>
-<p>输入: k维空间数据集T</p>
-<p>输出: kd树</p>
-<p>(1) 开始: 构造根节点,根节点对应于包含T的k维空间的超矩形区域</p>
-<p>选择<span class="math">\(x^{(1)}\)</span>为坐标轴, 以T中所有实例点的<span class="math">\(x^{(1)}\)</span>坐标的中位数为切分点,将根结点对应的超矩形区域切分成两个子区域.切分是由通过切分点并与坐标轴<span class="math">\(x^{(1)}\)</span>垂直的超平面实现</p>
-<p>由根结点生成深度为1的左右子结点:左子结点对应于<span class="math">\(x_{(1)}\)</span>坐标小于切分点的子区域,右子结点对应于<span class="math">\(x_{(1)}\)</span>坐标大于切分点的子区域, 并将落在切分超平面上的实例点保存在根节点中.</p>
-<p>(2) 重复: 对深度为j的结点, 选择<span class="math">\(x^{(l)}\)</span>为切分的坐标轴, <span class="math">\(l = j \mod k + 1\)</span>.</p>
-<p>(3) 直到两个子区域没有实例存在时停止,从而构成kd树区域的划分</p>
+<p>输入:<span class="math">\(X \in K^{N*n}\)</span>, 需要降到的维数m &lt; n</p>
+<p>输出: 转换矩阵$M \in K^{n*m}</p>
+<p>(1) 求出X的每一列均值, 并用X减去, 得到矩阵<span class="math">\(Y\)</span>是的Y每一列的均值为0</p>
+<p>(2) 求Y列与列之间的协方差矩阵<span class="math">\(C\)</span>,
+<div class="math">$$C[i, j] = Y[:,i] \cdot Y[:, j] / N$$</div>
+等价于
+$$C = X^T X</p>
+<p>(3) 求出协方差矩阵C的特征值和特征向量</p>
+<p>(4) 取特征值最大的m个特征值及其对应的特征向量</p>
+<p>(5) 取出的特征向量组合成n*m矩阵即为所求<span class="math">\(M=(\alpha _1, \alpha _2, \cdots, \alpha _m) \in K^{n*m}\)</span></p>
 </blockquote>
-<p>注意,这里的中位数在样本数量为偶数时,是取最中间的两个数较大的那个数</p>
-<h3>kd树的搜索</h3>
-<p><strong>算法3 用kd树的k近邻算法</strong></p>
-<blockquote>
-<p>输入: 已构造的kd树, 目标点<span class="math">\(x\)</span>, k值</p>
-<p>输出: x的k近邻构成的集合</p>
-<p>(1) 在kd树中找出包含目标点k的叶结点: 从根结点开始,递归的向下访问kd树. 若目标点x当前维的坐标小于切分点的坐标, 则移动至左子结点, 否则移动到右子结点, 直到子结点为叶结点为止</p>
-<p>(2) 从结点向上回退, 直到相应的结点包含的实例点个数大于等于k, 从这些实例点中选取出离目标实例点最近的k个实例点为x的"k近邻"<span class="math">\(N_k(x)\)</span></p>
-<p>(3) 继续递归的像父结点回退, 并对每个结点进行以下操作:</p>
-<p>(a) 如果该结点保存的实例点含有比当前"k近邻"集合<span class="math">\(N_k(x)\)</span>中的点离目标点更近的实例点, 则将<span class="math">\(N_k{x}\)</span>中离目标点较远的点给替换成较近的点</p>
-<p>(b) 接着检查该子结点的父结点对应的另一子节点对应的区域是否含有更近点,如果有,则向上面一样对<span class="math">\(N_k(x)\)</span>进行更新</p>
-<p>(4) 当回退到根结点时,搜索结束. 最后的<span class="math">\(N_k(x)\)</span>即为所求的集合.</p>
-</blockquote>
-<p>如果实例点是随机分布的, 那么kd树搜索的平均计算复杂度为<span class="math">\(O(\log{N})\)</span>, kd树适合于训练实例数远大于空间维数时的k近邻搜索.</p>
-<h3>使用kd树的k近邻算法的python实现</h3>
-<h2>中英文对照表</h2>
-<p>k近邻 k-nearest neighbor, k-NN
-单元　cell
-类标记　class label
-距离　distance
-欧式距离 Euclidean distance
-近似误差 approximation error
-估计误差 estimation error
-kd树 kd tree
-线性扫描 linear scan
-划分 partition
-中位树 median</p>
+<h4>Incremental PCA</h4>
+<p>Incremental principal component analysis (IPCA) is typically used as a replacement for principal component analysis (PCA) when the dataset to be decomposed is too large to fit in memory. IPCA builds a low-rank approximation for the input data using an amount of memory which is independent of the number of input data samples. It is still dependent on the input data features, but changing the batch size allows for control of memory usage.</p>
+<h4>Approximate PCA</h4>
+<h4>Kernel PCA</h4>
+<h4>Sparse principal components analysis (SparsePCA and MiniBatchSparsePCA)</h4>
+<h3>截断奇异值分解和潜在语义分析 Truncated singular value decomposition and latent semantic analysis</h3>
+<h3>Dictionary Learning</h3>
+<h3>factor analysis</h3>
+<h3>Independent component analysis (ICA) 独立成分分析</h3>
+<h3>Non-negative matrix factorization (NMF or NNMF) 非负矩阵分解</h3>
+<h3>Latent Dirichlet Allocation (LDA)</h3>
+<h2>模型选择 Model selection and evaluation</h2>
+<h2>Preprocessing data 预处理数据</h2>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -218,6 +221,28 @@ kd树 kd tree
                     <h1>Other articles</h1>
                     <hr />
                     <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-8-kjin-lin-fa.html" rel="bookmark"
+                           title="Permalink to 《统计学习方法》读书笔记8-k近邻法及python实现">《统计学习方法》读书笔记8-k近邻法及python实现</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2016-02-28T23:00:00+08:00">
+                发表于: 2016年02月28日 星期日
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
+        </address>
+<p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
+<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/kjin-lin-fa.html">k近邻法</a> <a href="http://forin-xyz.github.io/output/tag/k-nearest-neighbor-method.html">k-nearest neighbor method</a> <a href="http://forin-xyz.github.io/output/tag/k-nn.html">k-NN</a> <a href="http://forin-xyz.github.io/output/tag/kdshu.html">kd树</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> </p>
+</footer><!-- /.post-info -->                <p>k近邻法是一种基本的分类和回归方法。它通过计算所有样本点到待预测点的距离, 选出距离最小的k个样本点, 然后根据这k个样本的类进行多数表决来预测待预测点所属的类。</p>
+                <a class="readmore" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-8-kjin-lin-fa.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
