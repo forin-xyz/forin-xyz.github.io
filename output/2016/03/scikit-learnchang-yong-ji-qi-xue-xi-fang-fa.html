@@ -187,13 +187,13 @@ $$</div>
 <h2>SVM, 支持向量机</h2>
 <h3>线性支持向量机</h3>
 <div class="math">$$
-\min\limits_{w, b}{\frac{1}{2} {\lVert w \rVert}^2 + C \sum\limits_{i=1}^{N}{\[1-y_i(w \cdot x_i + b)\]_{+}}}
+\min\limits_{w, b}{\frac{1}{2} {\lVert w \rVert}^2 + C \sum\limits_{i=1}^{N}{[1-y_i(w \cdot x_i + b)]_{+}}}
 $$</div>
 <p>
 或者等价于
 </p>
 <div class="math">$$
-\min\limits_{w, b}{\sum\limits_{i=1}^{N}{\[1-y_i(w \cdot x_i + b)\]_{+}} + \lambda {\lVert w \rVert}^2}
+\min\limits_{w, b}{\sum\limits_{i=1}^{N}{[1-y_i(w \cdot x_i + b)]_{+}} + \lambda {\lVert w \rVert}^2}
 $$</div>
 <p>
 如果penalty='l1', 就将上面公式中的l2范数换成l1范数即可, 即各分量绝对值的和</p>
@@ -321,7 +321,7 @@ $$</div>
 <h3>K-Means, k-均值, KMeans, MiniBatchKMeans</h3>
 <p>输入参数: 聚类的个数</p>
 <div class="math">$$
-min\sum\limits_{i=1}^{N}{min\limits_{k}{\lVert {x_i-{\mu}_k} \rVert}^2}
+min \sum\limits_{i=1}^{N}{\min{\limits_{k}{\lVert {x_i-{\mu}_k} \rVert}^2}}
 $$</div>
 <p><strong>MiniBatchKMeans</strong>是KMeans的变种, 可以减少运行时间.</p>
 <h3>MeanShift, 将中心点逐渐移向密度最稠密的点</h3>

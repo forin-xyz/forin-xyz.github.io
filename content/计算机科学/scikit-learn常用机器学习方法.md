@@ -163,11 +163,11 @@ $$
 ### 线性支持向量机
 
 $$
-\min\limits_{w, b}{\frac{1}{2} {\lVert w \rVert}^2 + C \sum\limits_{i=1}^{N}{\[1-y_i(w \cdot x_i + b)\]_{+}}}
+\min\limits_{w, b}{\frac{1}{2} {\lVert w \rVert}^2 + C \sum\limits_{i=1}^{N}{[1-y_i(w \cdot x_i + b)]_{+}}}
 $$
 或者等价于
 $$
-\min\limits_{w, b}{\sum\limits_{i=1}^{N}{\[1-y_i(w \cdot x_i + b)\]_{+}} + \lambda {\lVert w \rVert}^2}
+\min\limits_{w, b}{\sum\limits_{i=1}^{N}{[1-y_i(w \cdot x_i + b)]_{+}} + \lambda {\lVert w \rVert}^2}
 $$
 如果penalty='l1', 就将上面公式中的l2范数换成l1范数即可, 即各分量绝对值的和
 
@@ -296,7 +296,7 @@ $$
 输入参数: 聚类的个数
 
 $$
-min\sum\limits_{i=1}^{N}{min\limits_{k}{\lVert {x_i-{\mu}_k} \rVert}^2}
+min \sum\limits_{i=1}^{N}{\min{\limits_{k}{\lVert {x_i-{\mu}_k} \rVert}^2}}
 $$
 
 **MiniBatchKMeans**是KMeans的变种, 可以减少运行时间.
