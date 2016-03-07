@@ -269,7 +269,7 @@ P(y|\sigma) = \sum\limits_{k=1}^{K}{\alpha_{k}\phi(y|\sigma_{k})}
 $$
 
 $$
-{\phi}(y|\sigma_{k}) = \frac{1}{(2 \pi)^{\frac{p}{2}}{\sqrt(det({COVMAT}_k))}}exp(-\frac{1}{(y-{\mu}_k)^T({COVMAT}_k)^{-1}(y-{\mu}_k)});
+{\phi}(y|\sigma_{k}) = \frac{1}{(2 \pi)^{\frac{p}{2}}{\sqrt(det({COVMAT}_k))}}exp(-\frac{1}{2}{(y-{\mu}_k)^T({COVMAT}_k)^{-1}(y-{\mu}_k)});
 $$
 其中, ${COVMAT}_k$是 (n_features, n_features) 的矩阵, ${\mu}_k$是 (n_features, )向量
 
@@ -296,7 +296,7 @@ $$
 输入参数: 聚类的个数
 
 $$
-min \sum\limits_{i=1}^{N}{\min{\limits_{k}{\lVert {x_i-{\mu}_k} \rVert}^2}}
+min \sum\limits_{i=1}^{N}{\min{\limits_{k}{\lVert x_i-{\mu}_k \rVert}^2}}
 $$
 
 **MiniBatchKMeans**是KMeans的变种, 可以减少运行时间.

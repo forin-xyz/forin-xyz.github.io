@@ -292,7 +292,7 @@ for train, test in lo:
 P(y|\sigma) = \sum\limits_{k=1}^{K}{\alpha_{k}\phi(y|\sigma_{k})}
 $$</div>
 <div class="math">$$
-{\phi}(y|\sigma_{k}) = \frac{1}{(2 \pi)^{\frac{p}{2}}{\sqrt(det({COVMAT}_k))}}exp(-\frac{1}{(y-{\mu}_k)^T({COVMAT}_k)^{-1}(y-{\mu}_k)});
+{\phi}(y|\sigma_{k}) = \frac{1}{(2 \pi)^{\frac{p}{2}}{\sqrt(det({COVMAT}_k))}}exp(-\frac{1}{2}{(y-{\mu}_k)^T({COVMAT}_k)^{-1}(y-{\mu}_k)});
 $$</div>
 <p>
 其中, <span class="math">\({COVMAT}_k\)</span>是 (n_features, n_features) 的矩阵, <span class="math">\({\mu}_k\)</span>是 (n_features, )向量</p>
@@ -316,7 +316,7 @@ $$</div>
 <h3>K-Means, k-均值, KMeans, MiniBatchKMeans</h3>
 <p>输入参数: 聚类的个数</p>
 <div class="math">$$
-min \sum\limits_{i=1}^{N}{\min{\limits_{k}{\lVert {x_i-{\mu}_k} \rVert}^2}}
+min \sum\limits_{i=1}^{N}{\min{\limits_{k}{\lVert x_i-{\mu}_k \rVert}^2}}
 $$</div>
 <p><strong>MiniBatchKMeans</strong>是KMeans的变种, 可以减少运行时间.</p>
 <h3>MeanShift, 将中心点逐渐移向密度最稠密的点</h3>
