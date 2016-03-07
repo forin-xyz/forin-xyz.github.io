@@ -145,7 +145,7 @@ Summary: scikit-learn常用机器学习方法概要
 ## LR, 逻辑回归分类模型
 
 $$
-\min\limits_{w, b}{\frac{1}{2} {\lVert w \rVert}^2 + C \sum\limits_{i=1}{N}{log{1+exp(-y_i(w \cdot x_i + b))}}}
+\min\limits_{w, b}{\frac{1}{2} {\lVert w \rVert}^2 + C \sum\limits_{i=1}{N}{log{(1+exp(-y_i(w \cdot x_i + b)))}}}
 $$
 或者等价于
 $$
@@ -296,7 +296,7 @@ $$
 输入参数: 聚类的个数
 
 $$
-min \sum\limits_{i=1}^{N}{\min{\limits_{k}{\lVert x_i-{\mu}_k \rVert}^2}}
+\min\sum\limits_{i=1}^{N}{\min\limits_{k}{\lVert x_i-{\mu}_k \rVert}^2}
 $$
 
 **MiniBatchKMeans**是KMeans的变种, 可以减少运行时间.

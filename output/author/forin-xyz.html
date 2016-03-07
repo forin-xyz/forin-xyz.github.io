@@ -162,7 +162,7 @@ bnb.fit(X)
 <p><strong><span class="math">\(\lambda = 0\)</span>是代表极大似然估计, <span class="math">\(\lambda = 1\)</span>是代表拉普拉斯平滑, <span class="math">\(\lambda &gt; 0\)</span>时是贝叶斯估计.</strong></p>
 <h2>LR, 逻辑回归分类模型</h2>
 <div class="math">$$
-\min\limits_{w, b}{\frac{1}{2} {\lVert w \rVert}^2 + C \sum\limits_{i=1}{N}{log{1+exp(-y_i(w \cdot x_i + b))}}}
+\min\limits_{w, b}{\frac{1}{2} {\lVert w \rVert}^2 + C \sum\limits_{i=1}{N}{log{(1+exp(-y_i(w \cdot x_i + b)))}}}
 $$</div>
 <p>
 或者等价于
@@ -316,7 +316,7 @@ $$</div>
 <h3>K-Means, k-均值, KMeans, MiniBatchKMeans</h3>
 <p>输入参数: 聚类的个数</p>
 <div class="math">$$
-min \sum\limits_{i=1}^{N}{\min{\limits_{k}{\lVert x_i-{\mu}_k \rVert}^2}}
+\min\sum\limits_{i=1}^{N}{\min\limits_{k}{\lVert x_i-{\mu}_k \rVert}^2}
 $$</div>
 <p><strong>MiniBatchKMeans</strong>是KMeans的变种, 可以减少运行时间.</p>
 <h3>MeanShift, 将中心点逐渐移向密度最稠密的点</h3>
