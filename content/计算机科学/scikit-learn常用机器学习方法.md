@@ -7,6 +7,12 @@ Summary: scikit-learn常用机器学习方法概要
 
 ## 数据导入
 
+可以使用numpy的loadtxt方法导入csv文件
+
+    import numpy as np
+    # fn是文件路径 或者 是拥有read方法的对象实例
+    np.loadtxt(fn)
+
 ## 数据预处理, 数据标准化
 
 ### StandardScaler
@@ -139,11 +145,11 @@ Summary: scikit-learn常用机器学习方法概要
 ## LR, 逻辑回归分类模型
 
 $$
-\min\limits_{w, b}{\frac{1}{2} {\lVert w \rVert}^2 + C \sum\limits_{i=1}{i=N}{log{1+exp(-y_i(w \cdot x_i + b))}}}
+\min\limits_{w, b}{\frac{1}{2} {\lVert w \rVert}^2 + C \sum\limits_{i=1}{N}{log{1+exp(-y_i(w \cdot x_i + b))}}}
 $$
 或者等价于
 $$
-\min\limits_{w, b}{\sum\limits_{i=1}{i=N}{log{1+exp(-y_i(w \cdot x_i + b))}} + \lambda {\lVert w \rVert}^2}
+\min\limits_{w, b}{\sum\limits_{i=1}^{N}{\log{1+exp(-y_i(w \cdot x_i + b))}} + \lambda {\lVert w \rVert}^2}
 $$
 如果penalty='l1', 就将上面公式中的l2范数换成l1范数即可, 即各分量绝对值的和
 
@@ -157,11 +163,11 @@ $$
 ### 线性支持向量机
 
 $$
-\min\limits_{w, b}{\frac{1}{2} {\lVert w \rVert}^2 + C \sum\limits_{i=1}{i=N}{\[1-y_i(w \cdot x_i + b)\]_{+}}}
+\min\limits_{w, b}{\frac{1}{2} {\lVert w \rVert}^2 + C \sum\limits_{i=1}^{N}{\[1-y_i(w \cdot x_i + b)\]_{+}}}
 $$
 或者等价于
 $$
-\min\limits_{w, b}{\sum\limits_{i=1}{i=N}{\[1-y_i(w \cdot x_i + b)\]_{+}} + \lambda {\lVert w \rVert}^2}
+\min\limits_{w, b}{\sum\limits_{i=1}^{N}{\[1-y_i(w \cdot x_i + b)\]_{+}} + \lambda {\lVert w \rVert}^2}
 $$
 如果penalty='l1', 就将上面公式中的l2范数换成l1范数即可, 即各分量绝对值的和
 
@@ -259,13 +265,13 @@ scikit-learn使用的是优化的CART算法
 非监督学习模型, unsupervised learning
 
 $$
-P(y|\sigma) = \sum\limits_{k=1}{K}{\alpha_{k}\phi(y|\sigma_{k})}
+P(y|\sigma) = \sum\limits_{k=1}^{K}{\alpha_{k}\phi(y|\sigma_{k})}
 $$
 
 $$
-\phi(y|\sigma_{k}) = \frac{1}{(2 \pi)^{\frac{p/2}}{\sqrt(det({CovMat}_k))}}exp(-\frac{1}{(y-{\mu}_k)^T({COVMat}_k)^{-1}(y-{\mu}_k)});
+{\phi}(y|\sigma_{k}) = \frac{1}{(2 \pi)^{\frac{p}{2}}{\sqrt(det({COVMAT}_k))}}exp(-\frac{1}{(y-{\mu}_k)^T({COVMAT}_k)^{-1}(y-{\mu}_k)});
 $$
-其中, ${CovMat}_k$是 (n_features, n_features) 的矩阵, ${\mu}_k$是 (n_features, )向量
+其中, ${COVMAT}_k$是 (n_features, n_features) 的矩阵, ${\mu}_k$是 (n_features, )向量
 
     from sklearn import mixture
     gmm = mixture.GMM(n_components=2)
@@ -290,7 +296,7 @@ $$
 输入参数: 聚类的个数
 
 $$
-min\sum\limits_{i=1}^{N}{min\limits_{k}{\lVert (x_i-{\mu}_k) \rVert}^2}
+min\sum\limits_{i=1}^{N}{min\limits_{k}{\lVert {x_i-{\mu}_k} \rVert}^2}
 $$
 
 **MiniBatchKMeans**是KMeans的变种, 可以减少运行时间.
@@ -307,3 +313,9 @@ scikit-learn使用的是`rbf kernel`, 高斯径向基函数.
 ## 二聚类, Biclustering
 
 ## 模型持久化
+
+    from joblib.externals import joblib
+    # 保存
+    joblib.dump(clf,'../../data/model/randomforest.pkl',compress=3)
+    # 加载
+    clf = joblib.load('../../data/model/randomforest.pkl')

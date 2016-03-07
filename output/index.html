@@ -36,6 +36,13 @@
 <p>In <a href="http://forin-xyz.github.io/output/category/python.html">Python</a>.</p>
 <p>tags: <a href="http://forin-xyz.github.io/output/tag/scikit-learn.html">scikit-learn</a> <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> </p>
 </footer><!-- /.post-info --><h2>数据导入</h2>
+<p>可以使用numpy的loadtxt方法导入csv文件</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="c"># fn是文件路径 或者 是拥有read方法的对象实例</span>
+<span class="n">np</span><span class="o">.</span><span class="kp">loadtxt</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+</pre></div>
+
+
 <h2>数据预处理, 数据标准化</h2>
 <h3>StandardScaler</h3>
 <p>使训练集每一个特征值<strong>0-均值,1-方差</strong>, 作用在训练集的列(column)上</p>
@@ -155,13 +162,13 @@ bnb.fit(X)
 <p><strong><span class="math">\(\lambda = 0\)</span>是代表极大似然估计, <span class="math">\(\lambda = 1\)</span>是代表拉普拉斯平滑, <span class="math">\(\lambda &gt; 0\)</span>时是贝叶斯估计.</strong></p>
 <h2>LR, 逻辑回归分类模型</h2>
 <div class="math">$$
-\min\limits_{w, b}{\frac{1}{2} {\lVert w \rVert}^2 + C \sum\limits_{i=1}{i=N}{log{1+exp(-y_i(w \cdot x_i + b))}}}
+\min\limits_{w, b}{\frac{1}{2} {\lVert w \rVert}^2 + C \sum\limits_{i=1}{N}{log{1+exp(-y_i(w \cdot x_i + b))}}}
 $$</div>
 <p>
 或者等价于
 </p>
 <div class="math">$$
-\min\limits_{w, b}{\sum\limits_{i=1}{i=N}{log{1+exp(-y_i(w \cdot x_i + b))}} + \lambda {\lVert w \rVert}^2}
+\min\limits_{w, b}{\sum\limits_{i=1}^{N}{\log{1+exp(-y_i(w \cdot x_i + b))}} + \lambda {\lVert w \rVert}^2}
 $$</div>
 <p>
 如果penalty='l1', 就将上面公式中的l2范数换成l1范数即可, 即各分量绝对值的和</p>
@@ -175,13 +182,13 @@ $$</div>
 <h2>SVM, 支持向量机</h2>
 <h3>线性支持向量机</h3>
 <div class="math">$$
-\min\limits_{w, b}{\frac{1}{2} {\lVert w \rVert}^2 + C \sum\limits_{i=1}{i=N}{\[1-y_i(w \cdot x_i + b)\]_{+}}}
+\min\limits_{w, b}{\frac{1}{2} {\lVert w \rVert}^2 + C \sum\limits_{i=1}^{N}{\[1-y_i(w \cdot x_i + b)\]_{+}}}
 $$</div>
 <p>
 或者等价于
 </p>
 <div class="math">$$
-\min\limits_{w, b}{\sum\limits_{i=1}{i=N}{\[1-y_i(w \cdot x_i + b)\]_{+}} + \lambda {\lVert w \rVert}^2}
+\min\limits_{w, b}{\sum\limits_{i=1}^{N}{\[1-y_i(w \cdot x_i + b)\]_{+}} + \lambda {\lVert w \rVert}^2}
 $$</div>
 <p>
 如果penalty='l1', 就将上面公式中的l2范数换成l1范数即可, 即各分量绝对值的和</p>
@@ -282,13 +289,13 @@ for train, test in lo:
 <h2>高斯混合模型</h2>
 <p>非监督学习模型, unsupervised learning</p>
 <div class="math">$$
-P(y|\sigma) = \sum\limits_{k=1}{K}{\alpha_{k}\phi(y|\sigma_{k})}
+P(y|\sigma) = \sum\limits_{k=1}^{K}{\alpha_{k}\phi(y|\sigma_{k})}
 $$</div>
 <div class="math">$$
-\phi(y|\sigma_{k}) = \frac{1}{(2 \pi)^{\frac{p/2}}{\sqrt(det({CovMat}_k))}}exp(-\frac{1}{(y-{\mu}_k)^T({COVMat}_k)^{-1}(y-{\mu}_k)});
+{\phi}(y|\sigma_{k}) = \frac{1}{(2 \pi)^{\frac{p}{2}}{\sqrt(det({COVMAT}_k))}}exp(-\frac{1}{(y-{\mu}_k)^T({COVMAT}_k)^{-1}(y-{\mu}_k)});
 $$</div>
 <p>
-其中, <span class="math">\({CovMat}_k\)</span>是 (n_features, n_features) 的矩阵, <span class="math">\({\mu}_k\)</span>是 (n_features, )向量</p>
+其中, <span class="math">\({COVMAT}_k\)</span>是 (n_features, n_features) 的矩阵, <span class="math">\({\mu}_k\)</span>是 (n_features, )向量</p>
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">mixture</span>
 <span class="n">gmm</span> <span class="o">=</span> <span class="n">mixture</span><span class="o">.</span><span class="n">GMM</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">gmm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -309,7 +316,7 @@ $$</div>
 <h3>K-Means, k-均值, KMeans, MiniBatchKMeans</h3>
 <p>输入参数: 聚类的个数</p>
 <div class="math">$$
-min\sum\limits_{i=1}^{N}{min\limits_{k}{\lVert (x_i-{\mu}_k) \rVert}^2}
+min\sum\limits_{i=1}^{N}{min\limits_{k}{\lVert {x_i-{\mu}_k} \rVert}^2}
 $$</div>
 <p><strong>MiniBatchKMeans</strong>是KMeans的变种, 可以减少运行时间.</p>
 <h3>MeanShift, 将中心点逐渐移向密度最稠密的点</h3>
@@ -318,6 +325,14 @@ $$</div>
 <p>高密度区域天然被低密度区域分割</p>
 <h2>二聚类, Biclustering</h2>
 <h2>模型持久化</h2>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">joblib.externals</span> <span class="kn">import</span> <span class="n">joblib</span>
+<span class="c"># 保存</span>
+<span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span><span class="s">&#39;../../data/model/randomforest.pkl&#39;</span><span class="p">,</span><span class="n">compress</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="c"># 加载</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">&#39;../../data/model/randomforest.pkl&#39;</span><span class="p">)</span>
+</pre></div>
+
+
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
