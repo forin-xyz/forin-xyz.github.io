@@ -251,6 +251,61 @@ b &amp;= \sum\limits_{i=1}^{N}\alpha_{i}y_{i}
 s.t.&amp;  y_{i}(\frac{w}{\left \| w \right \|} \cdot x_{i} + \frac{b}{\left \| w \right \|}) \geq \gamma, i=1,2,\cdots,N&amp;
 \end{aligned}$$</div>
 <p>上面的规划问题等价于下面的凸二次规划问题(convex quadratic programming)</p>
+<h2>非线性支持向量机 核技巧 kernel trick</h2>
+<h3>半正定矩阵</h3>
+<p>对称矩阵M对于任意一个非零向量有<span class="math">\(w^TMw \ge 0\)</span>,则称M是半正定矩阵. 推广到复数域,矩阵M的共轭装置必需等于其自身.</p>
+<ol>
+<li>将内积空间<span class="math">\(\mathcal(S)\)</span>完备化为希尔伯特空间</li>
+</ol>
+<p>由内积可以得到范数:
+</p>
+<div class="math">$$
+\lVert f \rVert = \sqrt{f \cdot f}
+$$</div>
+<p>
+于是<span class="math">\(\mathcal{S}\)</span>是一个赋范向量空间. 对于不完备的赋范向量空间<span class="math">\(\mathcal(S)\)</span>,一定可以使之完备化.</p>
+<p>核具有再生性:
+</p>
+<div class="math">$$
+K(\cdot, x) \cdot f = f(x)
+$$</div>
+<div class="math">$$
+K(\cdot, x) \cdot K(\cdot, z) = K(x, z)
+$$</div>
+<ol>
+<li>正定核的充要条件</li>
+</ol>
+<p><strong>对应的Gram矩阵是半正定矩阵</strong></p>
+<p>设<span class="math">\(K: \mathcal(X) \times \mathcal(X) \to \boldsystem{R}\)</span>是对称函数, 则<span class="math">\(K(x, z)\)</span>为正定核函数的充要条件是对任意<span class="math">\(x_i \in \mathcal{X}, i=1, 2, \cdots, m\)</span>, <span class="math">\(K(x,z)\)</span>对应的Gram矩阵
+</p>
+<div class="math">$$
+Gram=[K(x_i, x_j)]_{m\times m}
+$$</div>
+<p>
+是半正定矩阵.</p>
+<p><strong>证明</strong>:</p>
+<p>( <em>必要性</em> )(=&gt;)</p>
+<p>( <em>充分性</em> )(&lt;=)</p>
+<h3>常用核函数</h3>
+<ol>
+<li>多项式核函数(polynomial kernel function)</li>
+</ol>
+<div class="math">$$
+K(x, z) = (x \cdot z + 1)^p
+$$</div>
+<p>
+对应的支持向量机是一个p次多项式分类器.</p>
+<ol>
+<li>高斯核函数(Gaussian kenerl function)</li>
+</ol>
+<div class="math">$$
+K(x, z) = exp(-\frac{\lVert x-z \rVert}{2 \sigma ^2})
+$$</div>
+<p>
+对应的支持向量机是高斯径向基函数分类器.</p>
+<ol>
+<li>字符串核函数(string kernel function)</li>
+</ol>
 <h2>中英文词汇对照表</h2>
 <p>感知机 perceptron</p>
 <p>线性分类模型 linear classification model</p>
@@ -267,6 +322,8 @@ s.t.&amp;  y_{i}(\frac{w}{\left \| w \right \|} \cdot x_{i} + \frac{b}{\left \| 
 <p>线性可分支持向量机 linear support vector machine in linearly in linearly separable case</p>
 <p>硬间隔最大化 hard margin maximization</p>
 <p>软间隔最大化 soft margin maximization</p>
+<p>希尔伯特空间 Hilbert space</p>
+<p>正定核函数 definite kernel function</p>
 <p>核技巧 kenerl trick</p>
 <p>核函数 kenerl function</p>
 <p>核方法 kenerl method</p>
@@ -277,6 +334,9 @@ s.t.&amp;  y_{i}(\frac{w}{\left \| w \right \|} \cdot x_{i} + \frac{b}{\left \| 
 <p>几何间隔 geometric margin</p>
 <p>函数间隔 functional margin</p>
 <p>凸二次规划问题 convex quadratic programming</p>
+<p>代理损失函数 surrogate loss function</p>
+<p>再生核希尔伯特空间 reproducing kernel Hilbert space , RKHS</p>
+<p>径向基函数 radial basis function</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

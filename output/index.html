@@ -24,141 +24,300 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://forin-xyz.github.io/output/2016/03/scikit-learnjian-yao.html">scikit-learn简要</a></h1>
+                    <h1 class="entry-title"><a href="http://forin-xyz.github.io/output/2016/03/scikit-learnchang-yong-ji-qi-xue-xi-fang-fa.html">scikit-learn常用机器学习方法</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2016-03-03T23:00:00+08:00">
-                发表于: 2016年03月03日 星期四
+        <abbr class="published" title="2016-03-05T10:20:00+08:00">
+                发表于: 2016年03月05日 星期六
         </abbr>
 
         <address class="vcard author">
                 By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
         </address>
 <p>In <a href="http://forin-xyz.github.io/output/category/python.html">Python</a>.</p>
-<p>tags: <a href="http://forin-xyz.github.io/output/tag/python.html">python</a> <a href="http://forin-xyz.github.io/output/tag/scikit-learn.html">scikit-learn</a> <a href="http://forin-xyz.github.io/output/tag/machine-learning.html">machine learning</a> <a href="http://forin-xyz.github.io/output/tag/supervised-learning.html">supervised learning</a> <a href="http://forin-xyz.github.io/output/tag/non-supervised-learning.html">non-supervised learning</a> <a href="http://forin-xyz.github.io/output/tag/classfication.html">classfication</a> <a href="http://forin-xyz.github.io/output/tag/prediction.html">prediction</a> <a href="http://forin-xyz.github.io/output/tag/clustering.html">clustering</a> <a href="http://forin-xyz.github.io/output/tag/dimensionality.html">dimensionality</a> </p>
-</footer><!-- /.post-info --><h2>分类 Classfication</h2>
-<h3>线性模型 Generalized Linear Models</h3>
-<h4>线性回归 -&gt; 普通最小二乘法 Linear Regression -&gt; Oridinary Least Squares</h4>
-<div class="math">$$
-min\limits_w || Xw - y ||_2^2
-$$</div>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="c"># clf -&gt; classfication</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="c"># fit(X, y) -&gt; 学习模型</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span> <span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="n">LinearRegression</span><span class="p">(</span><span class="n">copy_X</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="c"># 非常数项系数</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span><span class="o">.</span><span class="n">coef_</span>
-<span class="n">array</span><span class="p">([</span> <span class="mf">0.5</span><span class="p">,</span>  <span class="mf">0.5</span><span class="p">])</span>
+<p>tags: <a href="http://forin-xyz.github.io/output/tag/scikit-learn.html">scikit-learn</a> <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> </p>
+</footer><!-- /.post-info --><h2>数据导入</h2>
+<h2>数据预处理, 数据标准化</h2>
+<h3>StandardScaler</h3>
+<p>使训练集每一个特征值<strong>0-均值,1-方差</strong>, 作用在训练集的列(column)上</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
+<span class="n">standard_scaler</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">StandardScaler</span><span class="p">()</span>
+<span class="c"># 训练并转换数据集</span>
+<span class="n">Xt</span> <span class="o">=</span> <span class="n">standard_scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="c"># 转换新的数据集</span>
+<span class="n">standard_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="c"># 原训练集均值</span>
+<span class="n">standard_scaler</span><span class="o">.</span><span class="n">mean_</span>
+<span class="c"># 原训练集标准差</span>
+<span class="n">standard_scaler</span><span class="o">.</span><span class="n">std_</span>
 </pre></div>
 
 
-<h4>脊回归 Ridge Regression -&gt; 带惩罚函数的最小二乘法 Least Squares by imposing a penalty on the size of coefficients.</h4>
-<div class="math">$$
-min\limits_w {|| Xw - y ||_2^2 + \alpha ||w||_2^2}, \alpha \geq 0
-$$</div>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">Ridge</span> <span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span> <span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> 
-<span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">copy_X</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-      <span class="n">normalize</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s">&#39;auto&#39;</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span><span class="o">.</span><span class="n">coef_</span>
-<span class="n">array</span><span class="p">([</span> <span class="mf">0.34545455</span><span class="p">,</span>  <span class="mf">0.34545455</span><span class="p">])</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="c"># 常数项系数 or 截距</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span><span class="o">.</span><span class="n">intercept_</span> 
-<span class="mf">0.13636</span><span class="o">.</span>
+<h3>MinMaxScaler, MaxAbsScaler</h3>
+<p>指定的极差, 默认min=0, max=1, max_abs=1</p>
+<div class="highlight"><pre>min_max_scaler = preprocessing.MinMaxScaler()
+min_max_scaler.fit(X)
+min_max_scaler.transform(x)
+# min_, 原训练集各个特征最小值, scale_, 原训练集各个特征的范围(scale = max-min)
+min_max_scaler.min_
+min_max_scaler.scale_
 </pre></div>
 
 
-<h5>获取正则项或惩罚函数系数 -&gt; 交叉验证 Cross Validation</h5>
-<p>..</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="c"># 多了一个后缀CV</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">RidgeCV</span><span class="p">(</span><span class="n">alphas</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">])</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>       
-<span class="n">RidgeCV</span><span class="p">(</span><span class="n">alphas</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">],</span> <span class="n">cv</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-    <span class="n">normalize</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span><span class="o">.</span><span class="n">alpha_</span>                                      
-<span class="mf">0.1</span>
+<p>对于<strong>稀疏矩阵(sparse matrices)</strong>非常有效</p>
+<h3>Normalizer</h3>
+<p>使每一个样本具有<strong>单位范数, norm=1</strong>, 作用在训练集的行(row)上</p>
+<div class="highlight"><pre># norm in `{l1, l2, max}`, default norm=&#39;l2&#39;
+normalizer = preprocessing.Normalizer(norm=&#39;l1&#39;)
+normalizer.fit(X)
+normalizer.transform(X)
 </pre></div>
 
 
-<h4>Lasson 拉索</h4>
-<p>估计稀疏系数时会有用, 他更倾向于使用较少的参数值, 如果问题需要减少变量个数, 它将是非常有用的.</p>
+<p><strong>小写的scale, minmax_scale, maxabs_scale, normalize是方法, 可以直接将数据集标准化, 返回值就是转化后的新数据集, 但是不能够对新的数据按照相同的参数进行转化</strong></p>
+<h2>特征提取</h2>
+<h2>特征降维, 主成分分析PCA, 独立成分分析ICA, 因子分析FA</h2>
+<h3>PCA, principal component analysis</h3>
+<p>只对符号高斯分布的样本点比较有效</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">decomposition</span>
+<span class="c"># n_components : int, 向量个数</span>
+<span class="c"># float: 0&lt;n&lt;1, the amount of variance that needs to greater than n.</span>
+<span class="c"># &#39;mle&#39;: 极大似然估计</span>
+<span class="c"># None: min(n_samples, n_features)</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">decompositon</span><span class="o">.</span><span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="c"># 最大方差的方向, 特征空间的主要坐标轴</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">components_</span>
+<span class="c"># explained_variance_ratio_ : 所选取的向量对应的方差的百分数</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span>
+<span class="c"># mean_: 每个特征的经验均值</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">mean_</span>
+<span class="c"># n_components_: 模型提取的特征数</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">n_components_</span>
+<span class="c"># 转换数据集数据</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="c"># 返回对数似然函数在样本上的平均值</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>ICA, independent component analysis</h3>
+<h3>FA</h3>
+<h2>KNN, k-近邻</h2>
+<h3>NearestNeighbors, 返回最近的邻居</h3>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">neighbors</span>
+<span class="n">nbrs</span> <span class="o">=</span> <span class="n">neighbors</span><span class="o">.</span><span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s">&#39;ball_tree&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="c"># 距离每个样本最近的样本点的索引</span>
+<span class="n">distances</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">nbrs</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">kdt</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">return_distance</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>KDTree, kd树</h3>
+<div class="highlight"><pre>kdt = neighbors.KDTree(X, leaf_size=30, metric=&#39;euclidean&#39;)
+</pre></div>
+
+
+<h3>KNeighborsClassifier, kNN分类器</h3>
+<div class="highlight"><pre>neigh = neighbors.KNeighborsClassifier(n_neighbors=3)
+neigh.fit(X)
+neigh.predict(Xs)
+# freq(类)/k, 返回值是一个向量, 象征每个类在的k近邻经验概率分布
+neigh.predict_proba(Xt)
+# Returns the mean accuracy on the given test data and labels.
+neigh.score(Xv, yv)
+</pre></div>
+
+
+<h2>NB, 朴素贝叶斯</h2>
+<h3>一般朴素贝叶斯方法, MultinomialNB</h3>
+<p>特征向量分量是离散变量时很有用</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">naive_bayes</span>
+<span class="n">nb</span> <span class="o">=</span> <span class="n">naive_bayes</span><span class="o">.</span><span class="n">MutilnomialNB</span><span class="p">()</span>
+<span class="n">nb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+
+
+<p><strong><span class="math">\(\lambda = 0\)</span>是代表极大似然估计, <span class="math">\(\lambda = 1\)</span>是代表拉普拉斯平滑, <span class="math">\(\lambda &gt; 0\)</span>时是贝叶斯估计.</strong></p>
+<h3>高斯朴素贝叶斯方法, GaussianNB</h3>
+<p>假设特征向量分量关于Y的条件分布符合正态分布, 即<span class="math">\(P(X^i|Y)\)</span>是正态分布, 对X是连续变量时有用</p>
+<div class="highlight"><pre>gnb = naive_bayes.GaussianNB()
+gnb.fit(X)
+</pre></div>
+
+
+<h3>伯努利朴素贝叶斯方法， BernoulliNB</h3>
+<p>假设特征向量分量关于Y的条件分布是伯努利分布</p>
+<div class="highlight"><pre>bnb = naive_bayes.BernoulliNB(alpha=1.0)
+bnb.fit(X)
+</pre></div>
+
+
+<p><strong><span class="math">\(\lambda = 0\)</span>是代表极大似然估计, <span class="math">\(\lambda = 1\)</span>是代表拉普拉斯平滑, <span class="math">\(\lambda &gt; 0\)</span>时是贝叶斯估计.</strong></p>
+<h2>LR, 逻辑回归分类模型</h2>
 <div class="math">$$
-min\limits_w {\frac{1}{2n_samples}{|| Xw - y ||_2^2 + \alpha \lVert w \rVert_1}}, \alpha \geq 0
+\min\limits_{w, b}{\frac{1}{2} {\lVert w \rVert}^2 + C \sum\limits_{i=1}{i=N}{log{1+exp(-y_i(w \cdot x_i + b))}}}
 $$</div>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">copy_X</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-   <span class="n">normalize</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">precompute</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-   <span class="n">selection</span><span class="o">=</span><span class="s">&#39;cyclic&#39;</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">warm_start</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<p>
+或者等价于
+</p>
+<div class="math">$$
+\min\limits_{w, b}{\sum\limits_{i=1}{i=N}{log{1+exp(-y_i(w \cdot x_i + b))}} + \lambda {\lVert w \rVert}^2}
+$$</div>
+<p>
+如果penalty='l1', 就将上面公式中的l2范数换成l1范数即可, 即各分量绝对值的和</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="c"># penalty -&gt; 范数 or 惩罚函数,default=&#39;l2&#39;, C 惩罚系数, log(exp(-yi(w*xi+b))+1)的系数</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LogsiticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s">&#39;l2&#39;</span><span class="p">,</span><span class="n">C</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="c"># coef_ -&gt; w, intercept_ -&gt; b</span>
+</pre></div>
+
+
+<h2>SVM, 支持向量机</h2>
+<h3>线性支持向量机</h3>
+<div class="math">$$
+\min\limits_{w, b}{\frac{1}{2} {\lVert w \rVert}^2 + C \sum\limits_{i=1}{i=N}{\[1-y_i(w \cdot x_i + b)\]_{+}}}
+$$</div>
+<p>
+或者等价于
+</p>
+<div class="math">$$
+\min\limits_{w, b}{\sum\limits_{i=1}{i=N}{\[1-y_i(w \cdot x_i + b)\]_{+}} + \lambda {\lVert w \rVert}^2}
+$$</div>
+<p>
+如果penalty='l1', 就将上面公式中的l2范数换成l1范数即可, 即各分量绝对值的和</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">svm</span>
+<span class="c"># loss in [&#39;hingle&#39;, &#39;squard_hingle&#39;], default=&#39;hingle&#39;</span>
+<span class="n">linear_svm</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">LinearSVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s">&#39;hingle&#39;</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="s">&#39;l2&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>非线性支持向量机</h3>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">svm</span>
+<span class="c"># kernel is in [‘linear’, ‘poly’, ‘rbf’, ‘sigmoid’, ‘precomputed’ or a callable], default=&#39;rbf&#39;</span>
+<span class="c"># degree: degree for &#39;poly&#39;, ignored by all other method, default=3</span>
+<span class="c"># gamma: &#39;poly&#39;, &#39;rbf&#39;, &#39;sigmoid&#39;核函数系数, 如果选择&#39;auto&#39;的话, 1/n_features将被选择</span>
+<span class="n">svc</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s">&#39;rbf&#39;</span><span class="p">,</span> <span class="n">de</span><span class="p">)</span>
+</pre></div>
+
+
+<h2>ME, 最大熵模型</h2>
+<h2>DT, 决策树</h2>
+<p>scikit-learn使用的是优化的CART算法</p>
+<h3>分类树</h3>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
+<span class="c"># criterion: &#39;gini&#39;, &#39;entropy&#39;, default=&#39;gini&#39;</span>
+<span class="n">dtc</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassfier</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s">&#39;gini&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>回归树</h3>
+<div class="highlight"><pre># criterion: &#39;mse&#39;, default=&#39;mse&#39;, mean squared error
+dtr = tree.DecisionTreeRegressor(criterion=&#39;mse&#39;)
+</pre></div>
+
+
+<h2>BT, 提升树, Gradient Tree Boosting</h2>
+<h3>分类, GradientBoostingClassifier</h3>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">ensemble</span>
+<span class="n">gbc</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">GradientBoostingClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>回归, GradientBoostingRegressor</h3>
+<div class="highlight"><pre>gbr = ensemble.GradientBoostingRegressor(n_estimators=100, learning_rate=0.1, max_depth=1, random_state=0, loss=&#39;ls&#39;).fit(X_train, y_train)
+</pre></div>
+
+
+<h2>AdaBoost, 提升方法</h2>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">AdaBoostClassifier</span>
+
+<span class="n">abclf</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">abclf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+
+<h2>HMM, 隐马尔科夫模型</h2>
+<h2>CRF, 条件随机场</h2>
+<h2>CV, 交叉验证</h2>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">cross_validation</span>
+<span class="c"># cross_val_score, cross_val_predict</span>
+<span class="c"># 默认使用k-fold验证</span>
+<span class="c"># array-like, shape[0] = len(list(cv)) if type(cv) is not int else cv</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="c"># shape=(n_samples, )</span>
+<span class="n">predicted</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">cross_val_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+<span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">predicted</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>K-fold</h3>
+<div class="highlight"><pre><span class="c1"># n -&gt; int, 样本的总数量, n_folds &lt;- number of folds, default=3, at least 2.</span>
+kf <span class="o">=</span> cross_validation.KFold<span class="p">(</span><span class="m">4</span><span class="p">,</span> n_folds<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="c1"># train, test 是训练样本和验证样本的索引构成的列表</span>
+<span class="kr">for</span> train<span class="p">,</span> test <span class="kr">in</span> kf<span class="o">:</span>
+    <span class="p">(</span>train<span class="p">,</span> test<span class="p">)</span>
+</pre></div>
+
+
+<h3>LOO, Leave-One-Out</h3>
+<div class="highlight"><pre># n -&gt; int, the total of elements
+loo = cross_validation.LeaveOneOut(8)
+for train, test in lo:
+    (train, test)
+</pre></div>
+
+
+<h3>LPO, Leave-P-Out</h3>
+<div class="highlight"><pre>lpo = cross_validation.LeavePOut(n, p)
+</pre></div>
+
+
+<p><strong>这些交叉验证的模型可以代入最上面的</strong><code>cross_val_score</code>, <code>cross_val_predict</code><strong>方法中</strong></p>
+<h3>random permutations cross validation</h3>
+<div class="highlight"><pre>ss = cross_validation.ShuffleSplit(5, n_iter=3, test_size=0.25, random_state=0)
+</pre></div>
+
+
+<h2>高斯混合模型</h2>
+<p>非监督学习模型, unsupervised learning</p>
+<div class="math">$$
+P(y|\sigma) = \sum\limits_{k=1}{K}{\alpha_{k}\phi(y|\sigma_{k})}
+$$</div>
+<div class="math">$$
+\phi(y|\sigma_{k}) = \frac{1}{(2 \pi)^{\frac{p/2}}{\sqrt(det({CovMat}_k))}}exp(-\frac{1}{(y-{\mu}_k)^T({COVMat}_k)^{-1}(y-{\mu}_k)});
+$$</div>
+<p>
+其中, <span class="math">\({CovMat}_k\)</span>是 (n_features, n_features) 的矩阵, <span class="math">\({\mu}_k\)</span>是 (n_features, )向量</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">mixture</span>
+<span class="n">gmm</span> <span class="o">=</span> <span class="n">mixture</span><span class="o">.</span><span class="n">GMM</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">gmm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="c"># 均值</span>
+<span class="n">gmm</span><span class="o">.</span><span class="n">means_</span>
+<span class="c"># 协方差</span>
+<span class="n">gmm</span><span class="o">.</span><span class="n">covars_</span>
+<span class="c"># 权重</span>
+<span class="n">gmm</span><span class="o">.</span><span class="n">weights_</span>
 <span class="c"># 预测</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-<span class="n">array</span><span class="p">([</span> <span class="mf">0.8</span><span class="p">])</span>
+<span class="n">gmm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">XP</span><span class="p">)</span>
 </pre></div>
 
 
-<h5>确定正则项系数</h5>
-<h6>使用交叉验证</h6>
-<p><strong>LassoCV</strong></p>
-<p><strong>LassoLarsCV</strong></p>
-<h6>基于信息标准的模型选择 Information-criteria based model selection</h6>
-<p><strong>LassoLarsIC</strong></p>
-<h4>Elastic Net</h4>
+<p>高斯混合模型首先通过观测数据使用EM算法计算出模型的参数<span class="math">\(\sigma\)</span>, 然后通过计算出在给定的参数下, 观测数据最有可能通过第几个模型产生, 达到对数据进行分类的目的.</p>
+<p>如果将其他概率密度替代高斯混合模型中的高斯分布密度, 那么就会得到相应的概率混合模型, 然后可以使用类似办法对类进行分类.</p>
+<h2>聚类, Clustering</h2>
+<h3>K-Means, k-均值, KMeans, MiniBatchKMeans</h3>
+<p>输入参数: 聚类的个数</p>
 <div class="math">$$
-min\limits_w {\frac{1}{2n_samples}{|| Xw - y ||_2^2 + \alpha \rho \lVert w \rVert _1 + \alpha (1 -  \rho) \lVert w \rVert _2^2 }}, \alpha \geq 0, \rho \geq 0
+min\sum\limits_{i=1}^{N}{min\limits_{k}{\lVert (x_i-{\mu}_k) \rVert}^2}
 $$</div>
-<h4>Multi-task Lasso</h4>
-<h4>Least Angle Regression</h4>
-<h4>LARS Lasso</h4>
-<h3>线性和二次判别分析 Linear and Quadratic Discriminant Analysis</h3>
-<h3>Kernle Ridge Regrssion 带核脊回归</h3>
-<h3>支持向量机 Support Machines</h3>
-<h3>随机梯度下降法 Stochastic Gredient Descent</h3>
-<h3>k近邻 Nearest Neighbors</h3>
-<h3>Gaussian Process 高斯过程</h3>
-<h3>Cross decomposion</h3>
-<h3>朴素贝叶斯 Naive Bayes</h3>
-<h3>决策树 Decision Trees</h3>
-<h3>Ensemble Methods</h3>
-<h3>Multiclass and multilabel algorithms 多类多标签算法</h3>
-<h3>特征选择 feature selection</h3>
-<h3>Semi-Supervised</h3>
-<h3>Isotonic Regression</h3>
-<h3>Probability calibration</h3>
-<h2>Clustering 聚类</h2>
-<h2>降维 Dimensionality reduction</h2>
-<h3>主成分分析 Principal component analysis (PCA)</h3>
-<h4>Exact PCA and probabilistic interpretation</h4>
-<p>Linear dimensionality reduction using Singular Value Decomposition of the data and keeping only the most significant singular vectors to project the data to a lower dimensional space.</p>
-<p>算法(PCA):</p>
-<blockquote>
-<p>输入:<span class="math">\(X \in K^{N*n}\)</span>, 需要降到的维数m &lt; n</p>
-<p>输出: 转换矩阵$M \in K^{n*m}</p>
-<p>(1) 求出X的每一列均值, 并用X减去, 得到矩阵<span class="math">\(Y\)</span>是的Y每一列的均值为0</p>
-<p>(2) 求Y列与列之间的协方差矩阵<span class="math">\(C\)</span>,
-<div class="math">$$C[i, j] = Y[:,i] \cdot Y[:, j] / N$$</div>
-等价于
-$$C = X^T X</p>
-<p>(3) 求出协方差矩阵C的特征值和特征向量</p>
-<p>(4) 取特征值最大的m个特征值及其对应的特征向量</p>
-<p>(5) 取出的特征向量组合成n*m矩阵即为所求<span class="math">\(M=(\alpha _1, \alpha _2, \cdots, \alpha _m) \in K^{n*m}\)</span></p>
-</blockquote>
-<h4>Incremental PCA</h4>
-<p>Incremental principal component analysis (IPCA) is typically used as a replacement for principal component analysis (PCA) when the dataset to be decomposed is too large to fit in memory. IPCA builds a low-rank approximation for the input data using an amount of memory which is independent of the number of input data samples. It is still dependent on the input data features, but changing the batch size allows for control of memory usage.</p>
-<h4>Approximate PCA</h4>
-<h4>Kernel PCA</h4>
-<h4>Sparse principal components analysis (SparsePCA and MiniBatchSparsePCA)</h4>
-<h3>截断奇异值分解和潜在语义分析 Truncated singular value decomposition and latent semantic analysis</h3>
-<h3>Dictionary Learning</h3>
-<h3>factor analysis</h3>
-<h3>Independent component analysis (ICA) 独立成分分析</h3>
-<h3>Non-negative matrix factorization (NMF or NNMF) 非负矩阵分解</h3>
-<h3>Latent Dirichlet Allocation (LDA)</h3>
-<h2>模型选择 Model selection and evaluation</h2>
-<h2>Preprocessing data 预处理数据</h2>
+<p><strong>MiniBatchKMeans</strong>是KMeans的变种, 可以减少运行时间.</p>
+<h3>MeanShift, 将中心点逐渐移向密度最稠密的点</h3>
+<p>scikit-learn使用的是<code>rbf kernel</code>, 高斯径向基函数.</p>
+<h3>DBSCAN</h3>
+<p>高密度区域天然被低密度区域分割</p>
+<h2>二聚类, Biclustering</h2>
+<h2>模型持久化</h2>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -224,6 +383,54 @@ $$C = X^T X</p>
 
             <li><article class="hentry">
                 <header>
+                    <h1><a href="http://forin-xyz.github.io/output/2016/03/pythonshu-ju-fen-xi-biao-zhi-pandas.html" rel="bookmark"
+                           title="Permalink to python数据分析包之pandas">python数据分析包之pandas</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2016-03-04T10:20:00+08:00">
+                发表于: 2016年03月04日 星期五
+        </abbr>
+		<br />
+        <abbr class="modified" title="2016-03-04T19:30:00+08:00">
+                修改于: 2016年03月04日 星期五
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
+        </address>
+<p>In <a href="http://forin-xyz.github.io/output/category/python.html">Python</a>.</p>
+<p>tags: <a href="http://forin-xyz.github.io/output/tag/pandas.html">pandas</a> <a href="http://forin-xyz.github.io/output/tag/shu-ju-fen-xi.html">数据分析</a> <a href="http://forin-xyz.github.io/output/tag/python.html">python</a> </p>
+</footer><!-- /.post-info -->                <p>A short tutorial for pandas.</p>
+                <a class="readmore" href="http://forin-xyz.github.io/output/2016/03/pythonshu-ju-fen-xi-biao-zhi-pandas.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://forin-xyz.github.io/output/2016/03/scikit-learnjian-yao.html" rel="bookmark"
+                           title="Permalink to scikit-learn简要">scikit-learn简要</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2016-03-03T23:00:00+08:00">
+                发表于: 2016年03月03日 星期四
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
+        </address>
+<p>In <a href="http://forin-xyz.github.io/output/category/python.html">Python</a>.</p>
+<p>tags: <a href="http://forin-xyz.github.io/output/tag/python.html">python</a> <a href="http://forin-xyz.github.io/output/tag/scikit-learn.html">scikit-learn</a> <a href="http://forin-xyz.github.io/output/tag/machine-learning.html">machine learning</a> <a href="http://forin-xyz.github.io/output/tag/supervised-learning.html">supervised learning</a> <a href="http://forin-xyz.github.io/output/tag/non-supervised-learning.html">non-supervised learning</a> <a href="http://forin-xyz.github.io/output/tag/classfication.html">classfication</a> <a href="http://forin-xyz.github.io/output/tag/prediction.html">prediction</a> <a href="http://forin-xyz.github.io/output/tag/clustering.html">clustering</a> <a href="http://forin-xyz.github.io/output/tag/dimensionality.html">dimensionality</a> </p>
+</footer><!-- /.post-info -->                <p>scikit-learn是python重要的机器学习和数据挖掘的软件包.</p>
+                <a class="readmore" href="http://forin-xyz.github.io/output/2016/03/scikit-learnjian-yao.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
                     <h1><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-8-kjin-lin-fa.html" rel="bookmark"
                            title="Permalink to 《统计学习方法》读书笔记8-k近邻法及python实现">《统计学习方法》读书笔记8-k近邻法及python实现</a></h1>
                 </header>
@@ -285,6 +492,28 @@ $$C = X^T X</p>
 <p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/ti-sheng-fang-fa.html">提升方法</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> <a href="http://forin-xyz.github.io/output/tag/adaboost.html">AdaBoost</a> <a href="http://forin-xyz.github.io/output/tag/ti-sheng-shu.html">提升树</a> <a href="http://forin-xyz.github.io/output/tag/boosting-tree.html">boosting tree</a> </p>
 </footer><!-- /.post-info -->                <p>提升方法是一种常用的统计学习方法, 它通过改变样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。AdaBoost算法是最具代表性的提升算法，提升树则是更具体的实例。</p>
                 <a class="readmore" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-7-ti-sheng-fang-fa.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-6-emsuan-fa-yu-gao-si-hun-he-mo-xing.html" rel="bookmark"
+                           title="Permalink to 《统计学习方法》读书笔记6-EM算法与高斯混合模型,含python源码">《统计学习方法》读书笔记6-EM算法与高斯混合模型,含python源码</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2016-02-22T23:00:00+08:00">
+                发表于: 2016年02月22日 星期一
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
+        </address>
+<p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
+<p>tags: <a href="http://forin-xyz.github.io/output/tag/emsuan-fa.html">EM算法</a> <a href="http://forin-xyz.github.io/output/tag/exceptation-maximization-algorithm.html">Exceptation maximization algorithm</a> <a href="http://forin-xyz.github.io/output/tag/yin-bian-liang.html">隐变量</a> <a href="http://forin-xyz.github.io/output/tag/hidden-variable.html">hidden variable</a> <a href="http://forin-xyz.github.io/output/tag/qian-zai-bian-liang.html">潜在变量</a> <a href="http://forin-xyz.github.io/output/tag/latebt-variable.html">latebt variable</a> <a href="http://forin-xyz.github.io/output/tag/gao-si-hun-he-mo-xing.html">高斯混合模型</a> <a href="http://forin-xyz.github.io/output/tag/gaussian-misture-model.html">Gaussian misture model</a> <a href="http://forin-xyz.github.io/output/tag/yan-yi-qi-wang-ji-da-suan-fa.html">广义期望极大算法</a> <a href="http://forin-xyz.github.io/output/tag/generialization-expectation-maximization-algorithm.html">generialization expectation maximization algorithm</a> <a href="http://forin-xyz.github.io/output/tag/gemsuan-fa.html">GEM算法</a> <a href="http://forin-xyz.github.io/output/tag/ji-da-ji-da-suan-fa.html">极大-极大算法</a> <a href="http://forin-xyz.github.io/output/tag/maximization-maximinzation-algorithm.html">Maximization-maximinzation algorithm</a> <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> </p>
+</footer><!-- /.post-info -->                <p>EM算法是一种迭代算法, 用于含有隐变量的概率模型参数的极大似然估计,或极大后验概率估计.EM算法的每次迭代由两步组成:E步求期望, M步求极大.</p>
+                <a class="readmore" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-6-emsuan-fa-yu-gao-si-hun-he-mo-xing.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
 
