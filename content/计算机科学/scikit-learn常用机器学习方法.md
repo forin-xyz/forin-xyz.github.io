@@ -149,7 +149,7 @@ $$
 $$
 或者等价于
 $$
-\min\limits_{w, b}{\sum\limits_{i=1}^{N}{\log{1+exp(-y_i(w \cdot x_i + b))}} + \lambda {\lVert w \rVert}^2}
+\min\limits_{w, b}{\sum\limits_{i=1}^{N}{\log{(1+exp(-y_i(w \cdot x_i + b)))}} + \lambda {\lVert w \rVert}^2}
 $$
 如果penalty='l1', 就将上面公式中的l2范数换成l1范数即可, 即各分量绝对值的和
 
