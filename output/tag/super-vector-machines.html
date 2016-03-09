@@ -24,7 +24,7 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-2-cong-gan-zhi-ji-dao-zhi-chi-xiang-liang-ji.html">《统计学习方法》读书笔记2-从感知机到支持向量机，含python源码</a></h1>
+                    <h1 class="entry-title"><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-11-tong-ji-xue-xi-fang-fa-zong-jie.html">《统计学习方法》读书笔记11-全书小结</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2016-02-18T23:00:00+08:00">
                 发表于: 2016年02月18日 星期四
@@ -34,304 +34,164 @@
                 By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
         </address>
 <p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
-<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/gan-zhi-ji.html">感知机</a> <a href="http://forin-xyz.github.io/output/tag/perceptron.html">perceptron</a> <a href="http://forin-xyz.github.io/output/tag/zhi-chi-xiang-liang-ji.html">支持向量机</a> <a href="http://forin-xyz.github.io/output/tag/super-vector-machines.html">super vector machines</a> <a href="http://forin-xyz.github.io/output/tag/svm.html">SVM</a> <a href="http://forin-xyz.github.io/output/tag/python.html">python</a> <a href="http://forin-xyz.github.io/output/tag/ji-suan-ji-ke-xue.html">计算机科学</a> <a href="http://forin-xyz.github.io/output/tag/shu-xue-yuan-li.html">数学原理</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> </p>
-</footer><!-- /.post-info --><h2>感知机</h2>
-<h3>感知机的定义</h3>
-<p>从输入空间\( \mathit{X} \subseteq R^n\)到输出空间\(\mathit{Y} \subseteq { +1, -1 }\)的函数
-</p>
-<div class="math">$$f(x)=sign(w\cdot \mathit{x} + b)$$</div>
-<p>被称为感知机。输入x表示实例的特征向量，输出y表示实例的类别，w和b为感知机模型的参数，分别叫做权值向量和偏置。\(sign(x)\)是符号函数，即
-</p>
-<div class="math">$$sign(x)=
-\begin{cases}
-+1,&amp;  &amp;{x \geq 0}\\
--1,&amp;  &amp;{ x &lt; 0 }
-\end{cases}$$</div>
-<p>。</p>
-<h3>几何解释</h3>
-<p>线性方程</p>
-<div class="math">$$w\cdot \mathit{x} + b = 0$$</div>
-<p>对应于特征空间\(R^n\)中的一个超平面，其中\(w\)是超平面的法向量，\(b\)是超平面的截距。这个超平面恰好将特征空间的点分为两个部分，分别对应于正、负两类实例。</p>
-<h3>数据集的线性可分性</h3>
-<p>给定一个数据集</p>
-<div class="math">$$T = \{(x_{1},y_{1}),(x_{2},y_{2}),\cdots, (x_{N},y_{N})\},$$</div>
-<p>其中, \(x_{i}\)属于特征空间的点，如果存在某个超平面\(S\)</p>
-<div class="math">$$w \cdot \mathit{x} + b = 0$$</div>
-<p>能够完全将数据集的实例点正确分类即对所有的\(i\)都有</p>
-<div class="math">$$\mathit{y}_{i}(w \cdot \mathit{x}_{i} + b) &gt;0$$</div>
-<p>, 则称线性数据集\(T\)为线性可分数据集(linearly separable data set); 否则, 称数据集\(T\)线性可分。</p>
-<h3>感知机的损失函数</h3>
-<p>对于正确分类的点，其损失函数应该为0, 对于错误分类的点, 其损失函数应该大于0，整个的经验损失函数就是训练集中所有实例点的损失函数的和。</p>
-<p>如果训练集是可分线性数据集，感知机模型就是寻找到一个能够将正实例点和负实例点完全分开的分离超平面，亦即是的整个经验损失函数为0。</p>
-<p>考虑到计算的方便，我们可以这样定义经验损失函数
-</p>
-<div class="math">$$L(w, b)= \sum_{i=1}^{N}{\lbrack y_{i}(w \cdot x_{i} + b)\rbrack_{+}}$$</div>
-<p>
-其中\(\lbrack x\rbrack_{+}\)表示取不小于\(x\)的最小的非负值，即
-</p>
-<div class="math">$$\lbrack x\rbrack_{+} = \begin{cases}
-x, &amp;   &amp;x \gt 0\\
-0, &amp;   &amp;x \leq 0
-\end{cases}$$</div>
-<p>于是感知机模型就等价于最优化问题</p>
-<div class="math">$$\min{L(w, b)},$$</div>
-<p>因为经验损失函数大于等于0，也就是求出相应的不全为0的w, b使得\(L(w, b) = 0\).</p>
-<h3>感知机学习算法的原始形式</h3>
-<p>感知机学习算法是误分类驱动的，具体采用随机梯度下降法(stochastic gradient descent). 具体而言就是每一次对其中一个误分类点使用梯度下降法使其的经验损失函数值减小。</p>
-<p>随机选取一个误分类点\((x_{i}, y_{i})\), 其损失函数对应的梯度为:
-</p>
-<div class="math">$$\begin{aligned}\delta_{w} L_{i}(w, b) &amp;= -y_{i}x_{i}\\
-\delta_{b} L_{i}(w, b) &amp;= -y_{i}
-\end{aligned}$$</div>
-<p>这样对应的迭代函数为:</p>
-<div class="math">$$w \gets w + \eta y_{i}x_{i}$$</div>
-<div class="math">$$b \gets b + \eta y_{i}$$</div>
-<p>直到\(y_{i}(w\cdot x_{i} + b) \leq 0\)为止。</p>
-<p>其中\(\eta (0 &lt; \eta \leq 1)\)是步长，在统计学习中又称为学习率(learning rate)。</p>
-<h4>感知机学习算法的原始形式</h4>
-<blockquote>
-<p>输入：\(T={(x_{1},y_{1}),(x_{2},y_{2}), \cdots ,(x_{N},y_{N})}\)（其中\(x_{i} \in R^n\)，\(y_{i}\)∈Y={-1,+1}，i=1,2...N，学习速率为η）</p>
-<p>输出：w, b;感知机模型f(x)=sign(w·x+b)</p>
-<p>(1) 初始化w=0,b=0</p>
-<p>(2) 在训练数据集中选取（xi, yi）</p>
-<p>(3) 如果\(y_{i}(w \cdot x_{i} + b ) \leq 0\)</p>
-<p>
-<div class="math">$$w = w + {\eta}y_{i}x_{i}$$</div>
-</p>
-<p>
-<div class="math">$$b = b + {\eta}y_{i}$$</div>
-</p>
-<p>(4) 转至（2）</p>
-</blockquote>
-<h3>感知机学习的原始形式的python实现</h3>
-<p><a href="https://github.com/forin-xyz/statistical-learning-method/blob/master/perceptron_origin.py" title="gihub">感知机学习的原始形式</a></p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-
-<span class="k">def</span> <span class="nf">perceptron_origin_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="n">N</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">zeros</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">goon</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="k">while</span> <span class="n">goon</span><span class="p">:</span>
-        <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="kp">dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span>
-                <span class="k">while</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="kp">dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">+</span> <span class="n">eta</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                    <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="n">eta</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                <span class="k">break</span>
-        <span class="n">goon</span> <span class="o">=</span> <span class="n">flag</span>
-    <span class="k">return</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span>
-
-
-<span class="k">def</span> <span class="nf">test_perceptron_origin_train</span><span class="p">():</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">w</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">perceptron_origin_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">w</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="kp">all</span><span class="p">()</span> <span class="ow">and</span> <span class="n">b</span> <span class="o">==</span> <span class="o">-</span><span class="mi">3</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;test perceptron_origin_train sucessful!&#39;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;test perceptron_origin_train fail!&#39;</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">test_perceptron_origin_train</span><span class="p">()</span>
-</pre></div>
-
-
-<h3>算法的收敛性</h3>
-<p>证明对于线性可分数据集感知机学习算法原始形式收敛。</p>
-<h4>Novikoff定理</h4>
-<p>定理表明，误分类的次数\(k\)是有上界的，经过有限次搜索可以找到将训练数据完全分开的分离超平面，即感知机学习的原始形式算法收敛。</p>
-<h3>感知机学习算法的对偶形式</h3>
-<p>通过对原始形式的感知机学习算法的观察, 我们发现，如果假设初始值\(w_{0}, b_{0}\)为0的话， 最终学习得到的\(w, b\)分别是\(y_{i}x_{i}, y_{i}\)的线性组合，即
+<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/gan-zhi-ji.html">感知机</a> <a href="http://forin-xyz.github.io/output/tag/perceptron.html">perceptron</a> <a href="http://forin-xyz.github.io/output/tag/zhi-chi-xiang-liang-ji.html">支持向量机</a> <a href="http://forin-xyz.github.io/output/tag/super-vector-machines.html">super vector machines</a> <a href="http://forin-xyz.github.io/output/tag/svm.html">SVM</a> <a href="http://forin-xyz.github.io/output/tag/ji-suan-ji-ke-xue.html">计算机科学</a> <a href="http://forin-xyz.github.io/output/tag/shu-xue-yuan-li.html">数学原理</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> <a href="http://forin-xyz.github.io/output/tag/tong-ji-xue-xi-fang-fa.html">统计学习方法</a> </p>
+</footer><!-- /.post-info --><h1>感知机</h1>
+<h2>损失函数</h2>
+<div class="math">$$
+\min\limits_{w, b}{\sum\limits_{i=1}^{N}[-y_i(w \cdot x_i + b)]_{+}}
+$$</div>
+<h2>原始形式</h2>
+<p>如果<span class="math">\(y_i(w \cdot x_i + b) \leq 0\)</span>
 </p>
 <div class="math">$$\begin{aligned}
-w &amp;= \sum\limits_{i=1}^{N}\alpha_{i}y_{i}x_{i}\\
-b &amp;= \sum\limits_{i=1}^{N}\alpha_{i}y_{i}
-\end{aligned}$$</div>
-<p>
-这里，\(\alpha_{i} \geq 0\), 当 \(\eta = 1\)时，表示第i个实例点由于误分而进行更新的次数</p>
-<h4>感知机学习算法的对偶形式</h4>
-<blockquote>
-<p>输入：T={(x1,y1),(x2,y2)...(xN,yN)}（其中xi∈X=Rn，yi∈Y={-1, +1}，i=1,2...N，学习速率为η）</p>
-<p>输出：a,b;感知机模型f(x)=sign(w·x+b)</p>
-<p>(1) 初始化\(\alpha=0,b=0\)</p>
-<p>(2) 在训练数据集中选取（xi, yi）</p>
-<p>(3) 如果 \(y_{i}(\sum\limits_{j=1}^{N}{\alpha_{j}y{j}x_{j}\cdot x_{i}} + b) \leq 0\)</p>
-<p>
-<div class="math">$$\alpha_{i} = \alpha_{i} + \eta$$</div>
-</p>
-<p>
-<div class="math">$$b = b + {\eta}y_{i}$$</div>
-</p>
-<p>(4) 转至（2）</p>
-</blockquote>
-<p>考虑到对偶形式中训练实例仅以内积形式存在，为了方便，我们可以预先将训练集中实例间的内积计算出来并保存</p>
-<h4>感知机学习对偶形式的python实现</h4>
-<p><a href="https://github.com/forin-xyz/statistical-learning-method/blob/master/perceptron_couple.py" title="gihub">感知机学习的对偶形式</a></p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-
-<span class="k">def</span> <span class="nf">perceptron_couple_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="n">N</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">goon</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">Gram</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-    <span class="k">while</span> <span class="n">goon</span><span class="p">:</span>
-        <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="kp">dot</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="n">Gram</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span>
-                <span class="k">while</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="kp">dot</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="n">Gram</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">eta</span>
-                    <span class="n">b</span> <span class="o">+=</span> <span class="n">eta</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                <span class="k">break</span>
-        <span class="n">goon</span> <span class="o">=</span> <span class="n">flag</span>
-    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">dot</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">a</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span>
-
-<span class="k">def</span> <span class="nf">test_perceptron_couple_train</span><span class="p">():</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">a</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">perceptron_couple_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-    <span class="k">if</span> <span class="p">((</span><span class="n">a</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="kp">all</span><span class="p">()</span> <span class="ow">and</span>
-        <span class="p">(</span><span class="n">w</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="kp">all</span><span class="p">()</span> <span class="ow">and</span> <span class="n">b</span> <span class="o">==</span> <span class="o">-</span><span class="mi">3</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;test perceptron_couple_train successful!&#39;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;test perceptron_couple_train failed!&#39;</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">test_perceptron_couple_train</span><span class="p">()</span>
-</pre></div>
-
-
-<h2>支持向量机</h2>
-<p>感知机模型存在许多可行解，这些解既依赖于初值的选择，也依赖于迭代过程中误分类点的选择顺序。为了得到唯一的更好的解，一个很自然的想法就是添加约束条件，使得所有的点到达超平面的距离的最小值最大（间隔最大化）的能够正确划分实例点的分离超平面。于是就得到了线性可分支持向量机。当训练集不可分时，感知机学习算法不收敛，迭代结果会发生震荡，这时候就要对基本的支持向量机进行改造得到其他的支持向量机算法。</p>
-<h3>线性可分支持向量机</h3>
-<p>给定线性可分训练数据集，通过间隔最大化或等价地求解相应的凸二次规划问题学习得到的分离超平面</p>
-<div class="math">$$w^{*} \cdot x + b ^{*}$$</div>
-<p>以及相应的分类决策函数</p>
-<div class="math">$$f(x)=sign(w^{*} \cdot x + b)$$</div>
-<p>称为线性可分支持向量机。</p>
-<h3>几何间隔和函数间隔</h3>
-<p>对于给定的超平面(w, b)及其法向量w, 实例点\(x_{i}\)到超平面的距离为:
-</p>
-<div class="math">$$\hat{\gamma_{i}} = \frac{abs{w \cdot x + b}}{\left \| w \right \|}$$</div>
-<p>
-亦即
-</p>
-<div class="math">$$\hat{\gamma_{i}} = \frac{y_{i}(w \cdot x + b)}{\left \| w \right \|}$$</div>
-<p>
-因为当被正确分类时, \(y_{i}\) 与 \(w \cdot x + b\)的符号是相同的。
-取最小的几何间隔为训练数据集到超平面的几何间隔。
-这就是几何间隔，当我们不在考虑分类正确与否时，实例点分类错误时几何间隔为负值。</p>
-<p>相应的，定义
-</p>
-<div class="math">$$\hat{\gamma_{i}} = y_{i}(w \cdot x + b)$$</div>
-<p>
-为实例点\(x_{i}\)到超平面(w, b)的函数间隔。
-取所有实例点的函数间隔的最小值为训练数据集到超平面的函数间隔。</p>
-<p>我们发现, 函数间隔可以表示分类预测的正确性以及确性度，但是同比例的扩大w和b,就可以得到成比例的函数间隔，但是超平面却没有改变，所以要使得间隔最大化，必需使用几何间隔才能够实现。</p>
-<h3>间隔最大化</h3>
-<p>于是感知机问题就转化为线性可分支持向量机问题，等价于下面的优化问题:
+w \gets w + \eta y_i x_i\\
+b \gets b + \eta y_i
+\end{aligned}
+$$</div>
+<h2>对偶形式</h2>
+<p>如果<span class="math">\(y_i( \sum\limits_{j=1}^{N}(x_j \cdot x_i) + b) \leq 0\)</span>
 </p>
 <div class="math">$$\begin{aligned}
-\max\limits_{w,b}&amp;   \gamma&amp;\\
-s.t.&amp;  y_{i}(\frac{w}{\left \| w \right \|} \cdot x_{i} + \frac{b}{\left \| w \right \|}) \geq \gamma, i=1,2,\cdots,N&amp;
-\end{aligned}$$</div>
-<p>上面的规划问题等价于下面的凸二次规划问题(convex quadratic programming)</p>
-<h2>非线性支持向量机 核技巧 kernel trick</h2>
-<h3>半正定矩阵</h3>
-<p>对称矩阵M对于任意一个非零向量有<span class="math">\(w^TMw \ge 0\)</span>,则称M是半正定矩阵. 推广到复数域,矩阵M的共轭装置必需等于其自身.</p>
-<ol>
-<li>将内积空间<span class="math">\(\mathcal(S)\)</span>完备化为希尔伯特空间</li>
-</ol>
-<p>由内积可以得到范数:
+{\alpha}_i \gets {\alpha}_i + \eta\\
+b \gets b + \eta y_i
+\end{aligned}
+$$</div>
+<h2>算法收敛性</h2>
+<p><strong>Novikoff定理</strong></p>
+<h1>逻辑回归模型 LR</h1>
+<h2>原始形式</h2>
+<div class="math">$$
+\min\limits_{w, b} \sum\limits_{i=1}^{N}\log{(1 + exp(-y_i (w \cdot x_i + b)))} + \lambda {\lVert w \rVert}_{2}^2
+$$</div>
+<h1>支持向量机</h1>
+<h2>线性可分支持向量机 -- 硬间隔最大化</h2>
+<h3>原始形式</h3>
+<div class="math">$$
+\begin{aligned}
+\min\limits_{w, b} \frac{1}{2}{\lVert w \rVert}_{2}^2\\
+s.t.\\
+y_i (w \cdot x_i + b ) \leq 1
+\end{aligned}
+$$</div>
+<h3>对偶形式 dual</h3>
+<div class="math">$$
+\min\limits_{\alpha} \sum\limits_{i=1}^{N}\sum\limits_{i=1}^{N}{{\alpha}_i{\alpha}_j y_i y_j x_i \cdot x_j - \sum\limits_{i=1}^{N}{\alpha _i}}
+$$</div>
+<p>
+subject to
 </p>
 <div class="math">$$
-\lVert f \rVert = \sqrt{f \cdot f}
+\sum\limits_{i=1}{N} = 0
 $$</div>
-<p>
-于是<span class="math">\(\mathcal{S}\)</span>是一个赋范向量空间. 对于不完备的赋范向量空间<span class="math">\(\mathcal(S)\)</span>,一定可以使之完备化.</p>
-<p>核具有再生性:
+<div class="math">$$
+\alpha _i \geq 0
+$$</div>
+<p>其中
 </p>
 <div class="math">$$
-K(\cdot, x) \cdot f = f(x)
+w = \sum\limits_{i=1}^{N} {\alpha}_i y_i x_i
 $$</div>
-<div class="math">$$
-K(\cdot, x) \cdot K(\cdot, z) = K(x, z)
-$$</div>
-<ol>
-<li>正定核的充要条件</li>
-</ol>
-<p><strong>对应的Gram矩阵是半正定矩阵</strong></p>
-<p>设<span class="math">\(K: \mathcal(X) \times \mathcal(X) \to \boldsystem{R}\)</span>是对称函数, 则<span class="math">\(K(x, z)\)</span>为正定核函数的充要条件是对任意<span class="math">\(x_i \in \mathcal{X}, i=1, 2, \cdots, m\)</span>, <span class="math">\(K(x,z)\)</span>对应的Gram矩阵
+<p>
+当<span class="math">\({\alpha}_i \gt 0\)</span>
 </p>
 <div class="math">$$
-Gram=[K(x_i, x_j)]_{m\times m}
+b = y_j - \sum\limits_{i=1}^{N}{y_i \alpha _i (x_i \cdot x_j)}
 $$</div>
-<p>
-是半正定矩阵.</p>
-<p><strong>证明</strong>:</p>
-<p>( <em>必要性</em> )(=&gt;)</p>
-<p>( <em>充分性</em> )(&lt;=)</p>
-<h3>常用核函数</h3>
-<ol>
-<li>多项式核函数(polynomial kernel function)</li>
-</ol>
+<h2>线性支持向量机 -- 软间隔最大化</h2>
+<h3>原始形式</h3>
 <div class="math">$$
-K(x, z) = (x \cdot z + 1)^p
+\begin{aligned}
+\min\limits_{w, b} \frac{1}{2}{\lVert w \rVert}_{2}^2 + C\sums\limits_{i=1}^{N}[1-y_i (w \cdot x_i + b)]_{+}
+\end{aligned}
 $$</div>
 <p>
-对应的支持向量机是一个p次多项式分类器.</p>
-<ol>
-<li>高斯核函数(Gaussian kenerl function)</li>
-</ol>
+或者
+</p>
 <div class="math">$$
-K(x, z) = exp(-\frac{\lVert x-z \rVert}{2 \sigma ^2})
+\min\limits_{w, b} \sums\limits_{i=1}^{N}[1-y_i (w \cdot x_i + b)]_{+} + \lambda {\lVert w \rVert}_{2}^2
+$$</div>
+<h3>对偶形式 dual</h3>
+<div class="math">$$
+\min\limits_{\alpha} \sum\limits_{i=1}^{N}\sum\limits_{i=1}^{N}{{\alpha}_i{\alpha}_j y_i y_j x_i \cdot x_j - \sum\limits_{i=1}^{N}{\alpha _i}}
 $$</div>
 <p>
-对应的支持向量机是高斯径向基函数分类器.</p>
-<ol>
-<li>字符串核函数(string kernel function)</li>
-</ol>
-<h2>中英文词汇对照表</h2>
-<p>感知机 perceptron</p>
-<p>线性分类模型 linear classification model</p>
-<p>支持向量机 support vector machine, SVM</p>
-<p>分离超平面 separating hyperplane</p>
-<p>输入空间 input space</p>
-<p>输出空间 output space</p>
-<p>特征空间 feature space</p>
-<p>权值向量 weight vector</p>
-<p>偏置 bias</p>
-<p>梯度下降法 gradient descent</p>
-<p>线性支持向量机 linear support vector machine</p>
-<p>非线性支持向量机 non-linear support vector machine</p>
-<p>线性可分支持向量机 linear support vector machine in linearly in linearly separable case</p>
-<p>硬间隔最大化 hard margin maximization</p>
-<p>软间隔最大化 soft margin maximization</p>
-<p>希尔伯特空间 Hilbert space</p>
-<p>正定核函数 definite kernel function</p>
-<p>核技巧 kenerl trick</p>
-<p>核函数 kenerl function</p>
-<p>核方法 kenerl method</p>
-<p>线性可分数据集 linearly separable data set</p>
-<p>损失函数 loss function</p>
-<p>经验损失函数 empirical loss function</p>
-<p>学习率 learning rate</p>
-<p>几何间隔 geometric margin</p>
-<p>函数间隔 functional margin</p>
-<p>凸二次规划问题 convex quadratic programming</p>
-<p>代理损失函数 surrogate loss function</p>
-<p>再生核希尔伯特空间 reproducing kernel Hilbert space , RKHS</p>
-<p>径向基函数 radial basis function</p>
+subject to
+</p>
+<div class="math">$$
+\sum\limits_{i=1}{N} = 0
+$$</div>
+<div class="math">$$
+0 \leq \alpha _i \leq C
+$$</div>
+<h2>非线性支持向量机 -- 核技巧</h2>
+<div class="math">$$
+\min\limits_{\alpha} \sum\limits_{i=1}^{N}\sum\limits_{i=1}^{N}{{\alpha}_i{\alpha}_j y_i y_j K(x_i, x_j) - \sum\limits_{i=1}^{N}{\alpha _i}}
+$$</div>
+<p>
+subject to
+</p>
+<div class="math">$$
+\sum\limits_{i=1}{N} = 0
+$$</div>
+<div class="math">$$
+0 \leq \alpha _i \leq C
+$$</div>
+<h1>最大熵模型</h1>
+<div class="math">$$
+P_w(y|x) = \frac{exp(\sum\limits_{i=1}^{n} w_i f_i(x, y))}{Z_w(x)}
+$$</div>
+<p>
+其中<span class="math">\(Z_w(x) = \sum\limits_{y}exp(\sum\limits_{i=1}^{n} w_i f_i(x, y))\)</span></p>
+<h2>对偶形式</h2>
+<div class="math">$$
+\max\limits_{w} \sum\limits_{x, y} \widetilde{P}(x, y)\sum\limits_{i=1}{n} w_i f_i(x, y) - \sum\limits_{x}\widetilde{P}(x)\log{Z_w(x)}
+$$</div>
+<h2>改进的迭代尺度法 IIS, improved iterative scaling</h2>
+<h1>kNN</h1>
+<p>找出实例点在训练集离其最近的k个点组成一个集合, 然后使用给定的分类决策规则如多数表决决定该实例点的类别</p>
+<h1>kd树 -- 存储k维空间数据的树结构</h1>
+<h1>NB</h1>
+<h2>条件独立性假设 -- 类给定的条件实例点特征互相独立</h2>
+<h2>模型</h2>
+<div class="math">$$
+y = \arg \max \limits_{c_k} P(Y=c_k)\prod _{j}P(X^(j) = x^(j)|Y=c_k)
+$$</div>
+<h2>高斯朴素贝叶斯</h2>
+<p>假设<span class="math">\(P(X^(j)|Y=c_k)\)</span>满足高斯分布</p>
+<h2>伯努利朴素贝叶斯</h2>
+<p>当各特征是二值化时</p>
+<h2>一般情况</h2>
+<div class="math">$$
+P(X^(j)=x^(j)|Y=c_k) = \frac{freq(x^(j), c_k) + \lambda}{freq(c_k) + S_j \lambda}
+$$</div>
+<div class="math">$$
+P(Y=c_k) = \frac{freq(c_k) + \lambda}{N + K \lambda}
+$$</div>
+<h1>DT</h1>
+<p>决策树学习的算法通常是一个递归地选择最优特征，并根据该特征对训练数据进行分割，使得对各个子数据集有一个最好的分类过程。</p>
+<h2>ID3</h2>
+<p>使用信息增益来选择最优特征</p>
+<h2>C4.5</h2>
+<p>使用信息增益比选择最优特征</p>
+<h2>决策的减枝</h2>
+<p>结构风险最小化的过程</p>
+<h2>CART, 分类和回归树</h2>
+<p>二叉树</p>
+<p>回归树使用 平方误差最小化 准则，</p>
+<p>分类树使用 Gini指数</p>
+<h1>Boost</h1>
+<h2>AdaBoost</h2>
+<h2>加法模型</h2>
+<h2>提升树</h2>
+<h1>EM algorithm</h1>
+<h2>Q函数</h2>
+<h2>F函数</h2>
+<h2>高斯混合模型</h2>
+<h1>HMM</h1>
+<h2>概率计算方法</h2>
+<h2>监督学习方法</h2>
+<h2>预测算法</h2>
+<h1>CRF</h1>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -390,6 +250,34 @@ $$</div>
 }
 </script>                </article>
             </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-2-cong-gan-zhi-ji-dao-zhi-chi-xiang-liang-ji.html" rel="bookmark"
+                           title="Permalink to 《统计学习方法》读书笔记2-从感知机到支持向量机，含python源码">《统计学习方法》读书笔记2-从感知机到支持向量机，含python源码</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2016-02-18T23:00:00+08:00">
+                发表于: 2016年02月18日 星期四
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
+        </address>
+<p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
+<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/gan-zhi-ji.html">感知机</a> <a href="http://forin-xyz.github.io/output/tag/perceptron.html">perceptron</a> <a href="http://forin-xyz.github.io/output/tag/zhi-chi-xiang-liang-ji.html">支持向量机</a> <a href="http://forin-xyz.github.io/output/tag/super-vector-machines.html">super vector machines</a> <a href="http://forin-xyz.github.io/output/tag/svm.html">SVM</a> <a href="http://forin-xyz.github.io/output/tag/python.html">python</a> <a href="http://forin-xyz.github.io/output/tag/ji-suan-ji-ke-xue.html">计算机科学</a> <a href="http://forin-xyz.github.io/output/tag/shu-xue-yuan-li.html">数学原理</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> </p>
+</footer><!-- /.post-info -->                <p>感知机(perceptron)是二类分类的线性分类模型(linear classfication model)，对应于一个特征空间(feature space)中的一个将实例划分为正负两类的分离超平面(separating hyperplane)。可以使用梯度下降法(gradient descent)对感知机模型的损失函数进行极小化求出模型参数。支持向量机(support vector machines, SVM)也是二类分类模型，线性支持向量机(linear support vector machine)与感知机(perceptron)不同在于其使间隔最大化。通过核技巧(kernel trick)以及软间隔最大化(soft margin maximization),可以学习非线性支持向量机(non-linear support vector machine)。支持向量机的学习算法就是求解凸二次规划的最优化算法。</p>
+                <a class="readmore" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-2-cong-gan-zhi-ji-dao-zhi-chi-xiang-liang-ji.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>

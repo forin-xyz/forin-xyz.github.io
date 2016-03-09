@@ -244,8 +244,7 @@ b &amp;= \sum\limits_{i=1}^{N}\alpha_{i}y_{i}
 取所有实例点的函数间隔的最小值为训练数据集到超平面的函数间隔。</p>
 <p>我们发现, 函数间隔可以表示分类预测的正确性以及确性度，但是同比例的扩大w和b,就可以得到成比例的函数间隔，但是超平面却没有改变，所以要使得间隔最大化，必需使用几何间隔才能够实现。</p>
 <h3>间隔最大化</h3>
-<p>于是感知机问题就转化为线性可分支持向量机问题，等价于下面的优化问题:
-</p>
+<p>于是感知机问题就转化为线性可分支持向量机问题，等价于下面的优化问题:</p>
 <div class="math">$$\begin{aligned}
 \max\limits_{w,b}&amp;   \gamma&amp;\\
 s.t.&amp;  y_{i}(\frac{w}{\left \| w \right \|} \cdot x_{i} + \frac{b}{\left \| w \right \|}) \geq \gamma, i=1,2,\cdots,N&amp;
