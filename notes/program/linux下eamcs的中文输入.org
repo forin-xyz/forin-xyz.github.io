@@ -1,0 +1,73 @@
+#+TITLE:     linux下eamcs的中文输入.org
+#+AUTHOR:    Cheng Rui
+#+EMAIL:     0000@whu.edu.cn
+#+DATE:      2015-08-10 一
+#+DESCRIPTION: linux下emacs中文输入解决办法
+#+KEYWORDS:   linux ubuntu emacs 中文输入 fcitx ibus
+#+LANGUAGE:  zh
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:
+#+LINK_HOME:
+#+XSLT:
+
+** 使用python3对环境变量进行更改
+
+打开一个emacs-cn的文件，输入下面的代码
+/emacs-cn/
+#+BEGIN_SRC python
+#! /usr/bin/env python3
+# Author: Cheng Rui
+
+import sys
+import subprocess
+import os
+
+if __name__ == '__main__':
+    os.environ['LC_CTYPE'] = 'zh_CN.UTF-8'
+    sys.exit(
+        subprocess.Popen(['emacs'] + sys.argv[1:])
+    )
+#+END_SRC
+
+然后
+#+BEGIN_SRC shell
+mv emacs-cn ~/bin/
+cd bin
+sudo chmod u+x emacs-cn
+#+END_SRC
+如果home(~)目录下没有bin文件夹，新建之
+#+BEGIN_SRC shell
+mkdir bin
+#+END_SRC
+
+然后就就可以使用emacs-cn打开emacs,就可以使用linux系统下的
+输入法输入unicode字符了（fcitx和ibus框架可以自行选择）。
+
+** 使用shell配置
+
+在打开emacs前先设置一下环境变量
+#+BEGIN_SRC shell
+LY_TYPE=zh_CN.UTF-8 emacs
+#+END_SRC
+每一次使用这么长的命名很麻烦，我们可以使用别名
+
+在~/.bashrc文件最后添加一行
+#+BEGIN_SRC sh
+alias emacs-cn="LC_TYPE=zh_CN.UTF-8 emacs"
+#+END_SRC
+这样使用别名emacs-cn打开的emacs就可以使用中文
+
+** 使用emacs自带的中文输入法
+
+在emacs下使用下面的命令可以调用emacs自身的输入法
+
+#+BEGIN_SRC shell
+M-x set-input-method
+#+END_SRC
+
+但是里面提供的输入法都非常原始，我们可以在Github找到最新的
+中文输入法[[https://github.com/tumashu/chinese-pyim][chinese-pyim]]

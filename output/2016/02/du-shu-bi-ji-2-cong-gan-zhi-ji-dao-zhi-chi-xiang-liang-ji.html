@@ -32,7 +32,7 @@
     <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2016-02-18T23:00:00+08:00">
-                发表于: 2016年02月18日 星期四
+                发表于: 2016年02月18日 星期Thu
         </abbr>
 
         <address class="vcard author">
@@ -110,7 +110,7 @@ x, &amp;   &amp;x \gt 0\\
 </blockquote>
 <h3>感知机学习的原始形式的python实现</h3>
 <p><a href="https://github.com/forin-xyz/statistical-learning-method/blob/master/perceptron_origin.py" title="gihub">感知机学习的原始形式</a></p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 <span class="k">def</span> <span class="nf">perceptron_origin_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -138,11 +138,11 @@ x, &amp;   &amp;x \gt 0\\
     <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">w</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">perceptron_origin_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">w</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="kp">all</span><span class="p">()</span> <span class="ow">and</span> <span class="n">b</span> <span class="o">==</span> <span class="o">-</span><span class="mi">3</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;test perceptron_origin_train sucessful!&#39;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test perceptron_origin_train sucessful!&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;test perceptron_origin_train fail!&#39;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test perceptron_origin_train fail!&#39;</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">test_perceptron_origin_train</span><span class="p">()</span>
 </pre></div>
 
@@ -178,7 +178,7 @@ b &amp;= \sum\limits_{i=1}^{N}\alpha_{i}y_{i}
 <p>考虑到对偶形式中训练实例仅以内积形式存在，为了方便，我们可以预先将训练集中实例间的内积计算出来并保存</p>
 <h4>感知机学习对偶形式的python实现</h4>
 <p><a href="https://github.com/forin-xyz/statistical-learning-method/blob/master/perceptron_couple.py" title="gihub">感知机学习的对偶形式</a></p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 <span class="k">def</span> <span class="nf">perceptron_couple_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -207,11 +207,11 @@ b &amp;= \sum\limits_{i=1}^{N}\alpha_{i}y_{i}
     <span class="n">a</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">perceptron_couple_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="k">if</span> <span class="p">((</span><span class="n">a</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="kp">all</span><span class="p">()</span> <span class="ow">and</span>
         <span class="p">(</span><span class="n">w</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="kp">all</span><span class="p">()</span> <span class="ow">and</span> <span class="n">b</span> <span class="o">==</span> <span class="o">-</span><span class="mi">3</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;test perceptron_couple_train successful!&#39;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test perceptron_couple_train successful!&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;test perceptron_couple_train failed!&#39;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test perceptron_couple_train failed!&#39;</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">test_perceptron_couple_train</span><span class="p">()</span>
 </pre></div>
 

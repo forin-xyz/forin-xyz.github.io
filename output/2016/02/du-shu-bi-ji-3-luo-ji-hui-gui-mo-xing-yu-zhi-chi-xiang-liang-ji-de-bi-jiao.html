@@ -32,7 +32,7 @@
     <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2016-02-19T23:00:00+08:00">
-                发表于: 2016年02月19日 星期五
+                发表于: 2016年02月19日 星期Fri
         </abbr>
 
         <address class="vcard author">
@@ -92,15 +92,15 @@ $$</div>
 相对应的
 </p>
 <div class="math">$$
-当 y_i in {0, 1} 时, cost(x_i, y_i) = log(1 + exp(w \cdot x_i)) - y_{i} w \cdot x
+当 y_i \in \{0, 1\} 时, cost(x_i, y_i) = log(1 + exp(w \cdot x_i)) - y_{i} w \cdot x
 $$</div>
 <h3>算法 使用拟牛顿法 BFGS</h3>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
 
 <span class="k">def</span> <span class="nf">costfunction</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="n">N</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">X_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">r_</span><span class="p">[</span><span class="s">&#39;-1&#39;</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="kp">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">.</span><span class="kp">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+    <span class="n">X_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">r_</span><span class="p">[</span><span class="s1">&#39;-1&#39;</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="kp">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">.</span><span class="kp">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
     <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
         <span class="n">l</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="kp">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">e</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="kp">dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">X_</span><span class="p">[</span><span class="n">i</span><span class="p">]))))</span>
@@ -108,7 +108,7 @@ $$</div>
 
 <span class="k">def</span> <span class="nf">costfunction_der</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="n">N</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">X_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">r_</span><span class="p">[</span><span class="s">&#39;-1&#39;</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="kp">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">.</span><span class="kp">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+    <span class="n">X_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">r_</span><span class="p">[</span><span class="s1">&#39;-1&#39;</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="kp">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">.</span><span class="kp">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
     <span class="n">der</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">zeros_like</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
         <span class="n">ywxi</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="kp">dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">X_</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
@@ -116,12 +116,12 @@ $$</div>
     <span class="k">return</span> <span class="n">der_w</span>
 
 <span class="k">def</span> <span class="nf">LR_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="c"># 将该矩阵进行扩展</span>
+    <span class="c1"># 将该矩阵进行扩展</span>
     <span class="n">m</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">w0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">zeros</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">cf</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span>  <span class="n">costfunction</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="n">cost_der</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">costfunction_der</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-    <span class="n">opf</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">w0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;BFGS&#39;</span><span class="p">,</span> <span class="n">jac</span><span class="o">=</span><span class="n">cost_der</span><span class="p">)</span>
+    <span class="n">opf</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">w0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;BFGS&#39;</span><span class="p">,</span> <span class="n">jac</span><span class="o">=</span><span class="n">cost_der</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">opf</span><span class="o">.</span><span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">opf</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
 <span class="k">def</span> <span class="nf">LR_predict</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>

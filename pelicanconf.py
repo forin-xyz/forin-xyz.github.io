@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
-from plugins import render_math
+# from plugins import render_math
 
 AUTHOR = 'forin-xyz'
 SITENAME = '耕有田，读有书'

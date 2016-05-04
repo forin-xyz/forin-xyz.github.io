@@ -32,7 +32,7 @@
     <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2016-02-24T23:00:00+08:00">
-                发表于: 2016年02月24日 星期三
+                发表于: 2016年02月24日 星期Wed
         </abbr>
 
         <address class="vcard author">
@@ -111,7 +111,7 @@
 <p>线性组合<span class="math">\(f(x)\)</span>表示最终分类器是M个基本分类器的加权表决, f(x)的绝对值表示确信度，f(x)的符号表示类的标记。</p>
 <h3>AdaBoost 的python实现</h3>
 <p><a href="https://github.com/forin-xyz/statistical-learning-method/blob/master/AdaBoost.py" title="gihub">AdaBoost algorithm的python实现</a></p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
 
 <span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -207,11 +207,11 @@
     <span class="n">alpha_list</span><span class="p">,</span> <span class="n">glist</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="n">AdaBoost_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">alpha_list</span><span class="p">)</span>
     <span class="k">if</span> <span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">alpha_list</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">([</span><span class="mf">0.4236</span><span class="p">,</span> <span class="mf">0.6496</span><span class="p">,</span> <span class="mf">0.7541</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="kp">sum</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">1e5</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;test AdaBoost_train successfully!&#39;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test AdaBoost_train successfully!&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;test AdaBoost_train failed!&#39;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test AdaBoost_train failed!&#39;</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">test_AdaBoost_train</span><span class="p">()</span>
 </pre></div>
 

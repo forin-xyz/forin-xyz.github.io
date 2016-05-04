@@ -32,7 +32,7 @@
     <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2016-02-28T23:00:00+08:00">
-                发表于: 2016年02月28日 星期日
+                发表于: 2016年02月28日 星期Sun
         </abbr>
 
         <address class="vcard author">
@@ -56,7 +56,7 @@ $$</div>
 <p>当k=1时, 称为最近邻算法，此时将训练数据集中与x最近邻的点的类作为x的类。</p>
 <h3>k近邻算法的python实现</h3>
 <p><a href="https://github.com/forin-xyz/statistical-learning-method/blob/master/k_nearest_neighbor.py" title="gihub">k近邻算法</a></p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 <span class="k">def</span> <span class="nf">kNN_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -82,11 +82,11 @@ $$</div>
     <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>
     <span class="n">ypredit</span> <span class="o">=</span> <span class="n">kNN_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">ypredit</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;test kNN_train sucessfully&#39;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test kNN_train sucessfully&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;test kNN_train failed!&#39;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test kNN_train failed!&#39;</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">test_kNN_train</span><span class="p">()</span>
 </pre></div>
 
