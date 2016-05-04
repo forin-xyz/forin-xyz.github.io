@@ -42,10 +42,10 @@ g(x) = \frac{1}{1+exp(-x)}
 $$</div>
 <h3>逻辑斯蒂分布</h3>
 <div class="math">$$
-F(x) = P(X \leq x) = \frac{1}{\frac{1+exp(-x+\mu)}{\gamma}}
+F(x) = P(X \leq x) = \frac{1}{1+exp(\frac{-x+\mu}{\gamma})}
 $$</div>
 <div class="math">$$
-f(x) = \frac{exp(\frac{-x+\mu}{\gamma})}{\gamma (1 + exp({-x+\mu}{\gamma}))^2}
+f(x) = \frac{exp(\frac{-x+\mu}{\gamma})}{\gamma (1 + exp(\frac{-x+\mu}{\gamma}))^2}
 $$</div>
 <h3>逻辑斯蒂模型</h3>
 <div class="math">$$
@@ -60,7 +60,7 @@ $$</div>
 y^* = g(w \cdot x + b);
 $$</div>
 <div class="math">$$
-y = 1 if y^* \geq frac{1}{2} else 0
+y = 1 \qquad if \qquad y^* \geq \frac{1}{2} \qquad else \qquad 0
 $$</div>
 <p>同时等价于
 </p>
@@ -77,7 +77,7 @@ $$</div>
 求上述函数的最大值,等价与求下列函数的极小值
 </p>
 <div class="math">$$
--\frac{1}{N}L(w) = frac{1}{N}\sum\limits_{i=1}{N}{log(1 + exp(w \cdot x)) - y_{i}w \cdot x}
+-\frac{1}{N}L(w) = \frac{1}{N}\sum\limits_{i=1}{N}{log(1 + exp(w \cdot x)) - y_{i}w \cdot x}
 $$</div>
 <h3>逻辑斯蒂损失</h3>
 <div class="math">$$
@@ -136,7 +136,7 @@ $$</div>
 P(Y=K|x) = \frac{1}{Z(x)}
 $$</div>
 <div class="math">$$
-Z(x) = 1 + \sum\limits_{k=1}{K-1}{exp(w_k \cdot x)}
+Z(x) = 1 + \sum\limits_{k=1}^{K-1}{exp(w_k \cdot x)}
 $$</div>
 <h2>支持向量机 与 逻辑回归的比较</h2>
 <h3>相同点</h3>
