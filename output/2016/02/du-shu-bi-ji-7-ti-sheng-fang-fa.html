@@ -195,7 +195,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="math">$$w_{m+1, i} =
 \begin{cases}
 \frac{w_{mi}}{Z_{m}}e^{-\alpha_{m}},&amp;  &amp;G_{m}(x_{i}) \ne y_{i}\\
-\frac{w_{mi}}{Z_{m}}e^{\alpha_{m}},&amp;  &amp;G_{m}(x_{i}) \eq y_{1}
+\frac{w_{mi}}{Z_{m}}e^{\alpha_{m}},&amp;  &amp;G_{m}(x_{i}) = y_{1}
 \end{cases}$$</div>
 <p>很容易就可以看到, 被<span class="math">\(G_{m}\)</span>误分类的样本权重得以扩张而正确分类的样本权重却得以缩小。(误分类样本权重/原分类样本权值)/(正确分类样本权重/原分类样本权重)<span class="math">\(e^{2\alpha_{m}}=\frac{e_{m}}{1-e_{m}}\)</span>. 因此, 误分类率越大,错误样本权重被放大的程度也就越大。</p>
 <p>线性组合<span class="math">\(f(x)\)</span>表示最终分类器是M个基本分类器的加权表决, f(x)的绝对值表示确信度，f(x)的符号表示类的标记。</p>
@@ -315,13 +315,13 @@ $$</div>
 <p>证明:</p>
 <blockquote>
 <p>当<span class="math">\(G(x_{i}) \ne y_{i}\)</span>时, <span class="math">\(y_{i}f(x_{i})=&lt;0\)</span>, <span class="math">\(I(G(x_{i}) \ne y_{i}) = 1 =&lt; e^{-y_{i}f(x_{i})}\)</span></p>
-<p>当<span class="math">\(G(x_{i}) \eq y_{i}\)</span>时, <span class="math">\(I(G(x_{i}) \ne y_{i}) = 0 &lt; e^{-y_{i}f(x_{i})}\)</span></p>
+<p>当<span class="math">\(G(x_{i}) = y_{i}\)</span>时, <span class="math">\(I(G(x_{i}) \ne y_{i}) = 0 &lt; e^{-y_{i}f(x_{i})}\)</span></p>
 <p>于是左边的不等式得到了证明</p>
 <p>至于右边的等式, 有
 <div class="math">$$\begin{aligned}\frac{1}{N}\sum\limits_{i}exp(-y_{i}f(x_{i}))&amp;\\
 =&amp;\sum\limits_{i}w_{1i}\prod\limits_{m}{exp(-\alpha_{m}y_{i}G_{m}(x_{i}))}\\
 =&amp;Z_{1}\sum\limits_{i}w_{2i}\prod\limits_{m=2}^{M}{exp(-\alpha_{m}y_{i}G_{m}(x_{i}))}
-=&amp;Z_{1}Z_{2}\cdotsZ_{M}\\
+=&amp;Z_{1}Z_{2}{\cdots}Z_{M}\\
 =&amp;\prod\limits_{m}{Z_{m}}
 \end{aligned}$$</div>
 </p>
@@ -331,13 +331,13 @@ $$</div>
 <p><strong>定理2(二类分类问题AdaBoost的训练误差界)</strong>
 </p>
 <div class="math">$$
-\prod\limits_{m=1}^{M}{Z_{m}} = \prod\limits_{m=1}^{M}{2\sqrt{e_{m}(1-e_{m})}} = \prod\limits_{m=1}^{M}{\sqrt{(1-4*\gamma_{m}^2)}} = \leq exp(-2\sum\limits_{m=1}^{M}(\gamma_{m}))
+\prod\limits_{m=1}^{M}{Z_{m}} = \prod\limits_{m=1}^{M}{2\sqrt{e_{m}(1-e_{m})}} = \prod\limits_{m=1}^{M}{\sqrt{(1-4{\gamma_{m}}^2)}} = \leq exp(-2\sum\limits_{m=1}^{M}({\gamma_{m}}^2))
 $$</div>
 <p>
 这里<span class="math">\(\gamma_{m} = \frac{1}{2} - e_{m}\)</span>.</p>
 <p>证明提示:</p>
 <blockquote>
-<p>可以由<span class="math">\(e^x\)</span>和<span class="math">\(\sqrt{1-x}\)</span>在<span class="math">\(x=0\)</span>附近的泰勒展开式推出不等式<span class="math">\(\sqrt{(1-4\gamma_{m})^2} \leq exp(-2\gamma_{m}^2)\)</span></p>
+<p>可以由<span class="math">\(e^x\)</span>和<span class="math">\(\sqrt{1-x}\)</span>在<span class="math">\(x=0\)</span>附近的泰勒展开式推出不等式<span class="math">\(\sqrt{(1-4{\gamma_{m}}^2)} \leq exp(-2\gamma_{m}^2)\)</span></p>
 </blockquote>
 <p>Ada 是 adaptive的简写，是适应的意思</p>
 <p><strong>推论(训练误差指数下降)</strong>
@@ -352,7 +352,7 @@ $$</div>
 <p>加法模型:
 </p>
 <div class="math">$$
-f(x)=\sum\limits_{m=1}{M}\beta_{m}b(x;\gamma_{m})
+f(x)=\sum\limits_{m=1}^{M}\beta_{m}b(x;\gamma_{m})
 $$</div>
 <p>学习加法模型等价与经验风险最小化的优化问题
 </p>
