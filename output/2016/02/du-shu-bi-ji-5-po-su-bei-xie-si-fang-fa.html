@@ -140,11 +140,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>
 其中
 </p>
-<div class="math">$$ P(B) = \sum\limits_{i=0}{n}P(B|A_{i})P(A_{i}) $$</div>
+<div class="math">$$ P(B) = \sum\limits_{i=0}^{n}P(B|A_{i})P(A_{i}) $$</div>
 <p>
 于是
 </p>
-<div class="math">$$ P(A_{i}|B) = \frac{P(B|A_{i})P(A_{i})}{\sum\limits_{i=0}{n}P(B|A_{i})P(A_{i})} $$</div>
+<div class="math">$$ P(A_{i}|B) = \frac{P(B|A_{i})P(A_{i})}{\sum\limits_{i=0}^{n}P(B|A_{i})P(A_{i})} $$</div>
 <p>
 这就是贝叶斯公式, 其中<span class="math">\(\{A_{i}\}\)</span>为完备事件组,即<span class="math">\(\bigcup \limits_{i}A_{i} = \Omega, A_{i}A_{j} = \phi,(i \ne j), P(A_{i}) &gt; 0\)</span>.</p>
 <h3>朴素贝叶斯方法的基本描述</h3>
@@ -156,14 +156,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </p>
 <div class="math">$$\begin{aligned}
 P(X = x|Y = c_{k}) =&amp; P(X^{1}=x^{1}, \cdots, X^{n}=x^{n}|Y=c_{k})\\
-=&amp;\prod\limits_{j=1}{n}P(X^{j}=x^{j}|Y=c_{k})
+=&amp;\prod\limits_{j=1}^{n}P(X^{j}=x^{j}|Y=c_{k})
 \end{aligned}
 $$</div>
 <h3>朴素贝叶斯方法的最终推导</h3>
 <p>将特征条件相互独立代入到贝叶斯公式， 有
 </p>
 <div class="math">$$
-P(Y=c_{k}|X=x)=\frac{P(Y=c_{k})\prod\limits_{j=1}{n}P(X^{j}=x^{j}|Y=c_{k})}{\sum_{k}{P(Y=c_k)}\prod_{j}{P(X^{j}=x^{j}|Y=c_{k})}}
+P(Y=c_{k}|X=x)=\frac{P(Y=c_{k})\prod\limits_{j=1}^{n}P(X^{j}=x^{j}|Y=c_{k})}{\sum_{k}{P(Y=c_k)}\prod_{j}{P(X^{j}=x^{j}|Y=c_{k})}}
 $$</div>
 <p>
 朴素贝叶斯分类器就是选取在给定的输入的情况下，将后验概率最大的类最为输出的分类的方法，又
@@ -185,7 +185,7 @@ $$</div>
 </p>
 <div class="math">$$\begin{aligned}
 f(x) =&amp; \arg \min\limits_{c_{k}}P(y \neq c_{k}|X=x)
-=&amp; \arg \min\limits_{c_{k}}{1-P(y=c_{k}|X=x)} \\
+=&amp; \arg \min\limits_{c_{k}}{(1-P(y=c_{k}|X=x))} \\
 =&amp; \arg \max\limits_{c_{k}}P(c_{k}|X=x)
 \end{aligned}$$</div>
 <h2>朴素贝叶斯方法的参数估计</h2>
@@ -201,7 +201,7 @@ f(x) =&amp; \arg \min\limits_{c_{k}}P(y \neq c_{k}|X=x)
 <h4>朴素贝叶斯方法的极大似然估计算法</h4>
 <p><em>naive Bayes algorithm</em> <strong>朴素贝叶斯算法</strong></p>
 <blockquote>
-<p>输入: 训练数据集<span class="math">\(T=\{(x_{1},y{1}), \cdots, (x_{N}, y_{N})\}\)</span>,其中<span class="math">\(x_{i}=(x_{i}^{(1)}, \cdots, x_{i}^{(n)})^{T}\)</span>, <span class="math">\(x_{i}^{(j)}\)</span>是第i个样本的第j个特征, <span class="math">\(x_{i}^{(j)} \in {a_{j1}, \cdots, a_{jS_{j}}}\)</span>, <span class="math">\(a_{jh}是第j个特征可能取得的第l个值, $y_{i} \in \{c_{1}, \cdots, c_{K}\}\)</span>; 实例<span class="math">\(x\)</span>.</p>
+<p>输入: 训练数据集<span class="math">\(T=\{(x_{1},y_{1}), \cdots, (x_{N}, y_{N})\}\)</span>,其中<span class="math">\(x_{i}=(x_{i}^{(1)}, \cdots, x_{i}^{(n)})^{T}\)</span>, <span class="math">\(x_{i}^{(j)}\)</span>是第i个样本的第j个特征, <span class="math">\(x_{i}^{(j)} \in {a_{j1}, \cdots, a_{jS_{j}}}\)</span>, <span class="math">\(a_{jh}是第j个特征可能取得的第l个值, $y_{i} \in \{c_{1}, \cdots, c_{K}\}\)</span>; 实例<span class="math">\(x\)</span>.</p>
 <p>输出: 实例x的分类</p>
 <p>(1) 计算先验概率和条件概率</p>
 <p>
@@ -212,7 +212,7 @@ f(x) =&amp; \arg \min\limits_{c_{k}}P(y \neq c_{k}|X=x)
 </p>
 <p>(2) 对于给定的实例, 计算</p>
 <p>
-<div class="math">$$P(c_{k})\prod\limits_{j=1}{n}P(x^{(j)}|c_{k})$$</div>
+<div class="math">$$P(c_{k})\prod\limits_{j=1}^{n}P(x^{(j)}|c_{k})$$</div>
 </p>
 <p>(3) 取上面结果最大的类作为实例<span class="math">\(x\)</span>的类输出。</p>
 </blockquote>
