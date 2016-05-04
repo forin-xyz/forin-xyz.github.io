@@ -11,7 +11,7 @@ GITHUB_URL = 'http://github.com/forin-xyz/'
 
 PLUGIN_PATHS = ["plugins"]
 
-PLUGINS = ["render_math", "pdf"]
+PLUGINS = ["render_math"]
 
 # 元数据
 # DEFAULT_METADATA = {
