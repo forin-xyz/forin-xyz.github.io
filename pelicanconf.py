@@ -11,7 +11,7 @@ GITHUB_URL = 'http://github.com/forin-xyz/'
 
 PLUGIN_PATHS = ["plugins"]
 
-PLUGINS = ["render_math"]
+PLUGINS = ["render_math", "pdf"]
 
 # 元数据
 # DEFAULT_METADATA = {
@@ -22,6 +22,9 @@ PLUGINS = ["render_math"]
 # 主题
 THEME = 'mytheme'
 THEME_STATIC_DIR = 'theme'
+
+# pdf download
+PDF_STYLE_PATH = 'pdf'
 
 
 # 生成的page名
