@@ -1,16 +1,29 @@
 {% extends "base.html" %}
-
 {% block title %}{{ SITENAME }} - Authors{% endblock %}
-
 {% block content %}
-
-<section id="content" class="body">
-    <h1>Authors on {{ SITENAME }}</h1>
-    <ul>
-    {% for author, articles in authors|sort %}
-        <li><a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a> ({{ articles|count }})</li>
-    {% endfor %}
-    </ul>
-</section>
-
+<article class="post" itemscope="" itemtype="http://schema.org/BlogPosting" itemprop="blogPost">
+    <header>
+        <h1 class="post-title" itemprop="headline">Authors on {{ SITENAME }}</h1>       
+    </header>
+    <section class="post-content">
+        <div itemprop="text">
+            <ul>
+                {%- for author, articles in authors|sort %}
+                <li itemscope="" itemtype="http://schema.org/Person" itemprop="author">
+                    <a href="{{ SITEURL }}/{{ author.url }}" itemprop="url" rel="author" class="tooltip-bottom" data-tooltip="View all {{ author }}'s post">
+                        <i class="fa fa-user"></i>
+                        <span itemprop="name">
+                            {{ author }}
+                        </span>
+                    </a>
+                    ({{ articles|count }})
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <hr>
+{% include 'donate.html' %}
+    </section>
+        {% include 'ads.html' %}
+</article>
 {% endblock %}

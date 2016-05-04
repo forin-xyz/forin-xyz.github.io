@@ -1,59 +1,26 @@
 {% extends "base.html" %}
-{% block content_title %}{% endblock %}
 {% block content %}
-{% if articles %}
+<main id="content" class="content" role="main" itemprop="mainContentOfPage" itemscope="" itemtype="http://schema.org/Blog">
     {% for article in articles_page.object_list %}
-
-        {# First item #}
-        {% if loop.first and not articles_page.has_previous() %}
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h1>
-                    {% include 'article_infos.html' %}{{ article.content }}{% include 'comments.html' %}
-                </article>
-            </aside><!-- /#featured -->
-            {% if loop.length > 1 %}
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-            {% endif %}
-        {# other items #}
-        {% else %}
-            {% if loop.first %}
-                <section id="content" class="body">
-                    <ol id="posts-list" class="hfeed" start="{{ articles_paginator.per_page -1 }}">
-            {% endif %}
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
-                           title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h1>
-                </header>
-
-                <div class="entry-content">
-                {% include 'article_infos.html' %}
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+            <header class="post-header" itemprop="headline">
+                <h2 class="post-title">
+                    <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark">
+                        {{ article.title|striptags }}
+                    </a>
+                </h2>
+            </header>
+            <section class="post-excerpt">
                 {{ article.summary }}
-                <a class="readmore" href="{{ SITEURL }}/{{ article.url }}">read more</a>
-                {% include 'comments.html' %}
-                </div><!-- /.entry-content -->
-            </article></li>
-        {% endif %}
-        {% if loop.last %}
-            {% if loop.length > 1 or articles_page.has_other_pages() %}
-                </ol><!-- /#posts-list -->
-                {% if articles_page.has_other_pages() %}
-                    {% include 'pagination.html' %}
-                {% endif %}
-                </section><!-- /#content -->
-            {% endif %}
-        {% endif %}
+                <p><a class="read-more" itemprop="url" href="{{ SITEURL }}/{{ article.url}}" title="Read this article" rel="bookmark">Leer m&aacute;s &raquo;</a></p>
+            </section>
+            <footer class="post-meta">
+                <span class="entry-author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
+                    <span itemprop="name">{{ article.author }}</span></span>
+                <time itemprop="datePublished" class="post-date" datetime="{{ article.date|strftime('%YYYY-%MM-%DD') }}">{{ article.date|strftime('%A, %B %d, %Y') }}</time>
+            </footer>        
+        </article>
     {% endfor %}
-{% else %}
-<section id="content" class="body">
-<h2>Pages</h2>
-    {% for page in PAGES %}
-        <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
-    {% endfor %}
-</section>
-{% endif %}
+{% include 'pagination.html' %}
+</main>
 {% endblock content %}
