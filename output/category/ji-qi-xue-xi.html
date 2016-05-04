@@ -1,420 +1,300 @@
 <!DOCTYPE html>
-<html lang="cn">
+<html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <title>耕有田，读有书 - 机器学习</title>
-        <link rel="stylesheet" href="http://forin-xyz.github.io/output/theme/css/main.css" />
-
-        <!--[if IE]>
-            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+    <meta charset="utf-8">
+    <title>耕有田，读有书</title>
+    <link rel="stylesheet" type="text/css" href="http://forin-xyz.github.io/output/theme/css/screen.min.css">
+    <link rel="stylesheet" type="text/css" href="http://forin-xyz.github.io/output/theme/css/highlight.min.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="publisher" href="">
+    <link rel="apple-touch-startup-image" href="http://forin-xyz.github.io/output/theme/images/logo.png">
+    <link type="text/plain" rel="socialmedia" href="http://forin-xyz.github.io/output/socialmedia.txt">
+    <link rel="dns-prefetch" href="http://forin-xyz.github.io/output"/>
+    <link rel="dns-prefetch" href="//www.gstatic.com"/>
+    <link rel="dns-prefetch" href="//fonts.gstatic.com"/>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
+    <link rel="dns-prefetch" href="//accounts.google.com"/>
+    <link rel="dns-prefetch" href="//ssl.google-analytics.com"/>
+    <link rel="dns-prefetch" href="//www.google-analytics.com"/>
+    <link rel="dns-prefetch" href="//googleads.g.doubleclick.net"/>
+    <link rel="dns-prefetch" href="//pagead2.googlesyndication.com"/>
+    <link rel="dns-prefetch" href="//twemoji.maxcdn.com"/>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="application-name" content="耕有田，读有书"/>
+    <meta name="msapplication-starturl" content="http:http://forin-xyz.github.io/output"/>
+    <meta name="msapplication-tooltip" content=""/>
+    <meta name="msapplication-window" content="width=1024;height=768"/>
+    <meta name="msapplication-task" content="name=耕有田，读有书;action-uri=http:http://forin-xyz.github.io/output;icon-uri=http://forin-xyz.github.io/output/theme/images/favicon.ico"/>
+    <meta name="msapplication-TileImage" content="http://forin-xyz.github.io/output/theme/images/apple-touch-icon-144x144.png"/>
+    <meta name="msapplication-TileColor" content="#1F1F21"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="imagetoolbar" content="no">
+    <meta http-equiv="pragma" content="cache">
+    <meta http-equiv="cache-control" content="cache">
+    <meta http-equiv="vary" content="content-language">
+    <meta http-equiv="Cache-control" content="max-age=2592000, public">
+    <meta http-equiv="content-style-type" content="text/css">
+    <meta name="application-name" content="耕有田，读有书">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="google-site-verification" content="">
+    <meta name="alexaVerifyID" content=""/>
+    <meta name="wot-verification" content=""/>
+    <meta name="msvalidate.01" content="" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="medium" content="mult">
+    <meta name="adblock" content="disable">
+    <meta name="rating" content="General">
+    <meta name="resource-type" content="document">
+    <meta name="revisit-after" content="1 days">
+    <meta name="revisit" content="1">
+    <meta name="robots" content="index,follow">
+    <meta name="no-email-collection" content="http://www.unspam.com/noemailcollection/">
+    <link rel="apple-touch-icon" sizes="152x152" href="http://forin-xyz.github.io/output/theme/images/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="http://forin-xyz.github.io/output/theme/images/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://forin-xyz.github.io/output/theme/images/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="http://forin-xyz.github.io/output/theme/images/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="http://forin-xyz.github.io/output/theme/images/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://forin-xyz.github.io/output/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="http://forin-xyz.github.io/output/theme/images/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="http://forin-xyz.github.io/output/theme/images/apple-touch-icon-57x57.png">
+    <link rel="icon" type="image/png" href="http://forin-xyz.github.io/output/theme/images/favicon-196x196.png" sizes="196x196">
+    <link rel="icon" type="image/png" href="http://forin-xyz.github.io/output/theme/images/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="http://forin-xyz.github.io/output/theme/images/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="http://forin-xyz.github.io/output/theme/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="http://forin-xyz.github.io/output/theme/images/favicon-16x16.png" sizes="16x16">
+    <link rel="shortcut icon" href="http://forin-xyz.github.io/output/theme/images/favicon.ico">
+    <script type="text/javascript">(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', '', 'auto');ga('send', 'pageview');var _qevents = _qevents || [];</script>
+    <script src="//twemoji.maxcdn.com/twemoji.min.js"></script>
 </head>
-
-<body id="index" class="home">
-<a href="http://github.com/forin-xyz/">
-<img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
-</a>
-        <header id="banner" class="body">
-                <h1><a href="http://forin-xyz.github.io/output/">耕有田，读有书 </a></h1>
-                <nav><ul>
-                    <li class="active"><a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a></li>
-                    <li><a href="http://forin-xyz.github.io/output/category/python.html">Python</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-8-kjin-lin-fa.html">《统计学习方法》读书笔记8-k近邻法及python实现</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2016-02-28T23:00:00+08:00">
-                发表于: 2016年02月28日 星期Sun
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
-        </address>
-<p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
-<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/kjin-lin-fa.html">k近邻法</a> <a href="http://forin-xyz.github.io/output/tag/k-nearest-neighbor-method.html">k-nearest neighbor method</a> <a href="http://forin-xyz.github.io/output/tag/k-nn.html">k-NN</a> <a href="http://forin-xyz.github.io/output/tag/kdshu.html">kd树</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> </p>
-</footer><!-- /.post-info --><h2>k近邻算法</h2>
-<p><strong> k 近邻法 </strong></p>
-<blockquote>
-<p>输入: 训练数据集T, 其中特征空间<span class="math">\(\mathcal{X} \subseteq \boldsystem{R}^n\)</span>, 输出空间<span class="math">\(\mathcal{Y} \subseteq \{c_1, c_2, \cdots, c_K\}\)</span>.</p>
-<p>待预测实例特征向量<span class="math">\(x\)</span> 以及参数k</p>
-<p>输出: 实例<span class="math">\(x\)</span>所属的类<span class="math">\(y\)</span></p>
-<p>(1) 在训练集T中找出与x最邻近的k个点构成几何<span class="math">\(N_k(x)\)</span></p>
-<p>(2) 在集合<span class="math">\(N_k(x)\)</span>中根据多数表决决定x所属的类
-<div class="math">$$
-y = \arg \max \limits_{c_j}{ freq(y = c_j, (x_i, y_i) \in N_k(x))}
-$$</div>
-</p>
-</blockquote>
-<p>当k=1时, 称为最近邻算法，此时将训练数据集中与x最近邻的点的类作为x的类。</p>
-<h3>k近邻算法的python实现</h3>
-<p><a href="https://github.com/forin-xyz/statistical-learning-method/blob/master/k_nearest_neighbor.py" title="gihub">k近邻算法</a></p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-
-<span class="k">def</span> <span class="nf">kNN_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">yk</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="kp">argsort</span><span class="p">(((</span><span class="n">X</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="kp">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">]</span>
-    <span class="n">yunique</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">unique</span><span class="p">(</span><span class="n">yk</span><span class="p">)</span>
-    <span class="n">yend</span> <span class="o">=</span> <span class="n">yunique</span><span class="p">[(</span><span class="n">yk</span> <span class="o">-</span> <span class="n">yunique</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="kp">newaxis</span><span class="p">])</span><span class="o">.</span><span class="kp">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="kp">argmax</span><span class="p">()]</span>
-    <span class="k">return</span> <span class="n">yend</span>
-
-<span class="k">def</span> <span class="nf">test_kNN_train</span><span class="p">():</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-    <span class="p">]</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="p">]</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>
-    <span class="n">ypredit</span> <span class="o">=</span> <span class="n">kNN_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">ypredit</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test kNN_train sucessfully&#39;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test kNN_train failed!&#39;</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">test_kNN_train</span><span class="p">()</span>
-</pre></div>
-
-
-<h2>k近邻模型</h2>
-<h3>距离度量</h3>
-<p><span class="math">\(L_p\)</span>距离　或者　Ｍinkowski距离:
-</p>
-<div class="math">$$
-L_p(x_i, x_j) = (\sum\limits_{l=1}{n}{\abs{x_{i}^{l} - x_{j}^{l}}^p})^{\frac{1}{p}}
-$$</div>
-<p>
-这里<span class="math">\(p \geq 1\)</span></p>
-<p>欧式距离 Euclidean distance:
-</p>
-<div class="math">$$
-L_2(x_i, x_j) = (\sum\limits_{l=1}{n}{\abs{x_{i}^{l} - x_{j}^{l}}^2})^{\frac{1}{2}}
-$$</div>
-<p>曼哈顿距离 Manhattan distance
-</p>
-<div class="math">$$
-L_2(x_i, x_j) = \sum\limits_{l=1}{n}{\abs{x_{i}^{l} - x_{j}^{l}}}
-$$</div>
-<p>当<span class="math">\(p=\infty\)</span>时,
-</p>
-<div class="math">$$
-L_{\infty}(x_i, x_j) = \max\limits_{l}{\abs{x_{i}^{l} - x_{j}^{l}}}
-$$</div>
-<h3>k的选择</h3>
-<p>如果选择较小的k值,就相当于用较小的邻域中的训练实例进行预测,"学习"的近似误差(approximation error)会减小, 但缺点是"学习"的估计误差(estimation error)会增大,预测结果会对近邻的实例点敏感.
-如果邻近的实例点恰巧是噪声,预测就会出错.
-换句话说,k值的减小就意味着整体模型变得复杂,容易产生过拟合</p>
-<p>如果选择较大的k值,就相当于用较大的邻域进行预测,其优点是可以减小学习的估计误差,但缺点是学习的近似误差会增大. 这时与实例脚癣的训练实例也会对预测起作用,使预测发生错误,k值的增大意味着整体的模型变得简单.</p>
-<p>若k=N, 那么无论输入实例是什么, 它都会简单的预测它属于训练中最多的类.</p>
-<h3>分类决策规则</h3>
-<p>多数表决等价于风险函数为0-1损失函数的经验风险最小化</p>
-<h2>k近邻法的实现:kd树</h2>
-<p><strong>算法2 构造平衡kd树</strong></p>
-<blockquote>
-<p>输入: k维空间数据集T</p>
-<p>输出: kd树</p>
-<p>(1) 开始: 构造根节点,根节点对应于包含T的k维空间的超矩形区域</p>
-<p>选择<span class="math">\(x^{(1)}\)</span>为坐标轴, 以T中所有实例点的<span class="math">\(x^{(1)}\)</span>坐标的中位数为切分点,将根结点对应的超矩形区域切分成两个子区域.切分是由通过切分点并与坐标轴<span class="math">\(x^{(1)}\)</span>垂直的超平面实现</p>
-<p>由根结点生成深度为1的左右子结点:左子结点对应于<span class="math">\(x_{(1)}\)</span>坐标小于切分点的子区域,右子结点对应于<span class="math">\(x_{(1)}\)</span>坐标大于切分点的子区域, 并将落在切分超平面上的实例点保存在根节点中.</p>
-<p>(2) 重复: 对深度为j的结点, 选择<span class="math">\(x^{(l)}\)</span>为切分的坐标轴, <span class="math">\(l = j \mod k + 1\)</span>.</p>
-<p>(3) 直到两个子区域没有实例存在时停止,从而构成kd树区域的划分</p>
-</blockquote>
-<p>注意,这里的中位数在样本数量为偶数时,是取最中间的两个数较大的那个数</p>
-<h3>kd树的搜索</h3>
-<p><strong>算法3 用kd树的k近邻算法</strong></p>
-<blockquote>
-<p>输入: 已构造的kd树, 目标点<span class="math">\(x\)</span>, k值</p>
-<p>输出: x的k近邻构成的集合</p>
-<p>(1) 在kd树中找出包含目标点k的叶结点: 从根结点开始,递归的向下访问kd树. 若目标点x当前维的坐标小于切分点的坐标, 则移动至左子结点, 否则移动到右子结点, 直到子结点为叶结点为止</p>
-<p>(2) 从结点向上回退, 直到相应的结点包含的实例点个数大于等于k, 从这些实例点中选取出离目标实例点最近的k个实例点为x的"k近邻"<span class="math">\(N_k(x)\)</span></p>
-<p>(3) 继续递归的像父结点回退, 并对每个结点进行以下操作:</p>
-<p>(a) 如果该结点保存的实例点含有比当前"k近邻"集合<span class="math">\(N_k(x)\)</span>中的点离目标点更近的实例点, 则将<span class="math">\(N_k{x}\)</span>中离目标点较远的点给替换成较近的点</p>
-<p>(b) 接着检查该子结点的父结点对应的另一子节点对应的区域是否含有更近点,如果有,则向上面一样对<span class="math">\(N_k(x)\)</span>进行更新</p>
-<p>(4) 当回退到根结点时,搜索结束. 最后的<span class="math">\(N_k(x)\)</span>即为所求的集合.</p>
-</blockquote>
-<p>如果实例点是随机分布的, 那么kd树搜索的平均计算复杂度为<span class="math">\(O(\log{N})\)</span>, kd树适合于训练实例数远大于空间维数时的k近邻搜索.</p>
-<h3>使用kd树的k近邻算法的python实现</h3>
-<h2>中英文对照表</h2>
-<p>k近邻 k-nearest neighbor, k-NN
-单元　cell
-类标记　class label
-距离　distance
-欧式距离 Euclidean distance
-近似误差 approximation error
-估计误差 estimation error
-kd树 kd tree
-线性扫描 linear scan
-划分 partition
-中位树 median</p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    var location_protocol = (false) ? 'https' : document.location.protocol;
-    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-10-tiao-jian-sui-ji-chang.html" rel="bookmark"
-                           title="Permalink to 《统计学习方法》读书笔记10-条件随机场">《统计学习方法》读书笔记10-条件随机场</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2016-02-27T23:00:00+08:00">
-                发表于: 2016年02月27日 星期Sat
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
-        </address>
-<p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
-<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/tiao-jian-sui-ji-chang.html">条件随机场</a> <a href="http://forin-xyz.github.io/output/tag/conditional-random-field.html">conditional random field</a> <a href="http://forin-xyz.github.io/output/tag/crf.html">CRF</a> <a href="http://forin-xyz.github.io/output/tag/gai-lu-wu-xiang-tu-mo-xing.html">概率无向图模型</a> <a href="http://forin-xyz.github.io/output/tag/probabilisitic-undirected-graphical-model.html">probabilisitic undirected graphical model</a> <a href="http://forin-xyz.github.io/output/tag/ma-er-ke-fu-sui-ji-chang.html">马尔科夫随机场</a> <a href="http://forin-xyz.github.io/output/tag/markov-random-field.html">Markov random field</a> <a href="http://forin-xyz.github.io/output/tag/xian-xing-lian-tiao-jian-sui-ji-chang.html">线性链条件随机场</a> <a href="http://forin-xyz.github.io/output/tag/linear-chain-conditional-random-field.html">linear chain conditional random field</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> </p>
-</footer><!-- /.post-info -->                <p>条件随机场是给定一组输入随机变量的条件下另一组输出随机变量的条件概率模型，其特点是假设输出随机变量构成马尔科夫随机场。</p>
-                <a class="readmore" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-10-tiao-jian-sui-ji-chang.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-7-ti-sheng-fang-fa.html" rel="bookmark"
-                           title="Permalink to 《统计学习方法》读书笔记7-提升方法，含python实现代码">《统计学习方法》读书笔记7-提升方法，含python实现代码</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2016-02-24T23:00:00+08:00">
-                发表于: 2016年02月24日 星期Wed
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
-        </address>
-<p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
-<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/ti-sheng-fang-fa.html">提升方法</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> <a href="http://forin-xyz.github.io/output/tag/adaboost.html">AdaBoost</a> <a href="http://forin-xyz.github.io/output/tag/ti-sheng-shu.html">提升树</a> <a href="http://forin-xyz.github.io/output/tag/boosting-tree.html">boosting tree</a> </p>
-</footer><!-- /.post-info -->                <p>提升方法是一种常用的统计学习方法, 它通过改变样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。AdaBoost算法是最具代表性的提升算法，提升树则是更具体的实例。</p>
-                <a class="readmore" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-7-ti-sheng-fang-fa.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-6-emsuan-fa-yu-gao-si-hun-he-mo-xing.html" rel="bookmark"
-                           title="Permalink to 《统计学习方法》读书笔记6-EM算法与高斯混合模型,含python源码">《统计学习方法》读书笔记6-EM算法与高斯混合模型,含python源码</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2016-02-22T23:00:00+08:00">
-                发表于: 2016年02月22日 星期Mon
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
-        </address>
-<p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
-<p>tags: <a href="http://forin-xyz.github.io/output/tag/emsuan-fa.html">EM算法</a> <a href="http://forin-xyz.github.io/output/tag/exceptation-maximization-algorithm.html">Exceptation maximization algorithm</a> <a href="http://forin-xyz.github.io/output/tag/yin-bian-liang.html">隐变量</a> <a href="http://forin-xyz.github.io/output/tag/hidden-variable.html">hidden variable</a> <a href="http://forin-xyz.github.io/output/tag/qian-zai-bian-liang.html">潜在变量</a> <a href="http://forin-xyz.github.io/output/tag/latebt-variable.html">latebt variable</a> <a href="http://forin-xyz.github.io/output/tag/gao-si-hun-he-mo-xing.html">高斯混合模型</a> <a href="http://forin-xyz.github.io/output/tag/gaussian-misture-model.html">Gaussian misture model</a> <a href="http://forin-xyz.github.io/output/tag/yan-yi-qi-wang-ji-da-suan-fa.html">广义期望极大算法</a> <a href="http://forin-xyz.github.io/output/tag/generialization-expectation-maximization-algorithm.html">generialization expectation maximization algorithm</a> <a href="http://forin-xyz.github.io/output/tag/gemsuan-fa.html">GEM算法</a> <a href="http://forin-xyz.github.io/output/tag/ji-da-ji-da-suan-fa.html">极大-极大算法</a> <a href="http://forin-xyz.github.io/output/tag/maximization-maximinzation-algorithm.html">Maximization-maximinzation algorithm</a> <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> </p>
-</footer><!-- /.post-info -->                <p>EM算法是一种迭代算法, 用于含有隐变量的概率模型参数的极大似然估计,或极大后验概率估计.EM算法的每次迭代由两步组成:E步求期望, M步求极大.</p>
-                <a class="readmore" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-6-emsuan-fa-yu-gao-si-hun-he-mo-xing.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-5-po-su-bei-xie-si-fang-fa.html" rel="bookmark"
-                           title="Permalink to 《统计学习方法》读书笔记5-朴素贝叶斯方法，含python源码">《统计学习方法》读书笔记5-朴素贝叶斯方法，含python源码</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2016-02-21T23:00:00+08:00">
-                发表于: 2016年02月21日 星期Sun
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
-        </address>
-<p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
-<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/po-su-bei-xie-si.html">朴素贝叶斯</a> <a href="http://forin-xyz.github.io/output/tag/naive-bayes.html">Naive Bayes</a> <a href="http://forin-xyz.github.io/output/tag/python.html">python</a> <a href="http://forin-xyz.github.io/output/tag/ji-suan-ji-ke-xue.html">计算机科学</a> <a href="http://forin-xyz.github.io/output/tag/shu-xue-yuan-li.html">数学原理</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> </p>
-</footer><!-- /.post-info -->                <p>朴素贝叶斯方法(Naive Bayesian Method)是基于贝叶斯定理与特征 条件独立假设的分类方法，是一种常见和高效的学习方法。</p>
-                <a class="readmore" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-5-po-su-bei-xie-si-fang-fa.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-4-cong-luo-ji-hui-gui-dao-zui-da-shang-mo-xing.html" rel="bookmark"
-                           title="Permalink to 《统计学习方法》读书笔记4-从逻辑回归模型到最大熵模型, 含python实现">《统计学习方法》读书笔记4-从逻辑回归模型到最大熵模型, 含python实现</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2016-02-20T23:00:00+08:00">
-                发表于: 2016年02月20日 星期Sat
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
-        </address>
-<p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
-<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/luo-ji-hui-gui.html">逻辑回归</a> <a href="http://forin-xyz.github.io/output/tag/logistic-regression.html">logistic regression</a> <a href="http://forin-xyz.github.io/output/tag/lr.html">LR</a> <a href="http://forin-xyz.github.io/output/tag/zui-da-shang-mo-xing.html">最大熵模型</a> <a href="http://forin-xyz.github.io/output/tag/maximum-entropy-model.html">maximum entropy model</a> </p>
-</footer><!-- /.post-info -->                <p>最大熵模型和逻辑回归模型一样, 也属于对数线性模型, 他是最大熵原理在分类问题上的推广.</p>
-                <a class="readmore" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-4-cong-luo-ji-hui-gui-dao-zui-da-shang-mo-xing.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-3-luo-ji-hui-gui-mo-xing-yu-zhi-chi-xiang-liang-ji-de-bi-jiao.html" rel="bookmark"
-                           title="Permalink to 《统计学习方法》读书笔记3-逻辑回归模型与支持向量机的比较, 含python实现">《统计学习方法》读书笔记3-逻辑回归模型与支持向量机的比较, 含python实现</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2016-02-19T23:00:00+08:00">
-                发表于: 2016年02月19日 星期Fri
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
-        </address>
-<p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
-<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/luo-ji-hui-gui.html">逻辑回归</a> <a href="http://forin-xyz.github.io/output/tag/logistic-regression.html">logistic regression</a> <a href="http://forin-xyz.github.io/output/tag/lr.html">LR</a> <a href="http://forin-xyz.github.io/output/tag/support-vector-machine.html">support vector machine</a> <a href="http://forin-xyz.github.io/output/tag/svm.html">SVM</a> </p>
-</footer><!-- /.post-info -->                <p>逻辑回归模型是统计学习中的经典分类方法, 属于对数分类模型。</p>
-                <a class="readmore" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-3-luo-ji-hui-gui-mo-xing-yu-zhi-chi-xiang-liang-ji-de-bi-jiao.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-11-tong-ji-xue-xi-fang-fa-zong-jie.html" rel="bookmark"
-                           title="Permalink to 《统计学习方法》读书笔记11-全书小结">《统计学习方法》读书笔记11-全书小结</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2016-02-18T23:00:00+08:00">
-                发表于: 2016年02月18日 星期Thu
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
-        </address>
-<p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
-<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/gan-zhi-ji.html">感知机</a> <a href="http://forin-xyz.github.io/output/tag/perceptron.html">perceptron</a> <a href="http://forin-xyz.github.io/output/tag/zhi-chi-xiang-liang-ji.html">支持向量机</a> <a href="http://forin-xyz.github.io/output/tag/super-vector-machines.html">super vector machines</a> <a href="http://forin-xyz.github.io/output/tag/svm.html">SVM</a> <a href="http://forin-xyz.github.io/output/tag/ji-suan-ji-ke-xue.html">计算机科学</a> <a href="http://forin-xyz.github.io/output/tag/shu-xue-yuan-li.html">数学原理</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> <a href="http://forin-xyz.github.io/output/tag/tong-ji-xue-xi-fang-fa.html">统计学习方法</a> </p>
-</footer><!-- /.post-info -->                <p>《统计学习方法》全书讲了十余个监督学习方法，本节做一个小结。</p>
-                <a class="readmore" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-11-tong-ji-xue-xi-fang-fa-zong-jie.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-2-cong-gan-zhi-ji-dao-zhi-chi-xiang-liang-ji.html" rel="bookmark"
-                           title="Permalink to 《统计学习方法》读书笔记2-从感知机到支持向量机，含python源码">《统计学习方法》读书笔记2-从感知机到支持向量机，含python源码</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2016-02-18T23:00:00+08:00">
-                发表于: 2016年02月18日 星期Thu
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
-        </address>
-<p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
-<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/gan-zhi-ji.html">感知机</a> <a href="http://forin-xyz.github.io/output/tag/perceptron.html">perceptron</a> <a href="http://forin-xyz.github.io/output/tag/zhi-chi-xiang-liang-ji.html">支持向量机</a> <a href="http://forin-xyz.github.io/output/tag/super-vector-machines.html">super vector machines</a> <a href="http://forin-xyz.github.io/output/tag/svm.html">SVM</a> <a href="http://forin-xyz.github.io/output/tag/python.html">python</a> <a href="http://forin-xyz.github.io/output/tag/ji-suan-ji-ke-xue.html">计算机科学</a> <a href="http://forin-xyz.github.io/output/tag/shu-xue-yuan-li.html">数学原理</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> </p>
-</footer><!-- /.post-info -->                <p>感知机(perceptron)是二类分类的线性分类模型(linear classfication model)，对应于一个特征空间(feature space)中的一个将实例划分为正负两类的分离超平面(separating hyperplane)。可以使用梯度下降法(gradient descent)对感知机模型的损失函数进行极小化求出模型参数。支持向量机(support vector machines, SVM)也是二类分类模型，线性支持向量机(linear support vector machine)与感知机(perceptron)不同在于其使间隔最大化。通过核技巧(kernel trick)以及软间隔最大化(soft margin maximization),可以学习非线性支持向量机(non-linear support vector machine)。支持向量机的学习算法就是求解凸二次规划的最优化算法。</p>
-                <a class="readmore" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-2-cong-gan-zhi-ji-dao-zhi-chi-xiang-liang-ji.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-                </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="http://forin-xyz.github.io/tutorial.html">我的导航</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-
-                            <li><a href="http://weibo.com/u/1756830393">微博</a></li>
-                            <li><a href="http://github.com/forin-xyz">github</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-        </footer><!-- /#contentinfo -->
-
+<body class="home-template nav-closed" itemscope itemtype="http://schema.org/WebPage">
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-ML9KT2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-ML9KT2');</script>
+<!-- End Google Tag Manager -->
+    <meta itemprop="name" content="耕有田，读有书">
+    <meta itemprop="url" content="http://forin-xyz.github.io/output">
+    <meta itemprop="headline" content="耕有田，读有书 || ">
+    <meta itemprop="description about" content="">
+    <meta itemprop="keywords" content="gnu, linux, software libre, código abierto, tecnología">
+    <meta itemprop="primaryImageOfPage" content="http://forin-xyz.github.io/output/theme/images/logo.png">
+    <meta itemprop="inLanguage" content="es">
+<nav class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul role="menubar">
+            <li class="nav-current" role="presentation"><a  href="http://forin-xyz.github.io/output/archives.html" title="耕有田，读有书 | Archives" itemprop="name" itemprop="significantLink">Archives</a></li>        
+    </ul>
+    <a class="subscribe-button icon-feed" href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2FElBlogDeAbr4xas'  target='blank'>Subscribe</a>
+</nav>
+<span class="nav-cover"></span>    <div class="site-wrapper">
+        <header class="main-header " style="background-image: url(http://forin-xyz.github.io/output/theme/images/banner-bg.jpg)" itemscope itemtype="http://schema.org/WPHeader">
+            <nav class="main-nav overlay clearfix">
+                <a class="menu-button" href="#">
+                    <span class="burger">&#9776;</span>
+                    <span class="word">Menu</span>
+                </a>
+            </nav>
+            <div class="vertical">
+                <div class="main-header-content inner">
+                    <h1 class="page-title" itemprop="headline">耕有田，读有书</h1>
+                    <h2 class="page-description" itemprop="description"></h2>
+                </div>
+            </div>
+            <a class="scroll-down icon-arrow-left blink_me" href="#content" data-offset="-45">
+                <span class="hidden">Scroll Down</span>
+            </a>
+        </header>
+<main id="content" class="content" role="main" itemprop="mainContentOfPage" itemscope="" itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+            <header class="post-header" itemprop="headline">
+                <h2 class="post-title">
+                    <a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-8-kjin-lin-fa.html" rel="bookmark">
+                        《统计学习方法》读书笔记8-k近邻法及python实现
+                    </a>
+                </h2>
+            </header>
+            <section class="post-excerpt">
+                <p>k近邻法是一种基本的分类和回归方法。它通过计算所有样本点到待预测点的距离, 选出距离最小的k个样本点, 然后根据这k个样本的类进行多数表决来预测待预测点所属的类。</p>
+                <p><a class="read-more" itemprop="url" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-8-kjin-lin-fa.html" title="Read this article" rel="bookmark">Leer m&aacute;s &raquo;</a></p>
+            </section>
+            <footer class="post-meta">
+                <span class="entry-author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
+                    <span itemprop="name">forin-xyz</span></span>
+                <time itemprop="datePublished" class="post-date" datetime="2016YYY-00M-%DD">Sunday, February 28, 2016</time>
+            </footer>        
+        </article>
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+            <header class="post-header" itemprop="headline">
+                <h2 class="post-title">
+                    <a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-10-tiao-jian-sui-ji-chang.html" rel="bookmark">
+                        《统计学习方法》读书笔记10-条件随机场
+                    </a>
+                </h2>
+            </header>
+            <section class="post-excerpt">
+                <p>条件随机场是给定一组输入随机变量的条件下另一组输出随机变量的条件概率模型，其特点是假设输出随机变量构成马尔科夫随机场。</p>
+                <p><a class="read-more" itemprop="url" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-10-tiao-jian-sui-ji-chang.html" title="Read this article" rel="bookmark">Leer m&aacute;s &raquo;</a></p>
+            </section>
+            <footer class="post-meta">
+                <span class="entry-author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
+                    <span itemprop="name">forin-xyz</span></span>
+                <time itemprop="datePublished" class="post-date" datetime="2016YYY-00M-%DD">Saturday, February 27, 2016</time>
+            </footer>        
+        </article>
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+            <header class="post-header" itemprop="headline">
+                <h2 class="post-title">
+                    <a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-7-ti-sheng-fang-fa.html" rel="bookmark">
+                        《统计学习方法》读书笔记7-提升方法，含python实现代码
+                    </a>
+                </h2>
+            </header>
+            <section class="post-excerpt">
+                <p>提升方法是一种常用的统计学习方法, 它通过改变样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。AdaBoost算法是最具代表性的提升算法，提升树则是更具体的实例。</p>
+                <p><a class="read-more" itemprop="url" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-7-ti-sheng-fang-fa.html" title="Read this article" rel="bookmark">Leer m&aacute;s &raquo;</a></p>
+            </section>
+            <footer class="post-meta">
+                <span class="entry-author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
+                    <span itemprop="name">forin-xyz</span></span>
+                <time itemprop="datePublished" class="post-date" datetime="2016YYY-00M-%DD">Wednesday, February 24, 2016</time>
+            </footer>        
+        </article>
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+            <header class="post-header" itemprop="headline">
+                <h2 class="post-title">
+                    <a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-6-emsuan-fa-yu-gao-si-hun-he-mo-xing.html" rel="bookmark">
+                        《统计学习方法》读书笔记6-EM算法与高斯混合模型,含python源码
+                    </a>
+                </h2>
+            </header>
+            <section class="post-excerpt">
+                <p>EM算法是一种迭代算法, 用于含有隐变量的概率模型参数的极大似然估计,或极大后验概率估计.EM算法的每次迭代由两步组成:E步求期望, M步求极大.</p>
+                <p><a class="read-more" itemprop="url" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-6-emsuan-fa-yu-gao-si-hun-he-mo-xing.html" title="Read this article" rel="bookmark">Leer m&aacute;s &raquo;</a></p>
+            </section>
+            <footer class="post-meta">
+                <span class="entry-author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
+                    <span itemprop="name">forin-xyz</span></span>
+                <time itemprop="datePublished" class="post-date" datetime="2016YYY-00M-%DD">Monday, February 22, 2016</time>
+            </footer>        
+        </article>
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+            <header class="post-header" itemprop="headline">
+                <h2 class="post-title">
+                    <a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-5-po-su-bei-xie-si-fang-fa.html" rel="bookmark">
+                        《统计学习方法》读书笔记5-朴素贝叶斯方法，含python源码
+                    </a>
+                </h2>
+            </header>
+            <section class="post-excerpt">
+                <p>朴素贝叶斯方法(Naive Bayesian Method)是基于贝叶斯定理与特征 条件独立假设的分类方法，是一种常见和高效的学习方法。</p>
+                <p><a class="read-more" itemprop="url" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-5-po-su-bei-xie-si-fang-fa.html" title="Read this article" rel="bookmark">Leer m&aacute;s &raquo;</a></p>
+            </section>
+            <footer class="post-meta">
+                <span class="entry-author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
+                    <span itemprop="name">forin-xyz</span></span>
+                <time itemprop="datePublished" class="post-date" datetime="2016YYY-00M-%DD">Sunday, February 21, 2016</time>
+            </footer>        
+        </article>
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+            <header class="post-header" itemprop="headline">
+                <h2 class="post-title">
+                    <a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-4-cong-luo-ji-hui-gui-dao-zui-da-shang-mo-xing.html" rel="bookmark">
+                        《统计学习方法》读书笔记4-从逻辑回归模型到最大熵模型, 含python实现
+                    </a>
+                </h2>
+            </header>
+            <section class="post-excerpt">
+                <p>最大熵模型和逻辑回归模型一样, 也属于对数线性模型, 他是最大熵原理在分类问题上的推广.</p>
+                <p><a class="read-more" itemprop="url" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-4-cong-luo-ji-hui-gui-dao-zui-da-shang-mo-xing.html" title="Read this article" rel="bookmark">Leer m&aacute;s &raquo;</a></p>
+            </section>
+            <footer class="post-meta">
+                <span class="entry-author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
+                    <span itemprop="name">forin-xyz</span></span>
+                <time itemprop="datePublished" class="post-date" datetime="2016YYY-00M-%DD">Saturday, February 20, 2016</time>
+            </footer>        
+        </article>
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+            <header class="post-header" itemprop="headline">
+                <h2 class="post-title">
+                    <a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-3-luo-ji-hui-gui-mo-xing-yu-zhi-chi-xiang-liang-ji-de-bi-jiao.html" rel="bookmark">
+                        《统计学习方法》读书笔记3-逻辑回归模型与支持向量机的比较, 含python实现
+                    </a>
+                </h2>
+            </header>
+            <section class="post-excerpt">
+                <p>逻辑回归模型是统计学习中的经典分类方法, 属于对数分类模型。</p>
+                <p><a class="read-more" itemprop="url" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-3-luo-ji-hui-gui-mo-xing-yu-zhi-chi-xiang-liang-ji-de-bi-jiao.html" title="Read this article" rel="bookmark">Leer m&aacute;s &raquo;</a></p>
+            </section>
+            <footer class="post-meta">
+                <span class="entry-author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
+                    <span itemprop="name">forin-xyz</span></span>
+                <time itemprop="datePublished" class="post-date" datetime="2016YYY-00M-%DD">Friday, February 19, 2016</time>
+            </footer>        
+        </article>
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+            <header class="post-header" itemprop="headline">
+                <h2 class="post-title">
+                    <a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-11-tong-ji-xue-xi-fang-fa-zong-jie.html" rel="bookmark">
+                        《统计学习方法》读书笔记11-全书小结
+                    </a>
+                </h2>
+            </header>
+            <section class="post-excerpt">
+                <p>《统计学习方法》全书讲了十余个监督学习方法，本节做一个小结。</p>
+                <p><a class="read-more" itemprop="url" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-11-tong-ji-xue-xi-fang-fa-zong-jie.html" title="Read this article" rel="bookmark">Leer m&aacute;s &raquo;</a></p>
+            </section>
+            <footer class="post-meta">
+                <span class="entry-author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
+                    <span itemprop="name">forin-xyz</span></span>
+                <time itemprop="datePublished" class="post-date" datetime="2016YYY-00M-%DD">Thursday, February 18, 2016</time>
+            </footer>        
+        </article>
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+            <header class="post-header" itemprop="headline">
+                <h2 class="post-title">
+                    <a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-2-cong-gan-zhi-ji-dao-zhi-chi-xiang-liang-ji.html" rel="bookmark">
+                        《统计学习方法》读书笔记2-从感知机到支持向量机，含python源码
+                    </a>
+                </h2>
+            </header>
+            <section class="post-excerpt">
+                <p>感知机(perceptron)是二类分类的线性分类模型(linear classfication model)，对应于一个特征空间(feature space)中的一个将实例划分为正负两类的分离超平面(separating hyperplane)。可以使用梯度下降法(gradient descent)对感知机模型的损失函数进行极小化求出模型参数。支持向量机(support vector machines, SVM)也是二类分类模型，线性支持向量机(linear support vector machine)与感知机(perceptron)不同在于其使间隔最大化。通过核技巧(kernel trick)以及软间隔最大化(soft margin maximization),可以学习非线性支持向量机(non-linear support vector machine)。支持向量机的学习算法就是求解凸二次规划的最优化算法。</p>
+                <p><a class="read-more" itemprop="url" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-2-cong-gan-zhi-ji-dao-zhi-chi-xiang-liang-ji.html" title="Read this article" rel="bookmark">Leer m&aacute;s &raquo;</a></p>
+            </section>
+            <footer class="post-meta">
+                <span class="entry-author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
+                    <span itemprop="name">forin-xyz</span></span>
+                <time itemprop="datePublished" class="post-date" datetime="2016YYY-00M-%DD">Thursday, February 18, 2016</time>
+            </footer>        
+        </article>
+    <nav class="pagination" role="navigation">
+            <span class="page-number">Page 1 of 1</span>
+    </nav>
+</main>
+        <footer class="site-footer clearfix" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
+            <section class="copyright">
+                <a itemprop="url" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" class="tooltip" data-tooltip="CC BY-NC-SA" target="_blank">
+                CC Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+            </section>
+            <section class="poweredby">Proudly published with <a href="https://getpelican.org">Pelican</a></section>
+        </footer>
+    </div>
+    <script type="text/javascript" src="http://forin-xyz.github.io/output/theme/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="http://forin-xyz.github.io/output/theme/js/jquery.fitvids.min.js"></script>
+    <script type="text/javascript" src="http://forin-xyz.github.io/output/theme/js/index.min.js"></script>
+    <script>twemoji.parse(document, {"size":16});</script>
 </body>
 </html>
