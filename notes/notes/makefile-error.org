@@ -1,0 +1,50 @@
+#+TITLE:     makefile-error.org
+#+AUTHOR:    Cheng Rui
+#+EMAIL:     0000@whu.edu.cn
+#+DATE:      2015-08-20 四
+#+DESCRIPTION: *** missing separator.  Stop.
+#+KEYWORDS:  make makefile
+#+LANGUAGE:  中文
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+
+** 原始代码
+
+#+BEGIN_SRC text
+a.txt: b.txt c.txt
+    cat b.txt c.txt > a.txt
+#+END_SRC
+
+** 错误提示
+
+#+BEGIN_SRC ERROR
+*** missing separator.  Stop.
+#+END_SRC
+缺少分割符，中止。
+
+** 问题解决
+
+makefile的规则如下：
+#+BEGIN_EXAMPLE
+目标： 前提条件
+    命令
+#+END_EXAMPLE
+或者使用英文描述：
+#+BEGIN_EXAMPLE
+<target> : <prerequisites>
+[tab]  <commands>
+#+END_EXAMPLE
+如果出现上述错误，有两种可能：
+
+1. 在Makefile文件中，命令必须以[tab]键开始，
+2. 在非命令行中出现了[tab]键产生的空格。
+
+也就是说，命令前必须要有[tab]键产生的空格，[tab]键
+产生的空格必须接命令。
+
+** 其他
+
+出错提示前面的数字代表的是出错地方的行号。

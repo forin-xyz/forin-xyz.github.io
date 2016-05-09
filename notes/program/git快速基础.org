@@ -1,0 +1,62 @@
+#+TITLE:     Github快速基础.org
+#+AUTHOR:    Ubuntu-2
+#+EMAIL:     gdzt@ubuntu
+#+DATE:      2015-08-09 Sun
+#+DESCRIPTION: Github快速基础
+#+KEYWORDS: git ssh github 基础 教程 linux ubuntu
+#+LANGUAGE:  zh
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME: 
+#+XSLT:
+
+** 安装软件git, ssh
+
+*** ubuntu
+
+#+BEGIN_SRC shell
+sudo apt-get install ssh
+sduo apt-get install git
+#+END_SRC
+
+*** windows
+
+搜索git, 在msysgit网站上下载安装git for windows就行了
+
+*** Mac
+
+自行百度吧
+
+** 设置
+
+在使用git前需要使用设置一下git
+
+#+BEGIN_SRC shell
+git config --global user.name "Your Name"
+git config --global user.email "email@example.com"
+#+END_SRC
+
+** 使用github
+
+github是流行的开源公共软件协作平台
+
+*** 注册Github
+
+登录Github.com注册账号
+
+*** 添加ssh公钥
+
+**** 生成ssh秘钥
+
+#+BEGIN_SRC shell
+ssh-keygen
+#+END_SRC
+
+**** 将公钥添加到github上去
+
+view profile and 
+
+

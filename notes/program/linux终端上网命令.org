@@ -1,0 +1,30 @@
+* ip地址
+
+#+BEGIN_SRC shell
+sudo ifconfig eth0 ipv4 netmask 255.255.255.0 broadcast xxx.xxx.xxx.255
+#+END_SRC
+
+eth0 -> 网卡名，有线网卡一般都是以eth开头，是以太网的缩写，可以通过ifconfig -a进行查看
+
+ipv4  -> 主机分配的IPv4的地址
+
+netmask  -> 子网掩码, A类255.0.0.0， B类 255.255.255.0 ， C类 255.255.255.0
+一般而言大部分网络都是C类
+
+broadcast  -> 广播地址，将主机的IP地址取前K位（K值是子网掩码中255的个数），
+最后4-K位是255
+
+* 默认网关
+
+#+BEGIN_SRC shell
+sudo route default gw xxx.xxx.xxx.xxx
+#+END_SRC
+
+xxx.xxx.xxx.xxx 默认网关，可以通过windows进行查看
+
+* DNS设置
+
+#+BEGIN_SRC shell
+vi /etc/resolve.conf
+#+END_SRC
+将dns设置添加进resolve.conf中即可

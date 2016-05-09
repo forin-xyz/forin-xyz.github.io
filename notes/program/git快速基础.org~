@@ -1,0 +1,15 @@
+#+TITLE:     git快速基础.org
+#+AUTHOR:    Ubuntu-2
+#+EMAIL:     gdzt@ubuntu
+#+DATE:      2015-08-09 Sun
+#+DESCRIPTION: git快速基础
+#+KEYWORDS: git ssh github 基础 教程
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME: 
+#+XSLT:

@@ -1,0 +1,114 @@
+#+TITLE: 程序设计基础
+#+DATE: <2015-08-01 六>
+#+AUTHOR: 程锐
+#+EMAIL: 0000@whu.edu.cn
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t c:nil creator:comment d:(not "LOGBOOK") date:t
+#+OPTIONS: e:t email:nil f:t inline:t num:t p:nil pri:nil stat:t
+#+OPTIONS: tags:t tasks:t tex:t timestamp:t toc:t todo:t |:t
+#+CREATOR: Emacs 24.3.1 (Org mode 8.2.4)
+#+DESCRIPTION:
+#+EXCLUDE_TAGS: noexport
+#+KEYWORDS: 程序 算法 设计 计算机
+#+LANGUAGE: 中文
+#+SELECT_TAGS: export
+
+* 计算机基础
+
+** 计算机与人工智能
+
+** 程序设计语言
+
+** 数据的存储和表示
+
+* 程序设计基础
+
+** 程序设计基本结构
+
+*** 问题求解的一般步骤
+
+*** 顺序结构
+
+*** 选择结构
+
+*** 循环结构
+
+** 程序设计方法
+
+*** 自底向上的方法
+
+*** 自顶向下，逐步求精
+
+*** 结构化
+
+*** 模块化
+
+*** 面向对象
+
+* 算法设计基础
+
+** 穷举
+
+又称暴力搜索法（brute force）,穷举所有可能，逐一进行验证，常用于密码破解。
+
+* 计算机程序设计语言
+** 分治
+
+将原问题分解成若干个和原问题类似的子问题，然后分别进行求解，关键在于如何分解问题和
+如何将自问题的解合并为原问题的解。
+
+** 递推
+
+利用递推公式开始，从已知逐渐向问题的解前进。
+
+例如下面的求解斐波拉切数列某一项的值。
+
+for python3
+
+#+BEGIN_SRC python3 -n
+def fib(n):
+    if n < 0 or not isinstance(n, int):
+        raise ValueError("n>=0 and must be int")
+    if n < 2:
+        return n
+    prex2 = 0
+    prex1 = 1
+    for i in range(2, n+1):
+        prex1, prex2 = prex1 + prex2, prex1
+    return prex1
+
+def test_fib():
+    try:
+        fib(-1)
+        print("test fib(-1) failed!")
+    except ValueError:
+        pass
+    try:
+        fib(0.3)
+        print("test fib(0.3) failed!")
+    except ValueError:
+       pass!
+
+    if fib(1) == 1 and fib(10) == 55:
+        print("test fib OK!")
+    else:
+        print("test fib failed!")
+
+
+if __name__ == "__main__":
+    test_fib()
+#+END_SRC
+
+** 迭代
+
+迭代是通过迭代函数一步步接近问题的解，分为精确迭代和近似迭代
+
+*** 牛顿迭代
+
+** 递归
+
+通过调用自身达到求解问题的解法，常用在递推和分治算法中。
+
+* 参考资料
+
+1. [[http://www.icourse163.org/course/hit-56001?tid=60001#/info][程序设计基础 哈工大]]

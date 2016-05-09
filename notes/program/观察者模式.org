@@ -1,0 +1,210 @@
+#+TITLE:     观察者模式.org
+#+AUTHOR:    gdzt001
+#+EMAIL:     blackzero@ubuntu
+#+DATE:      2015-08-25 二
+#+DESCRIPTION:  观察者模式 python
+#+KEYWORDS: 设计模式 python 观察者模式
+#+LANGUAGE:  zh
+
+* 介绍
+
+观察者模式(Observer/)，顾名思意就是观察与被观察的关系，例如推特的关注者与被关注者，学生与老师，电视与听众，手机与机主等等。
+观察者模式是对象的行为模式，又叫发布-订阅(Publish/Subscribe)模式、模型-视图(Model/View)模式、源-监听器(Source/Listener)模式或从属者(Dependents)模式。
+观察者在现实生活中非常普遍，理解并应用他可以很好的帮助我们进行软件开发。
+
+* python实现
+
+** 最简单淳朴的实现
+
+版本一：/observer_module.py/
+#+BEGIN_SRC python3
+#! /usr/bin/env python3
+
+# 观察者
+class Observer(object):
+    def update(self, subject):
+        print(self)
+        print(subject.data)
+
+class Subject(object):
+    def __init__(self, observers=[]):
+        self.observers = observers
+        self.data = {}
+
+
+    def add_observer(self, observer):
+        if observer not in self.observers:
+            self.observers.append(observer)
+
+    def remove_observer(self, observer):
+        self.observers.remove(observer)
+
+    def notify_observers(self):
+        for observer in self.observers:
+            observer.update(self)
+
+    def updata_data(self, data):
+        self.data = data
+        self.notify_observers()
+
+
+# 客户端
+if __name__ == "__main__":
+    subject = Subject()
+    observer1 = Observer()
+    subject.add_observer(observer1)
+    subject.updata_data("Hello world!")
+    observer2 = Observer()
+    subject.add_observer(observer2)
+    subject.updata_data("Hello Jack!")
+#+END_SRC
+
+输出接口:
+#+BEGIN_EXAMPLE
+<__main__.Observer object at 0xb706590c>
+Hello world!
+<__main__.Observer object at 0xb706590c>
+Hello Jack!
+<__main__.Observer object at 0xb706592c>
+Hello Jack!
+#+END_EXAMPLE
+
+由于python是动态语言，鸭子类型， 所以只要实现了updata方法的对象都可以作为观察者加入到被观察者的
+观察者列表, 其中update方法传递的参数就是观察者传递给被观察者的数据。
+
+** 事件-委托实现
+
+版本二: /envent_delegate.py
+#+BEGIN_SRC python3
+#! /usr/bin/env python3
+
+from collections import UserList
+class Update(UserList):
+    def __init__(self):
+        self.data = []
+
+    def __iadd__(self, value):
+        """Implement self+=value."""
+        if value not in self.data:
+            self.data.append(value)
+        return self
+
+    def __isub__(self, value):
+        """Implement self-=value."""
+        if value in self.data:
+            self.data.remove(value)
+        return self
+
+class Subject(object):
+    def __init__(self):
+        self.update = Update()
+
+    def notify_events(self):
+        update = self.update
+        if update:
+            for func in update:
+                func(self)
+
+if __name__ == '__main__':
+    subject = Subject()
+    # 添加订阅 +=
+    subject.update += lambda obj: print(id(object))
+    subject.update += print
+    subject.notify_events()
+    # 取消订阅 -=
+    subject.update -= print
+    subject.notify_events()
+#+END_SRC
+
+输出结果:
+#+BEGIN_EXAMPLE
+138284672
+<__main__.Subject object at 0xb6fefa8c>
+138284672
+#+END_EXAMPLE
+
+这个是模拟C#中的事件委托模型实现，在python中一切都是对象，函数也是一个callable
+对象，也就是实现了__call__方法的类的实例。
+
+数据是通过调用update里面的方法传递的， 当然也可以不传递任何数据，只通知方法，让方法自己去拉数据.
+
+** 监听-响应模型
+
+浏览器对不同的操作做出响应, 例如鼠标单击, 双击, 离开, 聚焦等, 当不同的时间发生时前端页面会做出
+不同的响应.
+
+在这里, 监听者是观察者, 事件响应是根据不同的操作类型做出响应, 监听源属于被观察者.
+
+版本三: /listener_response.py/
+#+BEGIN_SRC python3
+#! usr/bin/env python3
+#+END_SRC
+
+** 如何使用静态语言实现
+
+python可以通过特定的方法实现协议，没有类型检查。
+
+而在静态语言中，因为有类型检查，一般是通过抽象类的继承和接口的实现来实现协议以应付类型检查和解耦。
+
+在观察者模式中，需要一个包含update方法的观察者接口以及addObserver, removeObserver
+以及notifyObservers方法的抽象主题类， 具体的观察者和被观察者分别实现和继承接口和类。
+
+当然，这两个抽象类或接口可以根据实际需要选择是用抽象类来描述协议还是接口来实现协议。
+
+* 观察者模式需知
+
+** 谁是观察者，谁是被观察者
+
+1. 要明确谁是观察者谁是被观察者，只要明白谁是关注对象，问题也就明白了。
+一般观察者与被观察者之间的是多对一的关系，一个被观察对象可以有多个监听对象(观察者)。
+如一个编辑框，有鼠标点击的监听者，也有键盘的监听者，还有内容改变的监听者。
+
+** 观察者模式的优点
+
+Observable在发送广播通知的时候，无须指定具体的Observer，
+Observer可以自己决定是否要订阅Subject的通知。
+
+** 观察者模式共性
+
+被观察者至少需要有三个方法:添加监听者、移除监听者、通知Observer的方法；
+观察者至少要有一个方法：更新方法，更新当前的内容，作出相应的处理。
+注:添加监听者、移除监听者在不同的模型中可能会有不同命名，
+如观察者模型中一般，addObserver、removeObserver；
+在源-监听器(Source/Listener)模型中一般是attach/detach，
+应用在桌面编程的窗口中，还可能是attachWindow/detachWindow，或Register/UnRegister。
+不要被名称迷糊了，不管他们是什么名称，其实功能都是一样的，就是添加/删除观察者。
+
+* 观察者模式优点
+
+** 将观察者的行为和被观察者分离
+
+1. 通过上面的代码和分析， 我们可以发现，对于不同的观察者， 我们可以有不同的update方法实现，这样，
+被观察者只要将状态通知发给观察者就可以了，至于观察者到底会干什么，被观察者无需关心。
+
+2. 被观察者在发送广播通知的时候，无须指定具体的观察者，
+观察者可以自己决定是否要订阅Subject的通知。
+
+* 观察者模式的缺点
+
+**
+
+* 适用产景
+
+1. 当一个对象的改变需要改变其它对象时，而且它不知道具体有多少个对象有待改变时。
+
+    + 对一个对象状态的更新需要其他对象同步更新;，或者一个对象的更新需要依赖另一个对象的更新；
+    + 对象仅需要将自己的更新通知给其他对象而不需要知道其他对象的细节，如消息推送。
+
+
+2. 一个抽象模型有两个方面，当其中一个方面依赖于另一个方面，
+这时用观察者模式可以将这两者封装在独立的对象中使它们各自独立地改变和复用。
+
+* 更多
+
+
+
+* 参考资料
+
+1. [[http://ink.csdn.net/articles/show/55d7389ba8a14da80212522d][生活中的观察者模式——一壶水的故事]]
+
+2. [[http://www.cnblogs.com/wangjq/archive/2012/07/12/2587966.html][设计模式学习笔记-观察者模式]]

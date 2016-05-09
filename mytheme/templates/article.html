@@ -1,73 +1,28 @@
 {% extends "base.html" %}
-{% block title %}{{ article.title|striptags }}{% endblock %}
 {% block content %}
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
-           title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h1>
-      {% include 'twitter.html' %}
-    </header>
-
-    <div class="entry-content">
-      {% include 'article_infos.html' %}
-      {{ article.content }}
-    </div><!-- /.entry-content -->
-    {% if DISQUS_SITENAME and SITEURL and article.status != "draft" %}
-    <div class="comments">
-      <h2>Comments !</h2>
-      <div id="disqus_thread"></div>
-      <script type="text/javascript">
-        var disqus_shortname = '{{ DISQUS_SITENAME }}';
-        var disqus_identifier = '{{ article.url }}';
-        var disqus_url = '{{ SITEURL }}/{{ article.url }}';
-        (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//{{ DISQUS_SITENAME }}.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-      </script>
-      <noscript>Please enable JavaScript to view the comments.</noscript>
-    </div>
-    {% endif %}
-    {% if DUOSHUO_SITENAME and SITEURL and article.status != "draft" %}
-    <div class="comments">
-      <div class="ds-share flat" data-thread-key="{{ article.title }}-key" data-title="{{ article.title }}" data-url="{{ SITEURL }}/{{ article.url }}">
-    <div class="ds-share-inline">
-      <ul  class="ds-share-icons-16">
-
-        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-      </ul>
-      <div class="ds-share-icons-more">
-      </div>
-    </div>
- </div>
-
-      <h3>评论:</h3>
-      <!-- Duoshuo Comment BEGIN -->
-      <div class="ds-thread" data-thread-key="{{ article.title }}-key" data-title="{{ article.title }}" data-url="{{ SITEURL }}/{{ article.url }}"></div>
-      <!-- 多说评论框 end -->
-      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-      <script type="text/javascript">
-  var duoshuoQuery = {short_name:"forin-xyz"};
-(function() {
-  var ds = document.createElement('script');
-  ds.type = 'text/javascript';ds.async = true;
-  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-  ds.charset = 'UTF-8';
-  (document.getElementsByTagName('head')[0]
-   || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-      </script>
-      <noscript>Please enable JavaScript to view the comments.</noscript>
-<!-- Duoshuo Comment END -->
-{% endif %}
-
-  </article>
-</section>
+<main id="content" class="content" role="main">
+    <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting" itemprop="blogPost">
+        <header class="post-header">
+            <h1 class="post-title" itemprop="headline">{{ article.title|striptags }}</h1>
+            <section class="post-meta">
+                <span class="entry-author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
+                    <span itemprop="name">{{ article.author }}</span></span>
+                <time class="post-date" itemprop="datePublished" datetime="{{ article.date|strftime('%YYYY-%MM-%DD') }}">{{ article.date|strftime('%A, %B %d, %Y') }}</time>
+                {% include 'back.html' %}
+            </section>
+        </header>
+        <section class="post-content">
+            {{ article.content }}
+            <br/>
+            {% include 'donate.html' %}
+            {% include 'ads.html' %}
+            <br/>
+            {% include 'neighbors.html' %}
+            <br/>
+        </section>
+        <footer class="post-footer">
+            {% include 'coments.html' %}
+        </footer>
+    </article>
+</main>
 {% endblock %}
