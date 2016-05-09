@@ -19,143 +19,180 @@
                 <nav><ul>
                     <li><a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a></li>
                     <li><a href="http://forin-xyz.github.io/output/category/python.html">Python</a></li>
+                    <li><a href="http://forin-xyz.github.io/output/category/sui-bi.html">随笔</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-8-kjin-lin-fa.html">《统计学习方法》读书笔记8-k近邻法及python实现</a></h1>
+                    <h1 class="entry-title"><a href="http://forin-xyz.github.io/output/2016/03/du-shu-bi-ji-11-tong-ji-xue-xi-fang-fa-zong-jie.html">《统计学习方法》读书笔记11-全书小结</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2016-02-28T23:00:00+08:00">
-                发表于: 2016年02月28日 星期日
+        <abbr class="published" title="2016-03-09T23:08:00+08:00">
+                发表于: 2016年03月09日 星期三
         </abbr>
 
         <address class="vcard author">
                 By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
         </address>
 <p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
-<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/kjin-lin-fa.html">k近邻法</a> <a href="http://forin-xyz.github.io/output/tag/k-nearest-neighbor-method.html">k-nearest neighbor method</a> <a href="http://forin-xyz.github.io/output/tag/k-nn.html">k-NN</a> <a href="http://forin-xyz.github.io/output/tag/kdshu.html">kd树</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> </p>
-</footer><!-- /.post-info --><h2>k近邻算法</h2>
-<p><strong> k 近邻法 </strong></p>
-<blockquote>
-<p>输入: 训练数据集T, 其中特征空间<span class="math">\(\mathcal{X} \subseteq \boldsystem{R}^n\)</span>, 输出空间<span class="math">\(\mathcal{Y} \subseteq \{c_1, c_2, \cdots, c_K\}\)</span>.</p>
-<p>待预测实例特征向量<span class="math">\(x\)</span> 以及参数k</p>
-<p>输出: 实例<span class="math">\(x\)</span>所属的类<span class="math">\(y\)</span></p>
-<p>(1) 在训练集T中找出与x最邻近的k个点构成几何<span class="math">\(N_k(x)\)</span></p>
-<p>(2) 在集合<span class="math">\(N_k(x)\)</span>中根据多数表决决定x所属的类
+<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/gan-zhi-ji.html">感知机</a> <a href="http://forin-xyz.github.io/output/tag/perceptron.html">perceptron</a> <a href="http://forin-xyz.github.io/output/tag/zhi-chi-xiang-liang-ji.html">支持向量机</a> <a href="http://forin-xyz.github.io/output/tag/super-vector-machines.html">super vector machines</a> <a href="http://forin-xyz.github.io/output/tag/svm.html">SVM</a> <a href="http://forin-xyz.github.io/output/tag/ji-suan-ji-ke-xue.html">计算机科学</a> <a href="http://forin-xyz.github.io/output/tag/shu-xue-yuan-li.html">数学原理</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> <a href="http://forin-xyz.github.io/output/tag/tong-ji-xue-xi-fang-fa.html">统计学习方法</a> </p>
+</footer><!-- /.post-info --><h1>感知机</h1>
+<h2>损失函数</h2>
 <div class="math">$$
-y = \arg \max \limits_{c_j}{ freq(y = c_j, (x_i, y_i) \in N_k(x))}
+\min\limits_{w, b}{\sum\limits_{i=1}^{N}[-y_i(w \cdot x_i + b)]_{+}}
 $$</div>
+<h2>原始形式</h2>
+<p>如果<span class="math">\(y_i(w \cdot x_i + b) \leq 0\)</span>
 </p>
-</blockquote>
-<p>当k=1时, 称为最近邻算法，此时将训练数据集中与x最近邻的点的类作为x的类。</p>
-<h3>k近邻算法的python实现</h3>
-<p><a href="https://github.com/forin-xyz/statistical-learning-method/blob/master/k_nearest_neighbor.py" title="gihub">k近邻算法</a></p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-
-<span class="k">def</span> <span class="nf">kNN_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">yk</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="kp">argsort</span><span class="p">(((</span><span class="n">X</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="kp">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">]</span>
-    <span class="n">yunique</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">unique</span><span class="p">(</span><span class="n">yk</span><span class="p">)</span>
-    <span class="n">yend</span> <span class="o">=</span> <span class="n">yunique</span><span class="p">[(</span><span class="n">yk</span> <span class="o">-</span> <span class="n">yunique</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="kp">newaxis</span><span class="p">])</span><span class="o">.</span><span class="kp">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="kp">argmax</span><span class="p">()]</span>
-    <span class="k">return</span> <span class="n">yend</span>
-
-<span class="k">def</span> <span class="nf">test_kNN_train</span><span class="p">():</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-    <span class="p">]</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="p">]</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>
-    <span class="n">ypredit</span> <span class="o">=</span> <span class="n">kNN_train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">ypredit</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;test kNN_train sucessfully&#39;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;test kNN_train failed!&#39;</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">test_kNN_train</span><span class="p">()</span>
-</pre></div>
-
-
-<h2>k近邻模型</h2>
-<h3>距离度量</h3>
-<p><span class="math">\(L_p\)</span>距离　或者　Ｍinkowski距离:
+<div class="math">$$\begin{aligned}
+w \gets w + \eta y_i x_i\\
+b \gets b + \eta y_i
+\end{aligned}
+$$</div>
+<h2>对偶形式</h2>
+<p>如果<span class="math">\(y_i( \sum\limits_{j=1}^{N}(x_j \cdot x_i) + b) \leq 0\)</span>
 </p>
+<div class="math">$$\begin{aligned}
+{\alpha}_i \gets {\alpha}_i + \eta\\
+b \gets b + \eta y_i
+\end{aligned}
+$$</div>
+<h2>算法收敛性</h2>
+<p><strong>Novikoff定理</strong></p>
+<h1>逻辑回归模型 LR</h1>
+<h2>原始形式</h2>
 <div class="math">$$
-L_p(x_i, x_j) = (\sum\limits_{l=1}{n}{\abs{x_{i}^{l} - x_{j}^{l}}^p})^{\frac{1}{p}}
+\min\limits_{w, b} \sum\limits_{i=1}^{N}\log{(1 + exp(-y_i (w \cdot x_i + b)))} + \lambda {\lVert w \rVert}_{2}^2
+$$</div>
+<h1>支持向量机</h1>
+<h2>线性可分支持向量机 -- 硬间隔最大化</h2>
+<h3>原始形式</h3>
+<div class="math">$$
+\begin{aligned}
+\min\limits_{w, b} \frac{1}{2}{\lVert w \rVert}_{2}^2\\
+s.t.\\
+y_i (w \cdot x_i + b ) \leq 1
+\end{aligned}
+$$</div>
+<h3>对偶形式 dual</h3>
+<div class="math">$$
+\min\limits_{\alpha} \sum\limits_{i=1}^{N}\sum\limits_{i=1}^{N}{{\alpha}_i{\alpha}_j y_i y_j x_i \cdot x_j - \sum\limits_{i=1}^{N}{\alpha _i}}
 $$</div>
 <p>
-这里<span class="math">\(p \geq 1\)</span></p>
-<p>欧式距离 Euclidean distance:
+subject to
 </p>
 <div class="math">$$
-L_2(x_i, x_j) = (\sum\limits_{l=1}{n}{\abs{x_{i}^{l} - x_{j}^{l}}^2})^{\frac{1}{2}}
+\sum\limits_{i=1}{N} = 0
 $$</div>
-<p>曼哈顿距离 Manhattan distance
+<div class="math">$$
+\alpha _i \geq 0
+$$</div>
+<p>其中
 </p>
 <div class="math">$$
-L_2(x_i, x_j) = \sum\limits_{l=1}{n}{\abs{x_{i}^{l} - x_{j}^{l}}}
+w = \sum\limits_{i=1}^{N} {\alpha}_i y_i x_i
 $$</div>
-<p>当<span class="math">\(p=\infty\)</span>时,
+<p>
+当<span class="math">\({\alpha}_i \gt 0\)</span>
 </p>
 <div class="math">$$
-L_{\infty}(x_i, x_j) = \max\limits_{l}{\abs{x_{i}^{l} - x_{j}^{l}}}
+b = y_j - \sum\limits_{i=1}^{N}{y_i \alpha _i (x_i \cdot x_j)}
 $$</div>
-<h3>k的选择</h3>
-<p>如果选择较小的k值,就相当于用较小的邻域中的训练实例进行预测,"学习"的近似误差(approximation error)会减小, 但缺点是"学习"的估计误差(estimation error)会增大,预测结果会对近邻的实例点敏感.
-如果邻近的实例点恰巧是噪声,预测就会出错.
-换句话说,k值的减小就意味着整体模型变得复杂,容易产生过拟合</p>
-<p>如果选择较大的k值,就相当于用较大的邻域进行预测,其优点是可以减小学习的估计误差,但缺点是学习的近似误差会增大. 这时与实例脚癣的训练实例也会对预测起作用,使预测发生错误,k值的增大意味着整体的模型变得简单.</p>
-<p>若k=N, 那么无论输入实例是什么, 它都会简单的预测它属于训练中最多的类.</p>
-<h3>分类决策规则</h3>
-<p>多数表决等价于风险函数为0-1损失函数的经验风险最小化</p>
-<h2>k近邻法的实现:kd树</h2>
-<p><strong>算法2 构造平衡kd树</strong></p>
-<blockquote>
-<p>输入: k维空间数据集T</p>
-<p>输出: kd树</p>
-<p>(1) 开始: 构造根节点,根节点对应于包含T的k维空间的超矩形区域</p>
-<p>选择<span class="math">\(x^{(1)}\)</span>为坐标轴, 以T中所有实例点的<span class="math">\(x^{(1)}\)</span>坐标的中位数为切分点,将根结点对应的超矩形区域切分成两个子区域.切分是由通过切分点并与坐标轴<span class="math">\(x^{(1)}\)</span>垂直的超平面实现</p>
-<p>由根结点生成深度为1的左右子结点:左子结点对应于<span class="math">\(x_{(1)}\)</span>坐标小于切分点的子区域,右子结点对应于<span class="math">\(x_{(1)}\)</span>坐标大于切分点的子区域, 并将落在切分超平面上的实例点保存在根节点中.</p>
-<p>(2) 重复: 对深度为j的结点, 选择<span class="math">\(x^{(l)}\)</span>为切分的坐标轴, <span class="math">\(l = j \mod k + 1\)</span>.</p>
-<p>(3) 直到两个子区域没有实例存在时停止,从而构成kd树区域的划分</p>
-</blockquote>
-<p>注意,这里的中位数在样本数量为偶数时,是取最中间的两个数较大的那个数</p>
-<h3>kd树的搜索</h3>
-<p><strong>算法3 用kd树的k近邻算法</strong></p>
-<blockquote>
-<p>输入: 已构造的kd树, 目标点<span class="math">\(x\)</span>, k值</p>
-<p>输出: x的k近邻构成的集合</p>
-<p>(1) 在kd树中找出包含目标点k的叶结点: 从根结点开始,递归的向下访问kd树. 若目标点x当前维的坐标小于切分点的坐标, 则移动至左子结点, 否则移动到右子结点, 直到子结点为叶结点为止</p>
-<p>(2) 从结点向上回退, 直到相应的结点包含的实例点个数大于等于k, 从这些实例点中选取出离目标实例点最近的k个实例点为x的"k近邻"<span class="math">\(N_k(x)\)</span></p>
-<p>(3) 继续递归的像父结点回退, 并对每个结点进行以下操作:</p>
-<p>(a) 如果该结点保存的实例点含有比当前"k近邻"集合<span class="math">\(N_k(x)\)</span>中的点离目标点更近的实例点, 则将<span class="math">\(N_k{x}\)</span>中离目标点较远的点给替换成较近的点</p>
-<p>(b) 接着检查该子结点的父结点对应的另一子节点对应的区域是否含有更近点,如果有,则向上面一样对<span class="math">\(N_k(x)\)</span>进行更新</p>
-<p>(4) 当回退到根结点时,搜索结束. 最后的<span class="math">\(N_k(x)\)</span>即为所求的集合.</p>
-</blockquote>
-<p>如果实例点是随机分布的, 那么kd树搜索的平均计算复杂度为<span class="math">\(O(\log{N})\)</span>, kd树适合于训练实例数远大于空间维数时的k近邻搜索.</p>
-<h3>使用kd树的k近邻算法的python实现</h3>
-<h2>中英文对照表</h2>
-<p>k近邻 k-nearest neighbor, k-NN
-单元　cell
-类标记　class label
-距离　distance
-欧式距离 Euclidean distance
-近似误差 approximation error
-估计误差 estimation error
-kd树 kd tree
-线性扫描 linear scan
-划分 partition
-中位树 median</p>
+<h2>线性支持向量机 -- 软间隔最大化</h2>
+<h3>原始形式</h3>
+<div class="math">$$
+\begin{aligned}
+\min\limits_{w, b} \frac{1}{2}{\lVert w \rVert}_{2}^2 + C\sums\limits_{i=1}^{N}[1-y_i (w \cdot x_i + b)]_{+}
+\end{aligned}
+$$</div>
+<p>
+或者
+</p>
+<div class="math">$$
+\min\limits_{w, b} \sums\limits_{i=1}^{N}[1-y_i (w \cdot x_i + b)]_{+} + \lambda {\lVert w \rVert}_{2}^2
+$$</div>
+<h3>对偶形式 dual</h3>
+<div class="math">$$
+\min\limits_{\alpha} \sum\limits_{i=1}^{N}\sum\limits_{i=1}^{N}{{\alpha}_i{\alpha}_j y_i y_j x_i \cdot x_j - \sum\limits_{i=1}^{N}{\alpha _i}}
+$$</div>
+<p>
+subject to
+</p>
+<div class="math">$$
+\sum\limits_{i=1}{N} = 0
+$$</div>
+<div class="math">$$
+0 \leq \alpha _i \leq C
+$$</div>
+<h2>非线性支持向量机 -- 核技巧</h2>
+<div class="math">$$
+\min\limits_{\alpha} \sum\limits_{i=1}^{N}\sum\limits_{i=1}^{N}{{\alpha}_i{\alpha}_j y_i y_j K(x_i, x_j) - \sum\limits_{i=1}^{N}{\alpha _i}}
+$$</div>
+<p>
+subject to
+</p>
+<div class="math">$$
+\sum\limits_{i=1}{N} = 0
+$$</div>
+<div class="math">$$
+0 \leq \alpha _i \leq C
+$$</div>
+<h1>最大熵模型</h1>
+<div class="math">$$
+P_w(y|x) = \frac{exp(\sum\limits_{i=1}^{n} w_i f_i(x, y))}{Z_w(x)}
+$$</div>
+<p>
+其中<span class="math">\(Z_w(x) = \sum\limits_{y}exp(\sum\limits_{i=1}^{n} w_i f_i(x, y))\)</span></p>
+<h2>对偶形式</h2>
+<div class="math">$$
+\max\limits_{w} \sum\limits_{x, y} \widetilde{P}(x, y)\sum\limits_{i=1}{n} w_i f_i(x, y) - \sum\limits_{x}\widetilde{P}(x)\log{Z_w(x)}
+$$</div>
+<h2>改进的迭代尺度法 IIS, improved iterative scaling</h2>
+<h1>kNN</h1>
+<p>找出实例点在训练集离其最近的k个点组成一个集合, 然后使用给定的分类决策规则如多数表决决定该实例点的类别</p>
+<h1>kd树 -- 存储k维空间数据的树结构</h1>
+<h1>NB</h1>
+<h2>条件独立性假设 -- 类给定的条件实例点特征互相独立</h2>
+<h2>模型</h2>
+<div class="math">$$
+y = \arg \max \limits_{c_k} P(Y=c_k)\prod _{j}P(X^(j) = x^(j)|Y=c_k)
+$$</div>
+<h2>高斯朴素贝叶斯</h2>
+<p>假设<span class="math">\(P(X^(j)|Y=c_k)\)</span>满足高斯分布</p>
+<h2>伯努利朴素贝叶斯</h2>
+<p>当各特征是二值化时</p>
+<h2>一般情况</h2>
+<div class="math">$$
+P(X^(j)=x^(j)|Y=c_k) = \frac{freq(x^(j), c_k) + \lambda}{freq(c_k) + S_j \lambda}
+$$</div>
+<div class="math">$$
+P(Y=c_k) = \frac{freq(c_k) + \lambda}{N + K \lambda}
+$$</div>
+<h1>DT</h1>
+<p>决策树学习的算法通常是一个递归地选择最优特征，并根据该特征对训练数据进行分割，使得对各个子数据集有一个最好的分类过程。</p>
+<h2>ID3</h2>
+<p>使用信息增益来选择最优特征</p>
+<h2>C4.5</h2>
+<p>使用信息增益比选择最优特征</p>
+<h2>决策的减枝</h2>
+<p>结构风险最小化的过程</p>
+<h2>CART, 分类和回归树</h2>
+<p>二叉树</p>
+<p>回归树使用 平方误差最小化 准则，</p>
+<p>分类树使用 Gini指数</p>
+<h1>Boost</h1>
+<h2>AdaBoost</h2>
+<h2>加法模型</h2>
+<h2>提升树</h2>
+<h1>EM algorithm</h1>
+<h2>Q函数</h2>
+<h2>F函数</h2>
+<h2>高斯混合模型</h2>
+<h1>HMM</h1>
+<h2>概率计算方法</h2>
+<h2>监督学习方法</h2>
+<h2>预测算法</h2>
+<h1>CRF</h1>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -218,6 +255,28 @@ kd树 kd tree
                     <h1>Other articles</h1>
                     <hr />
                     <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-8-kjin-lin-fa.html" rel="bookmark"
+                           title="Permalink to 《统计学习方法》读书笔记8-k近邻法及python实现">《统计学习方法》读书笔记8-k近邻法及python实现</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2016-02-28T23:00:00+08:00">
+                发表于: 2016年02月28日 星期日
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
+        </address>
+<p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
+<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/kjin-lin-fa.html">k近邻法</a> <a href="http://forin-xyz.github.io/output/tag/k-nearest-neighbor-method.html">k-nearest neighbor method</a> <a href="http://forin-xyz.github.io/output/tag/k-nn.html">k-NN</a> <a href="http://forin-xyz.github.io/output/tag/kdshu.html">kd树</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> </p>
+</footer><!-- /.post-info -->                <p>k近邻法是一种基本的分类和回归方法。它通过计算所有样本点到待预测点的距离, 选出距离最小的k个样本点, 然后根据这k个样本的类进行多数表决来预测待预测点所属的类。</p>
+                <a class="readmore" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-8-kjin-lin-fa.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -304,28 +363,6 @@ kd树 kd tree
 <p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/po-su-bei-xie-si.html">朴素贝叶斯</a> <a href="http://forin-xyz.github.io/output/tag/naive-bayes.html">Naive Bayes</a> <a href="http://forin-xyz.github.io/output/tag/python.html">python</a> <a href="http://forin-xyz.github.io/output/tag/ji-suan-ji-ke-xue.html">计算机科学</a> <a href="http://forin-xyz.github.io/output/tag/shu-xue-yuan-li.html">数学原理</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> </p>
 </footer><!-- /.post-info -->                <p>朴素贝叶斯方法(Naive Bayesian Method)是基于贝叶斯定理与特征 条件独立假设的分类方法，是一种常见和高效的学习方法。</p>
                 <a class="readmore" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-5-po-su-bei-xie-si-fang-fa.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-11-tong-ji-xue-xi-fang-fa-zong-jie.html" rel="bookmark"
-                           title="Permalink to 《统计学习方法》读书笔记11-全书小结">《统计学习方法》读书笔记11-全书小结</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2016-02-18T23:00:00+08:00">
-                发表于: 2016年02月18日 星期四
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
-        </address>
-<p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
-<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/gan-zhi-ji.html">感知机</a> <a href="http://forin-xyz.github.io/output/tag/perceptron.html">perceptron</a> <a href="http://forin-xyz.github.io/output/tag/zhi-chi-xiang-liang-ji.html">支持向量机</a> <a href="http://forin-xyz.github.io/output/tag/super-vector-machines.html">super vector machines</a> <a href="http://forin-xyz.github.io/output/tag/svm.html">SVM</a> <a href="http://forin-xyz.github.io/output/tag/ji-suan-ji-ke-xue.html">计算机科学</a> <a href="http://forin-xyz.github.io/output/tag/shu-xue-yuan-li.html">数学原理</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> <a href="http://forin-xyz.github.io/output/tag/tong-ji-xue-xi-fang-fa.html">统计学习方法</a> </p>
-</footer><!-- /.post-info -->                <p>《统计学习方法》全书讲了十余个监督学习方法，本节做一个小结。</p>
-                <a class="readmore" href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-11-tong-ji-xue-xi-fang-fa-zong-jie.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
 

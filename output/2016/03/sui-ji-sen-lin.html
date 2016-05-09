@@ -2,7 +2,7 @@
 <html lang="cn">
 <head>
         <meta charset="utf-8" />
-        <title>《统计学习方法》读书笔记4-从逻辑回归模型到最大熵模型, 含python实现</title>
+        <title>随机森林介绍</title>
         <link rel="stylesheet" href="http://forin-xyz.github.io/output/theme/css/main.css" />
 
         <!--[if IE]>
@@ -26,82 +26,52 @@
   <article>
     <header>
       <h1 class="entry-title">
-        <a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-4-cong-luo-ji-hui-gui-dao-zui-da-shang-mo-xing.html" rel="bookmark"
-           title="Permalink to 《统计学习方法》读书笔记4-从逻辑回归模型到最大熵模型, 含python实现">《统计学习方法》读书笔记4-从逻辑回归模型到最大熵模型, 含python实现</a></h1>
+        <a href="http://forin-xyz.github.io/output/2016/03/sui-ji-sen-lin.html" rel="bookmark"
+           title="Permalink to 随机森林介绍">随机森林介绍</a></h1>
     </header>
 
     <div class="entry-content">
 <footer class="post-info">
-        <abbr class="published" title="2016-02-20T23:00:00+08:00">
-                发表于: 2016年02月20日 星期六
+        <abbr class="published" title="2016-03-16T23:08:00+08:00">
+                发表于: 2016年03月16日 星期三
         </abbr>
 
         <address class="vcard author">
                 By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
         </address>
 <p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
-<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/luo-ji-hui-gui.html">逻辑回归</a> <a href="http://forin-xyz.github.io/output/tag/logistic-regression.html">logistic regression</a> <a href="http://forin-xyz.github.io/output/tag/lr.html">LR</a> <a href="http://forin-xyz.github.io/output/tag/zui-da-shang-mo-xing.html">最大熵模型</a> <a href="http://forin-xyz.github.io/output/tag/maximum-entropy-model.html">maximum entropy model</a> </p>
-</footer><!-- /.post-info -->      <h2>最大熵模型</h2>
-<h3>最大熵原理</h3>
-<p>学习概率模型时, 在所有可能的概率(模型)分布中, 熵最大的模型是最好的模型.</p>
-<h3>最大熵模型的定义</h3>
-<p>特征函数<span class="math">\(f(x, y)\)</span>关于经验分布<span class="math">\(\widetilde{P}(X, Y)\)</span>的期望
-</p>
-<div class="math">$$E_{\widetilde{P}}(f) = \sum\limits_{x, y}\widetilde{P}(x, y)f(x, y)$$</div>
-<p>特征函数关于模型<span class="math">\(P(Y|X)\)</span>和经验分布<span class="math">\(\widetilde{P}(X)\)</span>的期望
-</p>
-<div class="math">$$
-E_{P}(f) = \sum\limits_{x, y}\widetilde{P}(x)P(y|x)f(x, y)
-$$</div>
-<p>如果模型能够获取足够多的信息, 那么就可以假设这两个期望值相等</p>
-<p><strong>最大熵模型</strong></p>
-<blockquote>
-<p>假设满足所有约束条件的模型集合为
-<div class="math">$$
-\mathcal(C) = {P \in \mathcal(P) | E_{\widetilde{P}}(f_i) = E_{P}(f_i), i=1, 2, \cdots, m}
-$$</div>
-定义在条件概率分布<span class="math">\(P(Y|X)\)</span>上的条件熵为
-<div class="math">$$
-H(P) = -\sum\limits_{x, y}\sum\limits_{x, y}\widetilde{P}(x)P(y|x)P(y|x)
-$$</div>
-则模型集合C中条件熵最大的模型就是最大熵模型, 式中的对数为自然对数</p>
-</blockquote>
-<h3>最大熵模型的学习</h3>
-<p>原始问题
-</p>
-<div class="math">$$
-\begin{aligned}
-min\limits_{P \in \mathcal(C)}&amp;  &amp; -H(P)\\
-s.t.&amp;  &amp; \sum\limits_{x, y}{\widetilde{P}(x, y)f_i(x, y)} = \sum\limits_{x, y}{\widetilde{P}(x)P(y|x)f_i(x, y)}, i=1, 2, \cdots, n\\
-    &amp;  &amp;\sum\limits_{y}P(y|x) = 1
-\end{aligned}
-$$</div>
-<p>
-对偶问题是
-</p>
-<div class="math">$$
-max\limits{w} min\limits_{P} L(P, w)
-$$</div>
-<p>求<span class="math">\(L(P, w)\)</span>关于<span class="math">\(P(y|x)\)</span>的偏导数, 并令企等于0, 可以得到
-</p>
-<div class="math">$$
-P_w(y|x) = \frac{1}{Z(x)}{exp(w_{i}f_{i}(x, y))}
-$$</div>
-<p>
-其中<span class="math">\(Z(x)\)</span>是规范化因子, 有
-</p>
-<div class="math">$$
-Z_w(x) = \sum\limits_{y}{exp(w_{i}f_{i}(x, y))}
-$$</div>
-<p>
-于是对偶问题等价于下面的最优化问题
-</p>
-<div class="math">$$
-min\limits_{w}{\sum\limits_{x}{\widetilde{P}(x)logZ_w(x)} - \sum\limits_{x, y}{\widetilde{P}(x, y)\sum\limits_{i=1}{n}w_if_i(x, y)}}
-$$</div>
-<h2>中英文对照表</h2>
-<p>最大熵模型 maximum entropy model</p>
-<p>特征函数 feature function</p>
+<p>tags: <a href="http://forin-xyz.github.io/output/tag/sui-ji-sen-lin-random-forest.html">随机森林， random forest</a> <a href="http://forin-xyz.github.io/output/tag/rf.html">RF</a> </p>
+</footer><!-- /.post-info -->      <h1>介绍</h1>
+<p>随机森林,顾名思义, 随机指的是样本随机，特征随机， 森林指的是多个决策树的组合， 连在一起，就是将多次随机的抽取样本和特征生成的决策树进行简单的组合而成。</p>
+<h1>具体算法</h1>
+<p>输入: 训练集T, 样本个数为N, 特征个数为M, 抽样选取的特征数为m(<span class="math">\(m \leq M\)</span>), 需要的树的个数K.
+输出: 随机森林</p>
+<p>1 for k = 0 to K:</p>
+<ul>
+<li>
+<p>从样本T中有放回的随机抽取N个新的训练集</p>
+</li>
+<li>
+<p>从特征集中无放回的选取m个特征</p>
+</li>
+<li>
+<p>利用新得到的训练集和特征集训练产生一个完全树，不进行减枝</p>
+</li>
+</ul>
+<p>2 将这些得到的树组合在一起就得到了随机森林，对于一个新的数据，直接用每一颗树对其进行预测，然后选取被选择的最多的类作为其的预测。</p>
+<h1>随机森林的应用</h1>
+<h2>用来进行特征选择</h2>
+<h4>平均正确率减少 Mean decrease accuracy</h4>
+<p>打乱每个特征的特征值顺序，并且度量顺序变动对模型的精确率的影响。很明显，对于不重要的变量来说，打乱顺序对模型的精确率影响不会太大，但是对于重要的变量来说，打乱顺序就会降低模型的精确率。</p>
+<p><code>np.random.shuttle(X[:, i])</code>函数可以打乱第i个特征值的顺序</p>
+<h4>平均不纯度减少 mean decrease impurity</h4>
+<p>利用不纯度可以确定节点（最优条件），对于分类问题，通常采用 基尼不纯度 或者 信息增益 ，对于回归问题，通常采用的是 方差 或者最小二乘拟合。当训练决策树的时候，可以计算出每个特征减少了多少树的不纯度。对于一个决策树森林来说，可以算出每个特征平均减少了多少不纯度，并把它平均减少的不纯度作为特征选择的值。</p>
+<h1>优缺点</h1>
+<h2>优点</h2>
+<p>随机森林具有准确率高、鲁棒性好、易于使用、训练速度快、 实现比较简单、易并行、、不易过拟合、通用性强等优点。</p>
+<p>任何一个监督学习的问题，使用随机森林，总可以得到一个还不错的模型。</p>
+<h2>缺点</h2>
+<p>由于过大的规模，模型及其容易消耗大量的内存。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -161,7 +131,7 @@ $$</div>
 </script>
     </div><!-- /.entry-content -->
     <div class="comments">
-      <div class="ds-share flat" data-thread-key="《统计学习方法》读书笔记4-从逻辑回归模型到最大熵模型, 含python实现-key" data-title="《统计学习方法》读书笔记4-从逻辑回归模型到最大熵模型, 含python实现" data-url="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-4-cong-luo-ji-hui-gui-dao-zui-da-shang-mo-xing.html">
+      <div class="ds-share flat" data-thread-key="随机森林介绍-key" data-title="随机森林介绍" data-url="http://forin-xyz.github.io/output/2016/03/sui-ji-sen-lin.html">
     <div class="ds-share-inline">
       <ul  class="ds-share-icons-16">
 
@@ -178,7 +148,7 @@ $$</div>
 
       <h3>评论:</h3>
       <!-- Duoshuo Comment BEGIN -->
-      <div class="ds-thread" data-thread-key="《统计学习方法》读书笔记4-从逻辑回归模型到最大熵模型, 含python实现-key" data-title="《统计学习方法》读书笔记4-从逻辑回归模型到最大熵模型, 含python实现" data-url="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-4-cong-luo-ji-hui-gui-dao-zui-da-shang-mo-xing.html"></div>
+      <div class="ds-thread" data-thread-key="随机森林介绍-key" data-title="随机森林介绍" data-url="http://forin-xyz.github.io/output/2016/03/sui-ji-sen-lin.html"></div>
       <!-- 多说评论框 end -->
       <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
       <script type="text/javascript">

@@ -2,7 +2,7 @@
 <html lang="cn">
 <head>
         <meta charset="utf-8" />
-        <title>《统计学习方法》读书笔记4-从逻辑回归模型到最大熵模型, 含python实现</title>
+        <title>《统计学习方法》读书笔记11-全书小结</title>
         <link rel="stylesheet" href="http://forin-xyz.github.io/output/theme/css/main.css" />
 
         <!--[if IE]>
@@ -26,82 +26,178 @@
   <article>
     <header>
       <h1 class="entry-title">
-        <a href="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-4-cong-luo-ji-hui-gui-dao-zui-da-shang-mo-xing.html" rel="bookmark"
-           title="Permalink to 《统计学习方法》读书笔记4-从逻辑回归模型到最大熵模型, 含python实现">《统计学习方法》读书笔记4-从逻辑回归模型到最大熵模型, 含python实现</a></h1>
+        <a href="http://forin-xyz.github.io/output/2016/03/du-shu-bi-ji-11-tong-ji-xue-xi-fang-fa-zong-jie.html" rel="bookmark"
+           title="Permalink to 《统计学习方法》读书笔记11-全书小结">《统计学习方法》读书笔记11-全书小结</a></h1>
     </header>
 
     <div class="entry-content">
 <footer class="post-info">
-        <abbr class="published" title="2016-02-20T23:00:00+08:00">
-                发表于: 2016年02月20日 星期六
+        <abbr class="published" title="2016-03-09T23:08:00+08:00">
+                发表于: 2016年03月09日 星期三
         </abbr>
 
         <address class="vcard author">
                 By                         <a class="url fn" href="http://forin-xyz.github.io/output/author/forin-xyz.html">forin-xyz</a>
         </address>
 <p>In <a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a>.</p>
-<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/luo-ji-hui-gui.html">逻辑回归</a> <a href="http://forin-xyz.github.io/output/tag/logistic-regression.html">logistic regression</a> <a href="http://forin-xyz.github.io/output/tag/lr.html">LR</a> <a href="http://forin-xyz.github.io/output/tag/zui-da-shang-mo-xing.html">最大熵模型</a> <a href="http://forin-xyz.github.io/output/tag/maximum-entropy-model.html">maximum entropy model</a> </p>
-</footer><!-- /.post-info -->      <h2>最大熵模型</h2>
-<h3>最大熵原理</h3>
-<p>学习概率模型时, 在所有可能的概率(模型)分布中, 熵最大的模型是最好的模型.</p>
-<h3>最大熵模型的定义</h3>
-<p>特征函数<span class="math">\(f(x, y)\)</span>关于经验分布<span class="math">\(\widetilde{P}(X, Y)\)</span>的期望
-</p>
-<div class="math">$$E_{\widetilde{P}}(f) = \sum\limits_{x, y}\widetilde{P}(x, y)f(x, y)$$</div>
-<p>特征函数关于模型<span class="math">\(P(Y|X)\)</span>和经验分布<span class="math">\(\widetilde{P}(X)\)</span>的期望
-</p>
+<p>tags: <a href="http://forin-xyz.github.io/output/tag/ji-qi-xue-xi.html">机器学习</a> <a href="http://forin-xyz.github.io/output/tag/gan-zhi-ji.html">感知机</a> <a href="http://forin-xyz.github.io/output/tag/perceptron.html">perceptron</a> <a href="http://forin-xyz.github.io/output/tag/zhi-chi-xiang-liang-ji.html">支持向量机</a> <a href="http://forin-xyz.github.io/output/tag/super-vector-machines.html">super vector machines</a> <a href="http://forin-xyz.github.io/output/tag/svm.html">SVM</a> <a href="http://forin-xyz.github.io/output/tag/ji-suan-ji-ke-xue.html">计算机科学</a> <a href="http://forin-xyz.github.io/output/tag/shu-xue-yuan-li.html">数学原理</a> <a href="http://forin-xyz.github.io/output/tag/du-shu-bi-ji.html">读书笔记</a> <a href="http://forin-xyz.github.io/output/tag/tong-ji-xue-xi-fang-fa.html">统计学习方法</a> </p>
+</footer><!-- /.post-info -->      <h1>感知机</h1>
+<h2>损失函数</h2>
 <div class="math">$$
-E_{P}(f) = \sum\limits_{x, y}\widetilde{P}(x)P(y|x)f(x, y)
+\min\limits_{w, b}{\sum\limits_{i=1}^{N}[-y_i(w \cdot x_i + b)]_{+}}
 $$</div>
-<p>如果模型能够获取足够多的信息, 那么就可以假设这两个期望值相等</p>
-<p><strong>最大熵模型</strong></p>
-<blockquote>
-<p>假设满足所有约束条件的模型集合为
-<div class="math">$$
-\mathcal(C) = {P \in \mathcal(P) | E_{\widetilde{P}}(f_i) = E_{P}(f_i), i=1, 2, \cdots, m}
-$$</div>
-定义在条件概率分布<span class="math">\(P(Y|X)\)</span>上的条件熵为
-<div class="math">$$
-H(P) = -\sum\limits_{x, y}\sum\limits_{x, y}\widetilde{P}(x)P(y|x)P(y|x)
-$$</div>
-则模型集合C中条件熵最大的模型就是最大熵模型, 式中的对数为自然对数</p>
-</blockquote>
-<h3>最大熵模型的学习</h3>
-<p>原始问题
+<h2>原始形式</h2>
+<p>如果<span class="math">\(y_i(w \cdot x_i + b) \leq 0\)</span>
 </p>
+<div class="math">$$\begin{aligned}
+w \gets w + \eta y_i x_i\\
+b \gets b + \eta y_i
+\end{aligned}
+$$</div>
+<h2>对偶形式</h2>
+<p>如果<span class="math">\(y_i( \sum\limits_{j=1}^{N}(x_j \cdot x_i) + b) \leq 0\)</span>
+</p>
+<div class="math">$$\begin{aligned}
+{\alpha}_i \gets {\alpha}_i + \eta\\
+b \gets b + \eta y_i
+\end{aligned}
+$$</div>
+<h2>算法收敛性</h2>
+<p><strong>Novikoff定理</strong></p>
+<h1>逻辑回归模型 LR</h1>
+<h2>原始形式</h2>
+<div class="math">$$
+\min\limits_{w, b} \sum\limits_{i=1}^{N}\log{(1 + exp(-y_i (w \cdot x_i + b)))} + \lambda {\lVert w \rVert}_{2}^2
+$$</div>
+<h1>支持向量机</h1>
+<h2>线性可分支持向量机 -- 硬间隔最大化</h2>
+<h3>原始形式</h3>
 <div class="math">$$
 \begin{aligned}
-min\limits_{P \in \mathcal(C)}&amp;  &amp; -H(P)\\
-s.t.&amp;  &amp; \sum\limits_{x, y}{\widetilde{P}(x, y)f_i(x, y)} = \sum\limits_{x, y}{\widetilde{P}(x)P(y|x)f_i(x, y)}, i=1, 2, \cdots, n\\
-    &amp;  &amp;\sum\limits_{y}P(y|x) = 1
+\min\limits_{w, b} \frac{1}{2}{\lVert w \rVert}_{2}^2\\
+s.t.\\
+y_i (w \cdot x_i + b ) \leq 1
+\end{aligned}
+$$</div>
+<h3>对偶形式 dual</h3>
+<div class="math">$$
+\min\limits_{\alpha} \sum\limits_{i=1}^{N}\sum\limits_{i=1}^{N}{{\alpha}_i{\alpha}_j y_i y_j x_i \cdot x_j - \sum\limits_{i=1}^{N}{\alpha _i}}
+$$</div>
+<p>
+subject to
+</p>
+<div class="math">$$
+\sum\limits_{i=1}{N} = 0
+$$</div>
+<div class="math">$$
+\alpha _i \geq 0
+$$</div>
+<p>其中
+</p>
+<div class="math">$$
+w = \sum\limits_{i=1}^{N} {\alpha}_i y_i x_i
+$$</div>
+<p>
+当<span class="math">\({\alpha}_i \gt 0\)</span>
+</p>
+<div class="math">$$
+b = y_j - \sum\limits_{i=1}^{N}{y_i \alpha _i (x_i \cdot x_j)}
+$$</div>
+<h2>线性支持向量机 -- 软间隔最大化</h2>
+<h3>原始形式</h3>
+<div class="math">$$
+\begin{aligned}
+\min\limits_{w, b} \frac{1}{2}{\lVert w \rVert}_{2}^2 + C\sums\limits_{i=1}^{N}[1-y_i (w \cdot x_i + b)]_{+}
 \end{aligned}
 $$</div>
 <p>
-对偶问题是
+或者
 </p>
 <div class="math">$$
-max\limits{w} min\limits_{P} L(P, w)
+\min\limits_{w, b} \sums\limits_{i=1}^{N}[1-y_i (w \cdot x_i + b)]_{+} + \lambda {\lVert w \rVert}_{2}^2
 $$</div>
-<p>求<span class="math">\(L(P, w)\)</span>关于<span class="math">\(P(y|x)\)</span>的偏导数, 并令企等于0, 可以得到
-</p>
+<h3>对偶形式 dual</h3>
 <div class="math">$$
-P_w(y|x) = \frac{1}{Z(x)}{exp(w_{i}f_{i}(x, y))}
-$$</div>
-<p>
-其中<span class="math">\(Z(x)\)</span>是规范化因子, 有
-</p>
-<div class="math">$$
-Z_w(x) = \sum\limits_{y}{exp(w_{i}f_{i}(x, y))}
+\min\limits_{\alpha} \sum\limits_{i=1}^{N}\sum\limits_{i=1}^{N}{{\alpha}_i{\alpha}_j y_i y_j x_i \cdot x_j - \sum\limits_{i=1}^{N}{\alpha _i}}
 $$</div>
 <p>
-于是对偶问题等价于下面的最优化问题
+subject to
 </p>
 <div class="math">$$
-min\limits_{w}{\sum\limits_{x}{\widetilde{P}(x)logZ_w(x)} - \sum\limits_{x, y}{\widetilde{P}(x, y)\sum\limits_{i=1}{n}w_if_i(x, y)}}
+\sum\limits_{i=1}{N} = 0
 $$</div>
-<h2>中英文对照表</h2>
-<p>最大熵模型 maximum entropy model</p>
-<p>特征函数 feature function</p>
+<div class="math">$$
+0 \leq \alpha _i \leq C
+$$</div>
+<h2>非线性支持向量机 -- 核技巧</h2>
+<div class="math">$$
+\min\limits_{\alpha} \sum\limits_{i=1}^{N}\sum\limits_{i=1}^{N}{{\alpha}_i{\alpha}_j y_i y_j K(x_i, x_j) - \sum\limits_{i=1}^{N}{\alpha _i}}
+$$</div>
+<p>
+subject to
+</p>
+<div class="math">$$
+\sum\limits_{i=1}{N} = 0
+$$</div>
+<div class="math">$$
+0 \leq \alpha _i \leq C
+$$</div>
+<h1>最大熵模型</h1>
+<div class="math">$$
+P_w(y|x) = \frac{exp(\sum\limits_{i=1}^{n} w_i f_i(x, y))}{Z_w(x)}
+$$</div>
+<p>
+其中<span class="math">\(Z_w(x) = \sum\limits_{y}exp(\sum\limits_{i=1}^{n} w_i f_i(x, y))\)</span></p>
+<h2>对偶形式</h2>
+<div class="math">$$
+\max\limits_{w} \sum\limits_{x, y} \widetilde{P}(x, y)\sum\limits_{i=1}{n} w_i f_i(x, y) - \sum\limits_{x}\widetilde{P}(x)\log{Z_w(x)}
+$$</div>
+<h2>改进的迭代尺度法 IIS, improved iterative scaling</h2>
+<h1>kNN</h1>
+<p>找出实例点在训练集离其最近的k个点组成一个集合, 然后使用给定的分类决策规则如多数表决决定该实例点的类别</p>
+<h1>kd树 -- 存储k维空间数据的树结构</h1>
+<h1>NB</h1>
+<h2>条件独立性假设 -- 类给定的条件实例点特征互相独立</h2>
+<h2>模型</h2>
+<div class="math">$$
+y = \arg \max \limits_{c_k} P(Y=c_k)\prod _{j}P(X^(j) = x^(j)|Y=c_k)
+$$</div>
+<h2>高斯朴素贝叶斯</h2>
+<p>假设<span class="math">\(P(X^(j)|Y=c_k)\)</span>满足高斯分布</p>
+<h2>伯努利朴素贝叶斯</h2>
+<p>当各特征是二值化时</p>
+<h2>一般情况</h2>
+<div class="math">$$
+P(X^(j)=x^(j)|Y=c_k) = \frac{freq(x^(j), c_k) + \lambda}{freq(c_k) + S_j \lambda}
+$$</div>
+<div class="math">$$
+P(Y=c_k) = \frac{freq(c_k) + \lambda}{N + K \lambda}
+$$</div>
+<h1>DT</h1>
+<p>决策树学习的算法通常是一个递归地选择最优特征，并根据该特征对训练数据进行分割，使得对各个子数据集有一个最好的分类过程。</p>
+<h2>ID3</h2>
+<p>使用信息增益来选择最优特征</p>
+<h2>C4.5</h2>
+<p>使用信息增益比选择最优特征</p>
+<h2>决策的减枝</h2>
+<p>结构风险最小化的过程</p>
+<h2>CART, 分类和回归树</h2>
+<p>二叉树</p>
+<p>回归树使用 平方误差最小化 准则，</p>
+<p>分类树使用 Gini指数</p>
+<h1>Boost</h1>
+<h2>AdaBoost</h2>
+<h2>加法模型</h2>
+<h2>提升树</h2>
+<h1>EM algorithm</h1>
+<h2>Q函数</h2>
+<h2>F函数</h2>
+<h2>高斯混合模型</h2>
+<h1>HMM</h1>
+<h2>概率计算方法</h2>
+<h2>监督学习方法</h2>
+<h2>预测算法</h2>
+<h1>CRF</h1>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -161,7 +257,7 @@ $$</div>
 </script>
     </div><!-- /.entry-content -->
     <div class="comments">
-      <div class="ds-share flat" data-thread-key="《统计学习方法》读书笔记4-从逻辑回归模型到最大熵模型, 含python实现-key" data-title="《统计学习方法》读书笔记4-从逻辑回归模型到最大熵模型, 含python实现" data-url="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-4-cong-luo-ji-hui-gui-dao-zui-da-shang-mo-xing.html">
+      <div class="ds-share flat" data-thread-key="《统计学习方法》读书笔记11-全书小结-key" data-title="《统计学习方法》读书笔记11-全书小结" data-url="http://forin-xyz.github.io/output/2016/03/du-shu-bi-ji-11-tong-ji-xue-xi-fang-fa-zong-jie.html">
     <div class="ds-share-inline">
       <ul  class="ds-share-icons-16">
 
@@ -178,7 +274,7 @@ $$</div>
 
       <h3>评论:</h3>
       <!-- Duoshuo Comment BEGIN -->
-      <div class="ds-thread" data-thread-key="《统计学习方法》读书笔记4-从逻辑回归模型到最大熵模型, 含python实现-key" data-title="《统计学习方法》读书笔记4-从逻辑回归模型到最大熵模型, 含python实现" data-url="http://forin-xyz.github.io/output/2016/02/du-shu-bi-ji-4-cong-luo-ji-hui-gui-dao-zui-da-shang-mo-xing.html"></div>
+      <div class="ds-thread" data-thread-key="《统计学习方法》读书笔记11-全书小结-key" data-title="《统计学习方法》读书笔记11-全书小结" data-url="http://forin-xyz.github.io/output/2016/03/du-shu-bi-ji-11-tong-ji-xue-xi-fang-fa-zong-jie.html"></div>
       <!-- 多说评论框 end -->
       <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
       <script type="text/javascript">
