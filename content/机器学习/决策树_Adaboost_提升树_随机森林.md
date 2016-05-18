@@ -7,7 +7,7 @@ Summary: 决策树学习的算法通常是一个递归的选择最优特征，�
 # 决策树， DT
 
 **if-then规则的集合**
-[女孩相亲的标准](http://forin-xyz.github.io/images/160517_jcs_xq.jpeg)
+![女孩相亲的标准](http://forin-xyz.github.io/images/160517_jcs_xq.jpeg)
 决策树学习的策略是以损失函数为目标函数的最小化问题，决策树的求解通常采用启发式方法，根据贪婪规则近似的求解这一最优化问题。
 
 ## 如何进行特征选择
