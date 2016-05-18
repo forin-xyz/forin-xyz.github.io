@@ -100,7 +100,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a class="subscribe-button icon-feed" href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2FElBlogDeAbr4xas'  target='blank'>Subscribe</a>
 </nav>
 <span class="nav-cover"></span>    <div class="site-wrapper">
-        <header class="main-header " style="background-image: url(http://forin-xyz.github.io/output/theme/images/banner-bg.jpg)" itemscope itemtype="http://schema.org/WPHeader">
+        <header class="main-header post-head" style="background-image: url(http://forin-xyz.github.io/output/theme/images/bear.jpg)" itemscope itemtype="http://schema.org/WPHeader">
             <nav class="main-nav overlay clearfix">
                 <a class="menu-button" href="#">
                     <span class="burger">&#9776;</span>
@@ -117,11 +117,179 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <span class="hidden">Scroll Down</span>
             </a>
         </header>
-<ul>
-    <li><a href="http://forin-xyz.github.io/output/category/ji-qi-xue-xi.html">机器学习</a></li>
-    <li><a href="http://forin-xyz.github.io/output/category/python.html">Python</a></li>
-    <li><a href="http://forin-xyz.github.io/output/category/shu-xue.html">数学</a></li>
-</ul>
+<main id="content" class="content" role="main">
+    <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting" itemprop="blogPost">
+        <header class="post-header">
+            <h1 class="post-title" itemprop="headline">决策树、Adaboost、提升树以及随机森林</h1>
+            <section class="post-meta">
+                <span class="entry-author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
+                    <span itemprop="name">forin-xyz</span></span>
+                <time class="post-date" itemprop="datePublished" datetime="2016YYY-08M-%DD">Tuesday, May 17, 2016</time>
+<nav role="navigation">
+    <a class="newer-posts blink_me" href="http://forin-xyz.github.io/output">&larr; Back</a>
+</nav><br/>            </section>
+        </header>
+        <section class="post-content">
+            <h1>决策树， DT</h1>
+<p><strong>if-then规则的集合</strong>
+<a href="http://forin-xyz.github.io/images/160517_jcs_xq.jpeg">女孩相亲的标准</a>
+决策树学习的策略是以损失函数为目标函数的最小化问题，决策树的求解通常采用启发式方法，根据贪婪规则近似的求解这一最优化问题。</p>
+<h2>如何进行特征选择</h2>
+<ol>
+<li>
+<p>按照信息度量的变化来选取特征和划分方式，如信息增益(ID3),信息增益比(C4.5),Gini指数(CART二叉分类树)</p>
+</li>
+<li>
+<p>按照损失函数最小化选择特征和划分方式，如平方误差(CART回归树)，指数误差(Adaboost Tree)等。</p>
+</li>
+</ol>
+<h2>ID3算法</h2>
+<p><strong>信息增益</strong>
+</p>
+<div class="math">$$
+\text{Gain}(S, A) = -\sum_{c}{\frac{\lvert S_{c} \rvert}{\lvert S \rvert}\log{\frac{\lvert S_{c} \rvert}{\lvert S \rvert}}} + \sum_{a}{\frac{\lvert S_{a} \rvert}{\lvert S \rvert}(\sum_{c}{\frac{\lvert S_{a,c} \rvert}{\lvert S_a \rvert}\log{\frac{\lvert S_{a,c} \rvert}{\lvert S_a \rvert}}})}
+$$</div>
+<h2>C4.5算法</h2>
+<p><strong>分裂信息量</strong>
+</p>
+<div class="math">$$
+\text{SplitInformation}(S, A) = - \sum_{a}{\frac{\lvert S_{a} \rvert}{\lvert S \rvert}\log{\frac{\lvert S_{a} \rvert}{\lvert S \rvert}}}
+$$</div>
+<p><strong>信息增益比</strong>
+</p>
+<div class="math">$$
+\text{GainRatio}(S, A) = \frac{\text{Gain}(S, A}}{\text{SplitInformation}(S, A)}
+$$</div>
+<h1>减枝， pruning</h1>
+<h1>CART</h1>
+<p>classification and regression tree</p>
+<h2>回归树</h2>
+<p>least squares regression tree</p>
+<h2>分类树</h2>
+<p><strong>Gini指数</strong>
+</p>
+<div class="math">$$
+\text{Gini}(S) = 1 - \sum_{c}({\frac{S_c}{S}})^2
+$$</div>
+<div class="math">$$
+\text{Gini}(S, A) = \frac{S_1}{S}\text{Gini}(S_1) + \frac{S_2}{S}\text{Gini}(S_2)
+$$</div>
+<p>
+其中<span class="math">\(S_1,S_2\)</span>是样本集根据特征A是否取某一个可能的值<span class="math">\(a\)</span>被分割成的两个样本集
+</p>
+<div class="math">$$
+S_1={(x, y) \in S \lvert A(x) = a}, S_2 = D - S_1
+$$</div>
+<h1>Adaboost</h1>
+<h1>提升树， BT</h1>
+<h1>梯度替代提升树，GBDT</h1>
+<p>使用损失函数的负梯度在当前模型的值作为回归问题提升树算法中的残差的近似值,拟合一个回归树。</p>
+<h1>随机森林， Random Forest</h1>
+<p>通过在样本集中有有放回和在特征集无放回的选取样本集和特征集，分别训练出一些树，将这些树组合在一起就得到了随机森林。
+<a href="http://forin-xyz.github.io/output/2016/03/sui-ji-sen-lin.html">随机森林</a></p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <br/>
+            <br/>
+<nav class="pagination" role="navigation">
+    <ul>
+    </ul>
+</nav>            <br/>
+        </section>
+        <footer class="post-footer">
+<h2>评论 !</h2>
+
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="决策树、Adaboost、提升树以及随机森林" data-title="决策树、Adaboost、提升树以及随机森林" data-url="2016/05/jue-ce-shu-_adaboost_ti-sheng-shu-_sui-ji-sen-lin.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"forin-xyz"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 分享 -->
+<div class="ds-share flat" data-thread-key="决策树、Adaboost、提升树以及随机森林" data-title="决策树、Adaboost、提升树以及随机森林" data-images="" data-content="<p>决策树学习的算法通常是一个递归的选择最优特征，并根据该特征对训练数据进行分割，使得对各个子数据集有一个更好的分类的过程。提升方法是通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。提升树和随机森林都是多棵树的组合。</p>" data-url="2016/05/jue-ce-shu-_adaboost_ti-sheng-shu-_sui-ji-sen-lin.html">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      	
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+        </footer>
+    </article>
+</main>
         <footer class="site-footer clearfix" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
             <section class="copyright">
                 <a itemprop="url" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" class="tooltip" data-tooltip="CC BY-NC-SA" target="_blank">
