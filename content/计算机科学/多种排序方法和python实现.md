@@ -1,25 +1,16 @@
-#+TITLE: 多种排序方法和python实现
-#+DATE: <2015-07-31 五>
-#+AUTHOR: 程锐
-#+EMAIL: 0000@whu.edu.cn
-#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
-#+OPTIONS: author:t c:nil creator:comment d:(not "LOGBOOK") date:t
-#+OPTIONS: e:t email:nil f:t inline:t num:t p:nil pri:nil stat:t
-#+OPTIONS: tags:t tasks:t tex:t timestamp:t toc:t todo:t |:t
-#+CREATOR: Emacs 24.3.1 (Org mode 8.2.4)
-#+DESCRIPTION:
-#+EXCLUDE_TAGS: noexport
-#+KEYWORDS: 排序, 算法, python
-#+LANGUAGE: 中文
-#+SELECT_TAGS: export
+Title: 多种排序方法和python实现
+Date: 2015-07-31 23:00
+Category: 计算机科学
+Tags: 数据结构, 排序
+Summary: 在计算机科学中,排序是一个非常重要的话题,也是计算算法中的基础,应用非常广泛。
 
 在计算机科学中，排序是一个非常重要的话题，也是计算机算法中的基础，应用非常广泛。
 
 下面就对一些常用的排序算法进行介绍和分析。
 
-* 交换排序
+# 交换排序
 
-** 算法描述
+## 算法描述
 
 交换排序就是从序列的第一个元素开始，将位于该元素之后的元素一一与该位置的比较，
 
@@ -27,7 +18,7 @@
 
 因为过程中频繁的交换元素顺序，故得名交换排序.
 
-** 伪代码
+## 伪代码
 
 #+BEGIN_SRC
 input: Array a
@@ -41,11 +32,11 @@ for i = 0 -> length - 1:
 output: Array a
 #+END_SRC
 
-** 过程
+## 过程
 
 
 
-** Python实现
+## Python实现
 
 /swapsort.py/
 #+BEGIN_SRC python3 -n
@@ -74,7 +65,7 @@ if __name__ == "__main__":
     test_swapsort()
 #+END_SRC
 
-** 算法分析
+## 算法分析
 
 1. 时间复杂度
 
@@ -87,15 +78,15 @@ if __name__ == "__main__":
    O(1)
 
 
-* 选择排序
+# 选择排序
 
-** 算法描述
+## 算法描述
 
 在序列中选出最小的元素与第一个元素进行交换，然后在重复这一个过程。
 
 与交换排序的原理都是每一次找出最小的元素，但是元素交换的次数要比交换排序少。
 
-** python实现
+## python实现
 
 /selectsort.py/
 
@@ -155,7 +146,7 @@ if __name__ == "__main__":
 
 #+END_SRC
 
-** 算法分析
+## 算法分析
 
 1. 时间复杂度
 
@@ -167,15 +158,15 @@ if __name__ == "__main__":
    O(1)
 
 
-* 插入排序
+# 插入排序
 
-** 算法描述
+## 算法描述
 
 每次将一个待排序的记录，按其关键字大小插入到前面已经排好序的子序列中的适当位置，
 
 直到全部记录插入完成为止。
 
-** python实现
+## python实现
 
 /insertsort.py/
 
@@ -207,9 +198,9 @@ if __name__ == "__main__":
     test_insertsort()
 #+END_SRC
 
-** 函数式python实现
+## 函数式python实现
 
-** 算法分析
+## 算法分析
 
 1. 时间复杂度
 
@@ -222,9 +213,9 @@ if __name__ == "__main__":
 3. 对于规模小或者基本有序的序列效果很好。
 
 
-* 冒泡排序
+# 冒泡排序
 
-** 算法描述
+## 算法描述
 
 临近的元素两两进行比较,按照从小到大或者从大到小的顺序进行交换,
 
@@ -234,7 +225,7 @@ if __name__ == "__main__":
 
 元素小的元素像气泡一样从底部移动到顶部。
 
-** python实现
+## python实现
 
 /bubblesort.py/
 
@@ -264,7 +255,7 @@ if __name__ == "__main__":
     test_bubblesort()
 #+END_SRC
 
-** 算法分析
+## 算法分析
 
 1. 时间复杂度
 
@@ -277,9 +268,9 @@ if __name__ == "__main__":
 3. 每一趟都让序列更接近有序
 
 
-* 归并排序
+# 归并排序
 
-** 算法描述
+## 算法描述
 
 将序列分成两部分别进行排序。
 
@@ -289,7 +280,7 @@ if __name__ == "__main__":
 
 归并: 每一次选出两个序列头部最小的元素添加入新序列。
 
-** python实现
+## python实现
 
 /mergesort.py/
 
@@ -350,7 +341,7 @@ if __name__ == "__main__":
      test_mergesort()
 #+END_SRC
 
-** 算法分析
+## 算法分析
 
 1. 时间复杂度
 
@@ -364,14 +355,14 @@ if __name__ == "__main__":
 3. 由于将序列分断处理，所以归并排序适合并行运算，分布式系统以及外排序。
 
 
-* 快速排序
+# 快速排序
 
-** 算法描述
+## 算法描述
 
 快速排序是将元素按照其中一个记录分成大于该记录和小于该记录的部分，然后在对
 两个部分进行排序。快速排序也是分治法的经典应用。
 
-** python实现
+## python实现
 
 /quicksort.py/
 
@@ -421,7 +412,7 @@ if __name__ == "__main__":
     test_quicksort()
 #+END_SRC
 
-** 算法分析
+## 算法分析
 
 1. 时间复杂度
 
@@ -442,7 +433,7 @@ if __name__ == "__main__":
 4. 快速排序是使用最广泛的排序方法，但是其缺点是对于基本有序的数组，
 它的时间复杂度确实最坏的情况。
 
-** 如何将数组按照关键字分成两个部分
+## 如何将数组按照关键字分成两个部分
 
 1. 确定起始位置i(默认为0)， 结束位置j(默认位置为数组长度-1)，以及基准元素p(默认为第一个元素)
 
@@ -456,7 +447,7 @@ if __name__ == "__main__":
 
 这个过程只遍历了一遍数组，而python实现则遍历了两遍数组，所以这个实现可以使用在C语言中以追求极致的性能。
 
-** C语言实现
+## C语言实现
 
 #+BEGIN_SRC C
 #include <stdio.h>
@@ -464,13 +455,13 @@ if __name__ == "__main__":
 typedef int ElementType;
 typedef int compare(ElementType a, ElementType b);
 
-/* 有一个小瑕疵就是中轴位置在移动后还会参与下一次比较
+/# 有一个小瑕疵就是中轴位置在移动后还会参与下一次比较
    例如一开始将start位置的值赋给了temp, 但是第二次从头比较的时候它又一次与自己进行了一次比较
    但是更改过后总是让程序显得笨拙, 不知道哪位大侠有好的办法可以实现他
-   并且不会降低可读性*/
-/* 另一个可以改进的地方就是当end-start<=5的时候可以使用插入排序取代快排, 这样在数据集很小的时候
+   并且不会降低可读性#/
+/# 另一个可以改进的地方就是当end-start<=5的时候可以使用插入排序取代快排, 这样在数据集很小的时候
    可以获得更高的性能
-*/
+#/
 void quiksort(ElementType lst[],int start,int end, compare compare)
 {
 
@@ -514,7 +505,7 @@ int main()
 
         int i = 0;
 
-        compare * cpr = compareInt;
+        compare # cpr = compareInt;
         quiksort(arr,0,7, cpr);
 
         for(i=0;i<8;i++)
@@ -536,20 +527,20 @@ int main()
 }
 #+END_SRC
 
-** python实现与C实现比较
+## python实现与C实现比较
 1. python实现非常简洁, 只有10行语句, 可读性非常强, 把快速排序的思维展现了出来
 2. C实现更底层, 空间效率和时间效率非常高, 除掉函数堆栈和一些排序索引之类的变量,
 只使用了一个辅助空间. 时间上每一次分割也只扫描一遍数据集.
 
-* 希尔排序
+# 希尔排序
 
-** 算法描述
+## 算法描述
 
 先将整个待排元素序列分割成若干个子序列（由相隔某个“增量”的元素组成的）
 分别进行直接插入排序，然后依次缩减增量再进行排序，待整个序列中的元素
 基本有序（增量足够小）时，再对全体元素进行一次直接插入排序。
 
-** python实现
+## python实现
 
 /shellsort.py/
 
@@ -588,7 +579,7 @@ if __name__ == "__main__":
     test_shellsort()
 #+END_SRC
 
-** 算法分析
+## 算法分析
 1. 时间复杂度
 
    时间复杂的下界是$O(n\log^2 n)$, 上界是$O(n^2)$。
@@ -604,12 +595,12 @@ if __name__ == "__main__":
 
 5. 希尔排序适合规模中等，序列的有序情况不能预测的情形。
 
-* TODO 堆排序
+# TODO 堆排序
 
-* TODO 基数排序
+# TODO 基数排序
 
 
-* 参考资料
+# 参考资料
 
 1. [[程序设计基础  哈工大][http://www.icourse163.org/course/hit-56001?tid=60001#/info]]
 
