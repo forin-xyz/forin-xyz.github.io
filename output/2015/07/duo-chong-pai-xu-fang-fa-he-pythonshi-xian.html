@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>耕有田，读有书</title>
+    <link rel="stylesheet" type="text/css" href="http://forin-xyz.github.io/output/theme/css/screen.min.css">
+    <link rel="stylesheet" type="text/css" href="http://forin-xyz.github.io/output/theme/css/highlight.min.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="publisher" href="">
+    <link rel="apple-touch-startup-image" href="http://forin-xyz.github.io/output/theme/images/logo.png">
+    <link type="text/plain" rel="socialmedia" href="http://forin-xyz.github.io/output/socialmedia.txt">
+    <link rel="dns-prefetch" href="http://forin-xyz.github.io/output"/>
+    <link rel="dns-prefetch" href="//www.gstatic.com"/>
+    <link rel="dns-prefetch" href="//fonts.gstatic.com"/>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
+    <link rel="dns-prefetch" href="//accounts.google.com"/>
+    <link rel="dns-prefetch" href="//ssl.google-analytics.com"/>
+    <link rel="dns-prefetch" href="//www.google-analytics.com"/>
+    <link rel="dns-prefetch" href="//googleads.g.doubleclick.net"/>
+    <link rel="dns-prefetch" href="//pagead2.googlesyndication.com"/>
+    <link rel="dns-prefetch" href="//twemoji.maxcdn.com"/>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="application-name" content="耕有田，读有书"/>
+    <meta name="msapplication-starturl" content="http:http://forin-xyz.github.io/output"/>
+    <meta name="msapplication-tooltip" content=""/>
+    <meta name="msapplication-window" content="width=1024;height=768"/>
+    <meta name="msapplication-task" content="name=耕有田，读有书;action-uri=http:http://forin-xyz.github.io/output;icon-uri=http://forin-xyz.github.io/output/theme/images/favicon.ico"/>
+    <meta name="msapplication-TileImage" content="http://forin-xyz.github.io/output/theme/images/apple-touch-icon-144x144.png"/>
+    <meta name="msapplication-TileColor" content="#1F1F21"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="imagetoolbar" content="no">
+    <meta http-equiv="pragma" content="cache">
+    <meta http-equiv="cache-control" content="cache">
+    <meta http-equiv="vary" content="content-language">
+    <meta http-equiv="Cache-control" content="max-age=2592000, public">
+    <meta http-equiv="content-style-type" content="text/css">
+    <meta name="application-name" content="耕有田，读有书">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="google-site-verification" content="">
+    <meta name="alexaVerifyID" content=""/>
+    <meta name="wot-verification" content=""/>
+    <meta name="msvalidate.01" content="" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="medium" content="mult">
+    <meta name="adblock" content="disable">
+    <meta name="rating" content="General">
+    <meta name="resource-type" content="document">
+    <meta name="revisit-after" content="1 days">
+    <meta name="revisit" content="1">
+    <meta name="robots" content="index,follow">
+    <meta name="no-email-collection" content="http://www.unspam.com/noemailcollection/">
+    <link rel="apple-touch-icon" sizes="152x152" href="http://forin-xyz.github.io/output/theme/images/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="http://forin-xyz.github.io/output/theme/images/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://forin-xyz.github.io/output/theme/images/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="http://forin-xyz.github.io/output/theme/images/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="http://forin-xyz.github.io/output/theme/images/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://forin-xyz.github.io/output/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="http://forin-xyz.github.io/output/theme/images/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="http://forin-xyz.github.io/output/theme/images/apple-touch-icon-57x57.png">
+    <link rel="icon" type="image/png" href="http://forin-xyz.github.io/output/theme/images/favicon-196x196.png" sizes="196x196">
+    <link rel="icon" type="image/png" href="http://forin-xyz.github.io/output/theme/images/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="http://forin-xyz.github.io/output/theme/images/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="http://forin-xyz.github.io/output/theme/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="http://forin-xyz.github.io/output/theme/images/favicon-16x16.png" sizes="16x16">
+    <link rel="shortcut icon" href="http://forin-xyz.github.io/output/theme/images/favicon.ico">
+    <script type="text/javascript">(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', '', 'auto');ga('send', 'pageview');var _qevents = _qevents || [];</script>
+    <script src="//twemoji.maxcdn.com/twemoji.min.js"></script>
+</head>
+<body class="home-template nav-closed" itemscope itemtype="http://schema.org/WebPage">
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-ML9KT2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-ML9KT2');</script>
+<!-- End Google Tag Manager -->
+    <meta itemprop="name" content="耕有田，读有书">
+    <meta itemprop="url" content="http://forin-xyz.github.io/output">
+    <meta itemprop="headline" content="耕有田，读有书 || ">
+    <meta itemprop="description about" content="">
+    <meta itemprop="keywords" content="gnu, linux, software libre, código abierto, tecnología">
+    <meta itemprop="primaryImageOfPage" content="http://forin-xyz.github.io/output/theme/images/logo.png">
+    <meta itemprop="inLanguage" content="es">
+<nav class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul role="menubar">
+            <li class="nav-current" role="presentation"><a  href="http://forin-xyz.github.io/output/archives.html" title="耕有田，读有书 | Archives" itemprop="name" itemprop="significantLink">Archives</a></li>        
+    </ul>
+    <a class="subscribe-button icon-feed" href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2FElBlogDeAbr4xas'  target='blank'>Subscribe</a>
+</nav>
+<span class="nav-cover"></span>    <div class="site-wrapper">
+        <header class="main-header post-head" style="background-image: url(http://forin-xyz.github.io/output/theme/images/bear.jpg)" itemscope itemtype="http://schema.org/WPHeader">
+            <nav class="main-nav overlay clearfix">
+                <a class="menu-button" href="#">
+                    <span class="burger">&#9776;</span>
+                    <span class="word">Menu</span>
+                </a>
+            </nav>
+            <div class="vertical">
+                <div class="main-header-content inner">
+                    <h1 class="page-title" itemprop="headline">耕有田，读有书</h1>
+                    <h2 class="page-description" itemprop="description"></h2>
+                </div>
+            </div>
+            <a class="scroll-down icon-arrow-left blink_me" href="#content" data-offset="-45">
+                <span class="hidden">Scroll Down</span>
+            </a>
+        </header>
+<main id="content" class="content" role="main">
+    <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting" itemprop="blogPost">
+        <header class="post-header">
+            <h1 class="post-title" itemprop="headline">多种排序方法和python实现</h1>
+            <section class="post-meta">
+                <span class="entry-author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
+                    <span itemprop="name">forin-xyz</span></span>
+                <time class="post-date" itemprop="datePublished" datetime="2015YYY-00M-%DD">Friday, July 31, 2015</time>
+<nav role="navigation">
+    <a class="newer-posts blink_me" href="http://forin-xyz.github.io/output">&larr; Back</a>
+</nav><br/>            </section>
+        </header>
+        <section class="post-content">
+            <p>在计算机科学中，排序是一个非常重要的话题，也是计算机算法中的基础，应用非常广泛。</p>
+<p>下面就对一些常用的排序算法进行介绍和分析。</p>
+<h1>交换排序</h1>
+<h2>算法描述</h2>
+<p>交换排序就是从序列的第一个元素开始，将位于该元素之后的元素一一与该位置的比较，</p>
+<p>将比该元素小的元素与其交换，直到最后一个元素。</p>
+<p>因为过程中频繁的交换元素顺序，故得名交换排序.</p>
+<h2>伪代码</h2>
+<h1>+BEGIN_SRC</h1>
+<p>input: Array a</p>
+<p>length = a.size()
+for i = 0 -&gt; length - 1:
+    for j = i + 1 -&gt; length:
+        if a[i] &gt; a[j]:
+             swap(a[i], a[j])</p>
+<p>output: Array a</p>
+<h1>+END_SRC</h1>
+<h2>过程</h2>
+<h2>Python实现</h2>
+<p>/swapsort.py/</p>
+<h1>+BEGIN_SRC python3 -n</h1>
+<p>def swapsort(lst):
+    length = len(lst)
+    for i in range(0, length-1):
+        for j in range(i+1, length):
+            if lst[i] &gt; lst[j]:
+                # swap lst[i], lst[j]
+                lst[i], lst[j] = lst[j], lst[i]
+    return lst</p>
+<p>def test_swapsort():
+    # lst = [ 9, 4, 3, 10, 7, 13, 2]
+    lst = [9, 4, 3, 10, 7, 13, 2]
+    lst_copy = lst[:]
+    sorted_list = swapsort(lst)
+    if sorted_list == sorted(lst_copy):
+        print("test swapsort OK!")
+    else:
+        print("test swapsort failed")</p>
+<p>if <strong>name</strong> == "<strong>main</strong>":
+    test_swapsort()</p>
+<h1>+END_SRC</h1>
+<h2>算法分析</h2>
+<ol>
+<li>时间复杂度</li>
+</ol>
+<p>外层循环有n-1趟，内层循环有n-i-1趟，每趟比较一次，交换若干次，故
+   <span class="math">\(\sum\nolimits_{i=0}{n-2}{n-i-1} = \frac{n(n-1)}{2} = O(n^2)\)</span>。
+   n 是序列的大小。</p>
+<ol>
+<li>空间复杂度</li>
+</ol>
+<p>O(1)</p>
+<h1>选择排序</h1>
+<h2>算法描述</h2>
+<p>在序列中选出最小的元素与第一个元素进行交换，然后在重复这一个过程。</p>
+<p>与交换排序的原理都是每一次找出最小的元素，但是元素交换的次数要比交换排序少。</p>
+<h2>python实现</h2>
+<p>/selectsort.py/</p>
+<h1>+BEGIN_SRC python3 -n</h1>
+<p>def imin(lst, start=0, end=None):
+    """
+    imin(lst, start, end) -&gt; index.
+    Return the minimum value's index in list from start to end.</p>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; lst = [3, 3, 2, 5]
+&gt;&gt;&gt; imin(lst)
+2
+&quot;&quot;&quot;
+if end is None:
+    end = len(lst)
+idxmin = start
+for i in range(start + 1, end):
+    if lst[i] &lt; lst[idxmin]:
+        idxmin = i
+return idxmin
+</pre></div>
+
+
+<p>def selectsort(lst):
+    length = len(lst)
+    for i in range(0, length-1):
+        idxmin = imin(lst, i)
+        # lst[i] &lt;-&gt; lst[imin]
+        if idxmin &gt; i:
+            lst[i], lst[idxmin] = lst[idxmin], lst[i]
+    return lst</p>
+<p>def test_imin():
+    lst = [2, 3, 1, 4]
+    if imin(lst) == 2:
+       print("test imin OK!")
+    else:
+       print("test imin failed!")</p>
+<p>def test_selectsort():
+    # lst = [ 9, 4, 3, 10, 7, 13, 2]
+    lst = [9, 4, 3, 10, 7, 13, 2]
+    lst_copy = lst[:]
+    sorted_list = selectsort(lst)
+    print(lst)
+    if sorted_list == sorted(lst_copy):
+        print("test selectsort OK!")
+    else:
+        print("test selectsort failed")</p>
+<p>if <strong>name</strong> == "<strong>main</strong>":
+    test_imin()
+    test_selectsort()</p>
+<h1>+END_SRC</h1>
+<h2>算法分析</h2>
+<ol>
+<li>时间复杂度</li>
+</ol>
+<p>和交换排序进行了相同次数的比较，但是交换次数不超过交换排序，故时间复杂度为
+   <span class="math">\(O(n^2)\)</span>。</p>
+<ol>
+<li>空间复杂度</li>
+</ol>
+<p>O(1)</p>
+<h1>插入排序</h1>
+<h2>算法描述</h2>
+<p>每次将一个待排序的记录，按其关键字大小插入到前面已经排好序的子序列中的适当位置，</p>
+<p>直到全部记录插入完成为止。</p>
+<h2>python实现</h2>
+<p>/insertsort.py/</p>
+<h1>+BEGIN_SRC python3 -n</h1>
+<p>def insertsort(lst):
+    length = len(lst)
+    for i in range(1, length):
+        j = i
+        tmp = lst[i]
+        while j and lst[j] &lt; lst[j-1]:
+            lst[j] = lst[j-1]
+            j -= 1
+        if j&lt;i: lst[j] = tmp;
+    return lst</p>
+<p>def test_insertsort():
+    # lst = [ 9, 4, 3, 10, 7, 13, 2]
+    lst = [9, 4, 3, 10, 7, 13, 2]
+    lst_copy = lst[:]
+    sorted_list = insertsort(lst)
+    if sorted_list == sorted(lst_copy):
+        print("test insertsort OK!")
+    else:
+        print("test insertsort failed")</p>
+<p>if <strong>name</strong> == "<strong>main</strong>":
+    test_insertsort()</p>
+<h1>+END_SRC</h1>
+<h2>函数式python实现</h2>
+<h2>算法分析</h2>
+<ol>
+<li>时间复杂度</li>
+</ol>
+<p><span class="math">\(O(n^2)\)</span>, 对于完全有序的序列来说，时间复杂度为O(1)。</p>
+<ol>
+<li>空间复杂度</li>
+</ol>
+<p>O(1)</p>
+<ol>
+<li>对于规模小或者基本有序的序列效果很好。</li>
+</ol>
+<h1>冒泡排序</h1>
+<h2>算法描述</h2>
+<p>临近的元素两两进行比较,按照从小到大或者从大到小的顺序进行交换,</p>
+<p>这样一趟过去后,最大或最小的元素被交换到了最后一位,</p>
+<p>然后再从头开始进行两两比较交换,直到倒数第二位时结束。</p>
+<p>元素小的元素像气泡一样从底部移动到顶部。</p>
+<h2>python实现</h2>
+<p>/bubblesort.py/</p>
+<h1>+BEGIN_SRC python3 -</h1>
+<p>def bubblesort(lst):
+    length = len(lst)
+    if length &lt; 2:
+       return lst
+    for i in range(0, length-1):
+        if lst[i] &gt; lst[i+1]:
+            lst[i], lst[i+1] = lst[i+1], lst[i]
+    return bubblesort(lst[:-1]) + [lst[-1]]</p>
+<p>def test_bubblesort():
+    # lst = [ 9, 4, 3, 10, 0, 13, 2]
+    lst = [9, 4, 3, 10, 0, 13, 2]
+    lst_copy = lst[:]
+    sorted_list = bubblesort(lst)
+    if sorted_list == sorted(lst_copy):
+        print("test bubblesort OK!")
+    else:
+        print("test bubblesort failed")</p>
+<p>if <strong>name</strong> == "<strong>main</strong>":
+    test_bubblesort()</p>
+<h1>+END_SRC</h1>
+<h2>算法分析</h2>
+<ol>
+<li>时间复杂度</li>
+</ol>
+<p><span class="math">\(O(n^2)\)</span></p>
+<ol>
+<li>空间复杂度</li>
+</ol>
+<p>O(1)</p>
+<ol>
+<li>每一趟都让序列更接近有序</li>
+</ol>
+<h1>归并排序</h1>
+<h2>算法描述</h2>
+<p>将序列分成两部分别进行排序。</p>
+<p>该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。</p>
+<p>关键在于如何归并两个有序序列。</p>
+<p>归并: 每一次选出两个序列头部最小的元素添加入新序列。</p>
+<h2>python实现</h2>
+<p>/mergesort.py/</p>
+<h1>+BEGIN_SRC python3 -</h1>
+<p>def mergelist(lsta, lstb):
+    """mergelist(lsta, lstb) -&gt; lst
+    Merge two sorted list lsta and lstb to a sorted list lst.
+    """
+    ret = []
+    lena, lenb = len(lsta), len(lstb)
+    i, j = 0, 0
+    while i &lt; lena and j &lt; lenb:
+        if lsta[i] &lt;= lstb[j]:
+            ret.append(lsta[i])
+            i = i + 1
+        else:
+            ret.append(lstb[j])
+            j = j + 1
+    if i == lena:
+        ret.extend(lstb[j:])
+    elif j == lenb:
+        ret.extend(lsta[i:])
+    return ret</p>
+<p>def mergesort(lst):
+    length = len(lst)
+    if length &lt; 2:
+        return lst
+    else:
+        mid = length&gt;&gt;1
+        return mergelist(mergesort(lst[:mid]), mergesort(lst[mid:]))</p>
+<p>def test_mergesort():
+    # lst = [ 9, 4, 3, 10, 7, 13, 2]
+    lst = [9, 4, 3, 10, 7, 13, 2]
+    lst_copy = lst[:]
+    sorted_list = mergesort(lst)
+    if sorted_list == sorted(lst_copy):
+        print("test mergesort OK!")
+    else:
+        print("test mergesort failed")</p>
+<p>def test_mergelist():
+    la = [ 2, 4, 5, 6]
+    lb = [1, 3, 4, 5]
+    if mergelist(la, lb) == [1, 2, 3, 4, 4, 5, 5, 6]:
+        print("test mergelist OK!")
+    else:
+        print("test mergelist Failed!")</p>
+<p>if <strong>name</strong> == "<strong>main</strong>":
+     test_mergelist()
+     test_mergesort()</p>
+<h1>+END_SRC</h1>
+<h2>算法分析</h2>
+<ol>
+<li>时间复杂度</li>
+</ol>
+<p>归并两个数组的时间复杂度为n, 一共需要归并<span class="math">\(\log_{2}(n)\)</span>次, 故
+   时间复杂度为<span class="math">\(n\log{n}\)</span>。</p>
+<ol>
+<li>空间复杂度</li>
+</ol>
+<p>归并两个数组需要额外的空间O(n)。</p>
+<ol>
+<li>由于将序列分断处理，所以归并排序适合并行运算，分布式系统以及外排序。</li>
+</ol>
+<h1>快速排序</h1>
+<h2>算法描述</h2>
+<p>快速排序是将元素按照其中一个记录分成大于该记录和小于该记录的部分，然后在对
+两个部分进行排序。快速排序也是分治法的经典应用。</p>
+<h2>python实现</h2>
+<p>/quicksort.py/</p>
+<h1>+BEGIN_SRC python3 -n</h1>
+<p>def splitlist(lst):
+    pi, lst = lst[0], lst[1:]
+    gt = [v for v in lst if v &gt; pi ]
+    lt = [v for v in lst if v &lt; pi]
+    eq = [v for v in lst if v == pi]
+    return lt, [pi]+[eq], gt</p>
+<p>def quicksort(lst):
+    if len(lst) &lt; 2:
+        return lst
+    lt, eq, gt = splitlist(lst)
+    return quicksort(lt) + eq + quicksort(gt)</p>
+<p>def test_splitlist():
+    """
+    &gt;&gt;&gt; lst = [4, 2, 3, 1, 6, 7]
+    &gt;&gt;&gt; splitlist(lst)
+    ([2, 3, 1], 4, [6, 7])
+    """
+    lst = [4, 2, 3, 1, 6, 7]
+    lt, pi, gt = splitlist(lst)
+    if lt == [2, 3, 1] and pi == 4 and gt == [6, 7]:
+        print("test splitlist OK!")
+    else:
+        print("test splitlist Failed!")</p>
+<p>def test_quicksort():
+    # lst = [ 9, 4, 3, 10, 7, 13, 2]
+    lst = [9, 4, 3, 10, 7, 13, 2]
+    lst_copy = lst[:]
+    sorted_list = quicksort(lst)
+    if sorted_list == sorted(lst_copy):
+        print("test quicksort OK!")
+    else:
+        print("test quicksort failed")</p>
+<p>if <strong>name</strong> == "<strong>main</strong>":
+    test_splitlist()
+    test_quicksort()</p>
+<h1>+END_SRC</h1>
+<h2>算法分析</h2>
+<ol>
+<li>时间复杂度</li>
+</ol>
+<p>平均时间复杂度<span class="math">\(O(n\log n)\)</span>， 最坏情况<span class="math">\(O(n^2)\)</span></p>
+<ol>
+<li>空间复杂度</li>
+</ol>
+<p><span class="math">\(O(\log n)\)</span>, 函数栈</p>
+<ol>
+<li>上述python代码的实现的时间复杂度和空间复杂度都不是最优，对于python这样的
+动态语言而言，可读性比性能更重要。而且python解释器对于python常见的结构都进行
+优化，速度可能比过度复杂的代码性能更好。</li>
+</ol>
+<p>追求极致的性能，是底层代码C的任务，python这样的业务代码，求的是开发速度和
+可读性，切不可本末倒置。如果对性能不满意，可以使用C代码重写python中常用的函数，
+切不可把python代码整复杂。</p>
+<ol>
+<li>快速排序是使用最广泛的排序方法，但是其缺点是对于基本有序的数组，
+它的时间复杂度确实最坏的情况。</li>
+</ol>
+<h2>如何将数组按照关键字分成两个部分</h2>
+<ol>
+<li>
+<p>确定起始位置i(默认为0)， 结束位置j(默认位置为数组长度-1)，以及基准元素p(默认为第一个元素)</p>
+</li>
+<li>
+<p>将基准元素与第一个元素进行交换(如果基准元素不为第一个元素)</p>
+</li>
+<li>
+<p>从j开始，往前遍历，直到第一个小于p的元素，将之与基准元素p[位置索引为i]交换， i=i+1</p>
+</li>
+<li>
+<p>从i向后遍历，直到第一个大于p的元素，将之与基准元素p[位置索引为j]交换, j=j+1</p>
+</li>
+<li>
+<p>判断i=j? 如果相等，则数组以i为分界线分成了两个部分，结束。如果不相等，则重复3,4步。</p>
+</li>
+</ol>
+<p>这个过程只遍历了一遍数组，而python实现则遍历了两遍数组，所以这个实现可以使用在C语言中以追求极致的性能。</p>
+<h2>C语言实现</h2>
+<h1>+BEGIN_SRC C</h1>
+<h1>include <stdio.h></h1>
+<p>typedef int ElementType;
+typedef int compare(ElementType a, ElementType b);</p>
+<p>/# 有一个小瑕疵就是中轴位置在移动后还会参与下一次比较
+   例如一开始将start位置的值赋给了temp, 但是第二次从头比较的时候它又一次与自己进行了一次比较
+   但是更改过后总是让程序显得笨拙, 不知道哪位大侠有好的办法可以实现他
+   并且不会降低可读性#/
+/# 另一个可以改进的地方就是当end-start&lt;=5的时候可以使用插入排序取代快排, 这样在数据集很小的时候
+   可以获得更高的性能</p>
+<h1>/</h1>
+<p>void quiksort(ElementType lst[],int start,int end, compare compare)
+{</p>
+<div class="highlight"><pre><span></span>    int i = start;
+
+    int j = end;
+    ElementType temp = lst[i];
+    if( start &gt;= end){ return; }
+
+    while(i &lt; j)
+    {
+            // while(a[j] &gt;= temp &amp;&amp; (i&lt;j) )
+            while(compare(lst[j], temp)&gt;=0 &amp;&amp; (i &lt; j))
+            {
+                    j--;
+            }
+            lst[i] = lst[j];
+            //while(a[i] &lt;= temp &amp;&amp; (i &lt; j))
+            while(compare(lst[i], temp)&lt;=0 &amp;&amp; (i &lt; j))
+            {
+                    i++;
+            }
+            lst[j]= lst[i];
+    }
+    lst[i] = temp;
+    quiksort(lst, start, i-1, compare);
+    quiksort(lst, j+1, end, compare);
+</pre></div>
+
+
+<p>}</p>
+<p -="-" _="
+" a="a" b_="b;
+" return="return">int compareInt(ElementType a, ElementType b)</p>
+<p>int main()
+{
+        // test quiksort</p>
+<div class="highlight"><pre><span></span>    int arr[8] = {6, 1, 5, 4, 8, 3, 7, 2};
+    int correct[8] = {1, 2 ,3 ,4 ,5 ,6, 7, 8};
+
+    int i = 0;
+
+    compare # cpr = compareInt;
+    quiksort(arr,0,7, cpr);
+
+    for(i=0;i&lt;8;i++)
+
+    {
+
+            if( arr[i] != correct[i])
+            {
+                    printf(&quot;quicksort error!\n&quot;);
+                    return 1;
+            };
+
+    }
+
+    printf(&quot;quicksort ok!&quot;);
+
+    return 0;
+</pre></div>
+
+
+<p>}</p>
+<h1>+END_SRC</h1>
+<h2>python实现与C实现比较</h2>
+<ol>
+<li>python实现非常简洁, 只有10行语句, 可读性非常强, 把快速排序的思维展现了出来</li>
+<li>C实现更底层, 空间效率和时间效率非常高, 除掉函数堆栈和一些排序索引之类的变量,
+只使用了一个辅助空间. 时间上每一次分割也只扫描一遍数据集.</li>
+</ol>
+<h1>希尔排序</h1>
+<h2>算法描述</h2>
+<p>先将整个待排元素序列分割成若干个子序列（由相隔某个“增量”的元素组成的）
+分别进行直接插入排序，然后依次缩减增量再进行排序，待整个序列中的元素
+基本有序（增量足够小）时，再对全体元素进行一次直接插入排序。</p>
+<h2>python实现</h2>
+<p>/shellsort.py/</p>
+<h1>+BEGIN_SRC python3 -n</h1>
+<h1>使用的增量序列为 Hibbard：{1, 3, ..., 2^e-1}</h1>
+<h1>e[0] = math.floor(math.log(length, 2))</h1>
+<h1>初始增量: h[0] = pow(2, e[0]) - 1</h1>
+<p>import math
+def shellsort(lst):
+    length = len(lst)
+    e = math.floor(math.log(length, 2))
+    while e &gt; 0:
+        h = pow(2, e) - 1
+        for i in range(h):
+            for j in range(i + h, length, h):
+                # 插入排序
+                k = j
+                while lst[k] &lt; lst[k-h] and k &gt; i:
+                     lst[k], lst[k-h] = lst[k-h], lst[k]
+                     k = k - h
+        e -= 1
+    return lst</p>
+<p>def test_shellsort():
+    # lst = [ 9, 4, 3, 10, 7, 13, 2]
+    lst = [9, 4, 3, 10, 7, 13, 2]
+    lst_copy = lst[:]
+    sorted_list = shellsort(lst)
+    if sorted_list == sorted(lst_copy):
+        print("test shellsort OK!")
+    else:
+        print("test shellsort failed")</p>
+<p>if <strong>name</strong> == "<strong>main</strong>":
+    test_shellsort()</p>
+<h1>+END_SRC</h1>
+<h2>算法分析</h2>
+<ol>
+<li>时间复杂度</li>
+</ol>
+<p>时间复杂的下界是<span class="math">\(O(n\log^2 n)\)</span>, 上界是<span class="math">\(O(n^2)\)</span>。</p>
+<ol>
+<li>空间复杂度</li>
+</ol>
+<p>O(1)</p>
+<ol>
+<li>
+<p>因为直接插入排序在元素基本有序的情况下（接近最好情况），效率是很高的，
+因此希尔排序在时间效率上比前两种方法有较大提高。</p>
+</li>
+<li>
+<p>对于Hibbard增量序列，复杂度为<span class="math">\(O(n^1.5)\)</span></p>
+</li>
+<li>
+<p>希尔排序适合规模中等，序列的有序情况不能预测的情形。</p>
+</li>
+</ol>
+<h1>TODO 堆排序</h1>
+<h1>TODO 基数排序</h1>
+<h1>参考资料</h1>
+<ol>
+<li>
+<p>[[程序设计基础  哈工大][http://www.icourse163.org/course/hit-56001?tid=60001#/info]]</p>
+</li>
+<li>
+<p>[[http://www.cricode.com/3212.html][8大排序算法图文讲解
+]]</p>
+</li>
+</ol>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <br/>
+            <br/>
+<nav class="pagination" role="navigation">
+    <ul>
+    </ul>
+</nav>            <br/>
+        </section>
+        <footer class="post-footer">
+<h2>评论 !</h2>
+
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="多种排序方法和python实现" data-title="多种排序方法和python实现" data-url="2015/07/duo-chong-pai-xu-fang-fa-he-pythonshi-xian.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"forin-xyz"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 分享 -->
+<div class="ds-share flat" data-thread-key="多种排序方法和python实现" data-title="多种排序方法和python实现" data-images="" data-content="<p>在计算机科学中,排序是一个非常重要的话题,也是计算算法中的基础,应用非常广泛。</p>" data-url="2015/07/duo-chong-pai-xu-fang-fa-he-pythonshi-xian.html">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      	
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+        </footer>
+    </article>
+</main>
+        <footer class="site-footer clearfix" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
+            <section class="copyright">
+                <a itemprop="url" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" class="tooltip" data-tooltip="CC BY-NC-SA" target="_blank">
+                CC Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+            </section>
+            <section class="poweredby">Proudly published with <a href="https://getpelican.org">Pelican</a></section>
+        </footer>
+    </div>
+    <script type="text/javascript" src="http://forin-xyz.github.io/output/theme/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="http://forin-xyz.github.io/output/theme/js/jquery.fitvids.min.js"></script>
+    <script type="text/javascript" src="http://forin-xyz.github.io/output/theme/js/index.min.js"></script>
+    <script>twemoji.parse(document, {"size":16});</script>
+</body>
+</html>
