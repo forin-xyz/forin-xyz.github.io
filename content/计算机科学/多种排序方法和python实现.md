@@ -20,17 +20,16 @@ Summary: 在计算机科学中,排序是一个非常重要的话题,也是计算
 
 ## 伪代码
 
-#+BEGIN_SRC
-input: Array a
+>input: Array a
+>
+>length = a.size()
+>for i = 0 -> length - 1:
+>    for j = i + 1 -> length:
+>        if a[i] > a[j]:
+>             swap(a[i], a[j])
+>
+>output: Array a
 
-length = a.size()
-for i = 0 -> length - 1:
-    for j = i + 1 -> length:
-        if a[i] > a[j]:
-             swap(a[i], a[j])
-
-output: Array a
-#+END_SRC
 
 ## 过程
 
@@ -38,39 +37,36 @@ output: Array a
 
 ## Python实现
 
-/swapsort.py/
-#+BEGIN_SRC python3 -n
-def swapsort(lst):
-    length = len(lst)
-    for i in range(0, length-1):
-        for j in range(i+1, length):
-            if lst[i] > lst[j]:
-                # swap lst[i], lst[j]
-                lst[i], lst[j] = lst[j], lst[i]
-    return lst
+[swapsort.py](http://forin-xyz.github.io/src/sorts/swapsort.py)
 
+    def swapsort(lst):
+        length = len(lst)
+        for i in range(0, length-1):
+            for j in range(i+1, length):
+                if lst[i] > lst[j]:
+                    # swap lst[i], lst[j]
+                    lst[i], lst[j] = lst[j], lst[i]
+                return lst
+                
+    def test_swapsort():
+        # lst = [ 9, 4, 3, 10, 7, 13, 2]
+        lst = [9, 4, 3, 10, 7, 13, 2]
+        lst_copy = lst[:]
+        sorted_list = swapsort(lst)
+        if sorted_list == sorted(lst_copy):
+            print("test swapsort OK!")
+        else:
+            print("test swapsort failed")
 
-def test_swapsort():
-    # lst = [ 9, 4, 3, 10, 7, 13, 2]
-    lst = [9, 4, 3, 10, 7, 13, 2]
-    lst_copy = lst[:]
-    sorted_list = swapsort(lst)
-    if sorted_list == sorted(lst_copy):
-        print("test swapsort OK!")
-    else:
-        print("test swapsort failed")
-
-
-if __name__ == "__main__":
-    test_swapsort()
-#+END_SRC
+    if __name__ == "__main__":
+        test_swapsort()
 
 ## 算法分析
 
 1. 时间复杂度
 
    外层循环有n-1趟，内层循环有n-i-1趟，每趟比较一次，交换若干次，故
-   $\sum\nolimits_{i=0}{n-2}{n-i-1} = \frac{n(n-1)}{2} = O(n^2)$。
+   $\sum\nolimits_{i=0}^{n-2}{n-i-1} = \frac{n(n-1)}{2} = O(n^2)$。
    n 是序列的大小。
 
 2. 空间复杂度
@@ -88,63 +84,62 @@ if __name__ == "__main__":
 
 ## python实现
 
-/selectsort.py/
-
-#+BEGIN_SRC python3 -n
-def imin(lst, start=0, end=None):
-    """
-    imin(lst, start, end) -> index.
-    Return the minimum value's index in list from start to end.
-
-    >>> lst = [3, 3, 2, 5]
-    >>> imin(lst)
-    2
-    """
-    if end is None:
-        end = len(lst)
-    idxmin = start
-    for i in range(start + 1, end):
-        if lst[i] < lst[idxmin]:
-            idxmin = i
-    return idxmin
+[selectsort.py](http://forin-xyz.github.io/src/sorts/selectsort.py)
 
 
-def selectsort(lst):
-    length = len(lst)
-    for i in range(0, length-1):
-        idxmin = imin(lst, i)
-        # lst[i] <-> lst[imin]
-        if idxmin > i:
-            lst[i], lst[idxmin] = lst[idxmin], lst[i]
-    return lst
-
-
-def test_imin():
-    lst = [2, 3, 1, 4]
-    if imin(lst) == 2:
-       print("test imin OK!")
-    else:
-       print("test imin failed!")
-
-
-def test_selectsort():
-    # lst = [ 9, 4, 3, 10, 7, 13, 2]
-    lst = [9, 4, 3, 10, 7, 13, 2]
-    lst_copy = lst[:]
-    sorted_list = selectsort(lst)
-    print(lst)
-    if sorted_list == sorted(lst_copy):
-        print("test selectsort OK!")
-    else:
-        print("test selectsort failed")
-
-
-
-if __name__ == "__main__":
-    test_imin()
-    test_selectsort()
-
-#+END_SRC
+    def imin(lst, start=0, end=None):
+        """
+        imin(lst, start, end) -> index.
+        Return the minimum value's index in list from start to end.
+    
+        >>> lst = [3, 3, 2, 5]
+        >>> imin(lst)
+        2
+        """
+        if end is None:
+            end = len(lst)
+        idxmin = start
+        for i in range(start + 1, end):
+            if lst[i] < lst[idxmin]:
+                idxmin = i
+            return idxmin
+    
+    
+    def selectsort(lst):
+        length = len(lst)
+        for i in range(0, length-1):
+            idxmin = imin(lst, i)
+            # lst[i] <-> lst[imin]
+            if idxmin > i:
+                lst[i], lst[idxmin] = lst[idxmin], lst[i]
+            return lst
+    
+    
+    def test_imin():
+        lst = [2, 3, 1, 4]
+        if imin(lst) == 2:
+        print("test imin OK!")
+        else:
+        print("test imin failed!")
+    
+    
+    def test_selectsort():
+        # lst = [ 9, 4, 3, 10, 7, 13, 2]
+        lst = [9, 4, 3, 10, 7, 13, 2]
+        lst_copy = lst[:]
+        sorted_list = selectsort(lst)
+        print(lst)
+        if sorted_list == sorted(lst_copy):
+            print("test selectsort OK!")
+        else:
+            print("test selectsort failed")
+    
+    
+    
+    if __name__ == "__main__":
+        test_imin()
+        test_selectsort()
+    
 
 ## 算法分析
 
@@ -168,38 +163,48 @@ if __name__ == "__main__":
 
 ## python实现
 
-/insertsort.py/
+[insertsort.py](http://forin-xyz.github.io/src/sorts/insertsort.py)
 
-#+BEGIN_SRC python3 -n
-def insertsort(lst):
-    length = len(lst)
-    for i in range(1, length):
-        j = i
-        tmp = lst[i]
-        while j and lst[j] < lst[j-1]:
-            lst[j] = lst[j-1]
-            j -= 1
-        if j<i: lst[j] = tmp;
-    return lst
+    def insertsort(lst):
+        length = len(lst)
+        for i in range(1, length):
+            j = i
+            tmp = lst[i]
+            while j and lst[j] < lst[j-1]:
+                lst[j] = lst[j-1]
+                j -= 1
+            if j<i: lst[j] = tmp
+        return lst
+    
+    
+    def test_insertsort():
+        # lst = [ 9, 4, 3, 10, 7, 13, 2]
+        lst = [9, 4, 3, 10, 7, 13, 2]
+        lst_copy = lst[:]
+        sorted_list = insertsort(lst)
+        if sorted_list == sorted(lst_copy):
+            print("test insertsort OK!")
+        else:
+            print("test insertsort failed")
+    
+    
+    if __name__ == "__main__":
+        test_insertsort()
 
+## 递归式python实现
 
-def test_insertsort():
-    # lst = [ 9, 4, 3, 10, 7, 13, 2]
-    lst = [9, 4, 3, 10, 7, 13, 2]
-    lst_copy = lst[:]
-    sorted_list = insertsort(lst)
-    if sorted_list == sorted(lst_copy):
-        print("test insertsort OK!")
-    else:
-        print("test insertsort failed")
-
-
-if __name__ == "__main__":
-    test_insertsort()
-#+END_SRC
-
-## 函数式python实现
-
+    def insertsort(lst, idx=0):
+        if idx >= len(lst) - 1:
+            return lst
+        tmp = lst[idx]
+        for i in range(idx, 0, -1):
+            if lst[i] < lst[i-1]:
+                lst[j] = lst[j-1]
+            else:
+                break
+        if i < idx: lst[i] = tmp
+        return insertsort(lst, idx+1)
+    
 ## 算法分析
 
 1. 时间复杂度
@@ -227,33 +232,33 @@ if __name__ == "__main__":
 
 ## python实现
 
-/bubblesort.py/
-
-#+BEGIN_SRC python3 -
-def bubblesort(lst):
-    length = len(lst)
-    if length < 2:
-       return lst
-    for i in range(0, length-1):
-        if lst[i] > lst[i+1]:
-            lst[i], lst[i+1] = lst[i+1], lst[i]
-    return bubblesort(lst[:-1]) + [lst[-1]]
+[bubblesort.py](http://forin-xyz.github.io/src/sorts/bubblesort.py)
 
 
-def test_bubblesort():
-    # lst = [ 9, 4, 3, 10, 0, 13, 2]
-    lst = [9, 4, 3, 10, 0, 13, 2]
-    lst_copy = lst[:]
-    sorted_list = bubblesort(lst)
-    if sorted_list == sorted(lst_copy):
-        print("test bubblesort OK!")
-    else:
-        print("test bubblesort failed")
+    def bubblesort(lst):
+        length = len(lst)
+        if length < 2:
+            return lst
+        for i in range(0, length-1):
+            if lst[i] > lst[i+1]:
+                lst[i], lst[i+1] = lst[i+1], lst[i]
+        return bubblesort(lst[:-1]) + [lst[-1]]
 
 
-if __name__ == "__main__":
-    test_bubblesort()
-#+END_SRC
+    def test_bubblesort():
+        # lst = [ 9, 4, 3, 10, 0, 13, 2]
+        lst = [9, 4, 3, 10, 0, 13, 2]
+        lst_copy = lst[:]
+        sorted_list = bubblesort(lst)
+        if sorted_list == sorted(lst_copy):
+            print("test bubblesort OK!")
+        else:
+            print("test bubblesort failed")
+    
+    
+    if __name__ == "__main__":
+        test_bubblesort()
+
 
 ## 算法分析
 
@@ -282,64 +287,63 @@ if __name__ == "__main__":
 
 ## python实现
 
-/mergesort.py/
+[mergesort.py](http://forin-xyz.github.io/src/sorts/mergesort.py)
 
-#+BEGIN_SRC python3 -
-def mergelist(lsta, lstb):
-    """mergelist(lsta, lstb) -> lst
-    Merge two sorted list lsta and lstb to a sorted list lst.
-    """
-    ret = []
-    lena, lenb = len(lsta), len(lstb)
-    i, j = 0, 0
-    while i < lena and j < lenb:
-        if lsta[i] <= lstb[j]:
-            ret.append(lsta[i])
-            i = i + 1
+
+    def mergelist(lsta, lstb):
+        """mergelist(lsta, lstb) -> lst
+        Merge two sorted list lsta and lstb to a sorted list lst.
+        """
+        ret = []
+        lena, lenb = len(lsta), len(lstb)
+        i, j = 0, 0
+        while i < lena and j < lenb:
+            if lsta[i] <= lstb[j]:
+                ret.append(lsta[i])
+                i = i + 1
+            else:
+                ret.append(lstb[j])
+                j = j + 1
+            if i == lena:
+                ret.extend(lstb[j:])
+            elif j == lenb:
+                ret.extend(lsta[i:])
+        return ret
+    
+    
+    def mergesort(lst):
+        length = len(lst)
+        if length < 2:
+            return lst
         else:
-            ret.append(lstb[j])
-            j = j + 1
-    if i == lena:
-        ret.extend(lstb[j:])
-    elif j == lenb:
-        ret.extend(lsta[i:])
-    return ret
-
-
-def mergesort(lst):
-    length = len(lst)
-    if length < 2:
-        return lst
-    else:
-        mid = length>>1
+            mid = length>>1
         return mergelist(mergesort(lst[:mid]), mergesort(lst[mid:]))
+    
+    
+    def test_mergesort():
+        # lst = [ 9, 4, 3, 10, 7, 13, 2]
+        lst = [9, 4, 3, 10, 7, 13, 2]
+        lst_copy = lst[:]
+        sorted_list = mergesort(lst)
+        if sorted_list == sorted(lst_copy):
+            print("test mergesort OK!")
+        else:
+            print("test mergesort failed")
+    
+    
+    def test_mergelist():
+        la = [ 2, 4, 5, 6]
+        lb = [1, 3, 4, 5]
+        if mergelist(la, lb) == [1, 2, 3, 4, 4, 5, 5, 6]:
+            print("test mergelist OK!")
+        else:
+            print("test mergelist Failed!")
 
-
-def test_mergesort():
-    # lst = [ 9, 4, 3, 10, 7, 13, 2]
-    lst = [9, 4, 3, 10, 7, 13, 2]
-    lst_copy = lst[:]
-    sorted_list = mergesort(lst)
-    if sorted_list == sorted(lst_copy):
-        print("test mergesort OK!")
-    else:
-        print("test mergesort failed")
-
-
-def test_mergelist():
-    la = [ 2, 4, 5, 6]
-    lb = [1, 3, 4, 5]
-    if mergelist(la, lb) == [1, 2, 3, 4, 4, 5, 5, 6]:
-        print("test mergelist OK!")
-    else:
-        print("test mergelist Failed!")
-
-
-
-if __name__ == "__main__":
-     test_mergelist()
-     test_mergesort()
-#+END_SRC
+    
+    
+    if __name__ == "__main__":
+        test_mergelist()
+        test_mergesort()
 
 ## 算法分析
 
@@ -364,53 +368,52 @@ if __name__ == "__main__":
 
 ## python实现
 
-/quicksort.py/
-
-#+BEGIN_SRC python3 -n
-def splitlist(lst):
-    pi, lst = lst[0], lst[1:]
-    gt = [v for v in lst if v > pi ]
-    lt = [v for v in lst if v < pi]
-    eq = [v for v in lst if v == pi]
-    return lt, [pi]+[eq], gt
+[quicksort.py](http://forin-xyz.github.io/src/sorts/quicksort.py)
 
 
-def quicksort(lst):
-    if len(lst) < 2:
-        return lst
-    lt, eq, gt = splitlist(lst)
-    return quicksort(lt) + eq + quicksort(gt)
-
-
-def test_splitlist():
-    """
-    >>> lst = [4, 2, 3, 1, 6, 7]
-    >>> splitlist(lst)
-    ([2, 3, 1], 4, [6, 7])
-    """
-    lst = [4, 2, 3, 1, 6, 7]
-    lt, pi, gt = splitlist(lst)
-    if lt == [2, 3, 1] and pi == 4 and gt == [6, 7]:
-        print("test splitlist OK!")
-    else:
-        print("test splitlist Failed!")
-
-
-def test_quicksort():
-    # lst = [ 9, 4, 3, 10, 7, 13, 2]
-    lst = [9, 4, 3, 10, 7, 13, 2]
-    lst_copy = lst[:]
-    sorted_list = quicksort(lst)
-    if sorted_list == sorted(lst_copy):
-        print("test quicksort OK!")
-    else:
-        print("test quicksort failed")
-
-
-if __name__ == "__main__":
-    test_splitlist()
-    test_quicksort()
-#+END_SRC
+    def splitlist(lst):
+        pi, lst = lst[0], lst[1:]
+        gt = [v for v in lst if v > pi ]
+        lt = [v for v in lst if v < pi]
+        eq = [v for v in lst if v == pi]
+        return lt, [pi]+[eq], gt
+    
+    
+    def quicksort(lst):
+        if len(lst) < 2:
+            return lst
+        lt, eq, gt = splitlist(lst)
+        return quicksort(lt) + eq + quicksort(gt)
+    
+    
+    def test_splitlist():
+        """
+        >>> lst = [4, 2, 3, 1, 6, 7]
+        >>> splitlist(lst)
+        ([2, 3, 1], 4, [6, 7])
+        """
+        lst = [4, 2, 3, 1, 6, 7]
+        lt, pi, gt = splitlist(lst)
+        if lt == [2, 3, 1] and pi == 4 and gt == [6, 7]:
+            print("test splitlist OK!")
+        else:
+            print("test splitlist Failed!")
+    
+    
+    def test_quicksort():
+        # lst = [ 9, 4, 3, 10, 7, 13, 2]
+        lst = [9, 4, 3, 10, 7, 13, 2]
+        lst_copy = lst[:]
+        sorted_list = quicksort(lst)
+        if sorted_list == sorted(lst_copy):
+            print("test quicksort OK!")
+        else:
+            print("test quicksort failed")
+    
+    
+    if __name__ == "__main__":
+        test_splitlist()
+        test_quicksort()
 
 ## 算法分析
 
@@ -449,24 +452,27 @@ if __name__ == "__main__":
 
 ## C语言实现
 
-#+BEGIN_SRC C
-#include <stdio.h>
 
-typedef int ElementType;
-typedef int compare(ElementType a, ElementType b);
-
-/# 有一个小瑕疵就是中轴位置在移动后还会参与下一次比较
-   例如一开始将start位置的值赋给了temp, 但是第二次从头比较的时候它又一次与自己进行了一次比较
-   但是更改过后总是让程序显得笨拙, 不知道哪位大侠有好的办法可以实现他
-   并且不会降低可读性#/
-/# 另一个可以改进的地方就是当end-start<=5的时候可以使用插入排序取代快排, 这样在数据集很小的时候
-   可以获得更高的性能
-#/
-void quiksort(ElementType lst[],int start,int end, compare compare)
-{
+    #include <stdio.h>
+    
+    typedef int ElementType;
+    typedef int compare(ElementType a, ElementType b);
+    
+    /*
+    有一个小瑕疵就是中轴位置在移动后还会参与下一次比较
+    例如一开始将start位置的值赋给了temp, 但是第二次从头比较的时候它又一次与自己进行了一次比较
+    但是更改过后总是让程序显得笨拙, 不知道哪位大侠有好的办法可以实现他
+    并且不会降低可读性
+    */
+    /*
+    另一个可以改进的地方就是当end-start<=5的时候可以使用插入排序取代快排, 这样在数据集很小的
+    时候 可以获得更高的性能
+    */
+    void quiksort(ElementType lst[],int start,int end, compare compare)
+    {
 
         int i = start;
-
+        
         int j = end;
         ElementType temp = lst[i];
         if( start >= end){ return; }
@@ -489,15 +495,15 @@ void quiksort(ElementType lst[],int start,int end, compare compare)
         lst[i] = temp;
         quiksort(lst, start, i-1, compare);
         quiksort(lst, j+1, end, compare);
-}
-
-int compareInt(ElementType a, ElementType b)
-{
+    }
+    
+    int compareInt(ElementType a, ElementType b)
+    {
         return a - b;
-}
+    }
 
-int main()
-{
+    int main()
+    {
         // test quiksort
 
         int arr[8] = {6, 1, 5, 4, 8, 3, 7, 2};
@@ -524,8 +530,7 @@ int main()
 
         return 0;
 
-}
-#+END_SRC
+    }
 
 ## python实现与C实现比较
 1. python实现非常简洁, 只有10行语句, 可读性非常强, 把快速排序的思维展现了出来
@@ -542,42 +547,41 @@ int main()
 
 ## python实现
 
-/shellsort.py/
+[shellsort.py](http://forin-xyz.github.io/src/sorts/shellsort.py)
 
-#+BEGIN_SRC python3 -n
-# 使用的增量序列为 Hibbard：{1, 3, ..., 2^e-1}
-# e[0] = math.floor(math.log(length, 2))
-# 初始增量: h[0] = pow(2, e[0]) - 1
 
-import math
-def shellsort(lst):
-    length = len(lst)
-    e = math.floor(math.log(length, 2))
-    while e > 0:
-        h = pow(2, e) - 1
-        for i in range(h):
-            for j in range(i + h, length, h):
-                # 插入排序
-                k = j
-                while lst[k] < lst[k-h] and k > i:
-                     lst[k], lst[k-h] = lst[k-h], lst[k]
-                     k = k - h
-        e -= 1
-    return lst
-
-def test_shellsort():
-    # lst = [ 9, 4, 3, 10, 7, 13, 2]
-    lst = [9, 4, 3, 10, 7, 13, 2]
-    lst_copy = lst[:]
-    sorted_list = shellsort(lst)
-    if sorted_list == sorted(lst_copy):
-        print("test shellsort OK!")
-    else:
-        print("test shellsort failed")
-
-if __name__ == "__main__":
-    test_shellsort()
-#+END_SRC
+    # 使用的增量序列为 Hibbard：{1, 3, ..., 2^e-1}
+    # e[0] = math.floor(math.log(length, 2))
+    # 初始增量: h[0] = pow(2, e[0]) - 1
+    
+    import math
+    def shellsort(lst):
+        length = len(lst)
+        e = math.floor(math.log(length, 2))
+        while e > 0:
+            h = pow(2, e) - 1
+            for i in range(h):
+                for j in range(i + h, length, h):
+                    # 插入排序
+                    k = j
+                    while lst[k] < lst[k-h] and k > i:
+                        lst[k], lst[k-h] = lst[k-h], lst[k]
+                        k = k - h
+            e -= 1
+        return lst
+    
+    def test_shellsort():
+        # lst = [ 9, 4, 3, 10, 7, 13, 2]
+        lst = [9, 4, 3, 10, 7, 13, 2]
+        lst_copy = lst[:]
+        sorted_list = shellsort(lst)
+        if sorted_list == sorted(lst_copy):
+            print("test shellsort OK!")
+        else:
+            print("test shellsort failed")
+    
+    if __name__ == "__main__":
+        test_shellsort()
 
 ## 算法分析
 1. 时间复杂度
@@ -595,14 +599,23 @@ if __name__ == "__main__":
 
 5. 希尔排序适合规模中等，序列的有序情况不能预测的情形。
 
-# TODO 堆排序
+# 堆排序
+
+## 算法描述
+
+堆排序（Heapsort）是指利用堆这种数据结构所设计的一种排序算法。堆积是一个近似完全二叉树的结构，并同时满足堆积的性质：即子结点的键值或索引总是小于（或者大于）它的父节点。
+
+## python实现
+
+## 算法分析
+
+堆排序的平均时间复杂度为$Ο(n\log{n})$
 
 # TODO 基数排序
 
 
 # 参考资料
 
-1. [[程序设计基础  哈工大][http://www.icourse163.org/course/hit-56001?tid=60001#/info]]
+1. [程序设计基础  哈工大](http://www.icourse163.org/course/hit-56001?tid=60001#/info)
 
-2. [[http://www.cricode.com/3212.html][8大排序算法图文讲解
-]]
+2. [8大排序算法图文讲解](http://www.cricode.com/3212.html)
