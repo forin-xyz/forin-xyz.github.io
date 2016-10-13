@@ -124,7 +124,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <section class="post-meta">
                 <span class="entry-author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
                     <span itemprop="name">forin-xyz</span></span>
-                <time class="post-date" itemprop="datePublished" datetime="2016YYY-20M-%DD">Friday, March 04, 2016</time>
+                <time class="post-date" itemprop="datePublished" datetime="2016YYY-20M-%DD">星期五, 三月 04, 2016</time>
 <nav role="navigation">
     <a class="newer-posts blink_me" href="http://forin-xyz.github.io/output">&larr; Back</a>
 </nav><br/>            </section>
@@ -142,13 +142,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li>
 <p>Series对象和它的index都含有一个<code>name</code>属性</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">s</span> <span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="kp">nan</span><span class="p">,</span> <span class="s1">&#39;456&#39;</span><span class="p">,</span> <span class="s1">&#39;xa&#39;</span><span class="p">])</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">s</span> <span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="kp">nan</span><span class="p">,</span> <span class="s">&#39;456&#39;</span><span class="p">,</span> <span class="s">&#39;xa&#39;</span><span class="p">])</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">s</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span> 
@@ -160,7 +160,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span class="mi">5</span>     <span class="n">xa</span>
 <span class="kp">dtype</span><span class="p">:</span> <span class="nb">object</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="kp">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;20150101&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="kp">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s">&#39;20150101&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="n">s2</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">16</span><span class="p">]:</span> 
@@ -176,7 +176,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span class="mi">2015</span><span class="o">-</span><span class="mo">01</span><span class="o">-</span><span class="mi">10</span>    <span class="mi">9</span>
 <span class="n">Freq</span><span class="p">:</span> <span class="n">D</span><span class="p">,</span> <span class="kp">dtype</span><span class="p">:</span> <span class="n">int32</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="n">s3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="s1">&#39;abcdefg&#39;</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))))</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="n">s3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="s">&#39;abcdefg&#39;</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">),</span> <span class="nb">ord</span><span class="p">(</span><span class="s">&#39;g&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))))</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="n">s3</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">18</span><span class="p">]:</span> 
@@ -189,9 +189,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span class="n">g</span>    <span class="mi">103</span>
 <span class="kp">dtype</span><span class="p">:</span> <span class="n">int64</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="n">s3</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ascii&#39;</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="n">s3</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;ascii&#39;</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">20</span><span class="p">]:</span> <span class="n">s3</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;symbo&#39;</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">20</span><span class="p">]:</span> <span class="n">s3</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;symbo&#39;</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">21</span><span class="p">]:</span> <span class="n">s3</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">21</span><span class="p">]:</span> 
@@ -211,7 +211,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ol>
 <h3>更新值, 修改值 或者 设置值 update, modify, set</h3>
 <p><code>s[key] = value</code> key -&gt; 对应的索引名</p>
-<div class="highlight"><pre><span></span>In [101]: s3
+<div class="highlight"><pre>In [101]: s3
 Out[101]: 
 symbo
 a         97
@@ -241,7 +241,7 @@ Name: ascii, dtype: int64
 
 <h3>频数统计, 计数, 按值出现的次数统计</h3>
 <p><code>s.value_counts()</code></p>
-<div class="highlight"><pre><span></span>In [158]: s0 = pd.Series(np.random.randint(0, 7, size=10))
+<div class="highlight"><pre>In [158]: s0 = pd.Series(np.random.randint(0, 7, size=10))
 
 In [159]: s0
 Out[159]: 
@@ -272,7 +272,7 @@ dtype: int64
 
 <h3>字符串方法</h3>
 <p><code>s.str.method_name()</code></p>
-<div class="highlight"><pre><span></span>In [166]: ss = pd.Series([&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;Aaba&#39;, &#39;Baca&#39;, np.nan, &#39;CABA&#39;, &#39;dog&#39;, &#39;cat&#39;])
+<div class="highlight"><pre>In [166]: ss = pd.Series([&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;Aaba&#39;, &#39;Baca&#39;, np.nan, &#39;CABA&#39;, &#39;dog&#39;, &#39;cat&#39;])
 
 In [168]: ss.str.lower()
 Out[168]: 
@@ -307,7 +307,7 @@ dtype: object
 </li>
 <li>
 <p>使用<strong>IPython</strong>的话<code>Tab</code>键可以自动补全方法或者属性</p>
-<div class="highlight"><pre><span></span>In [22]: data = {&#39;state&#39;:[&#39;Ohino&#39;,&#39;Ohino&#39;,&#39;Ohino&#39;,&#39;Nevada&#39;,&#39;Nevada&#39;],
+<div class="highlight"><pre>In [22]: data = {&#39;state&#39;:[&#39;Ohino&#39;,&#39;Ohino&#39;,&#39;Ohino&#39;,&#39;Nevada&#39;,&#39;Nevada&#39;],
         &#39;year&#39;:[2000,2001,2002,2001,2002],
         &#39;pop&#39;:[1.5,1.7,3.6,2.4,2.9]}
    ....:    ....: 
@@ -400,7 +400,7 @@ dtype: object
 </li>
 <li>
 <p>df.T 可以转置数据 transposing your data</p>
-<div class="highlight"><pre><span></span>In [43]: df
+<div class="highlight"><pre>In [43]: df
 Out[43]: 
    pop   state  year
 0  1.5   Ohino  2000
@@ -484,7 +484,7 @@ year    2000   2001   2002    2001    2002
 </li>
 <li>
 <p><code>sort_index(axis=0, ascending=True)</code>索引排序, axis=1, 排序columns, axis=0,排序index, ascending=False, 降序, 默认是升序</p>
-<div class="highlight"><pre><span></span>In [52]: df
+<div class="highlight"><pre>In [52]: df
 Out[52]: 
    pop   state  year
 0  1.5   Ohino  2000
@@ -511,7 +511,7 @@ Out[53]:
 </li>
 <li>
 <p><code>sort(columns, ascending=True)</code> 按值排序, columns=columns_name,可以接受一个值或者一个一维数据, ascending=False表示降序, 默认是升序</p>
-<div class="highlight"><pre><span></span>In [60]: df3
+<div class="highlight"><pre>In [60]: df3
 Out[60]: 
                    w         x         y         z
 2016-03-01  0.189541 -0.663132  1.143200  0.407860
@@ -567,7 +567,7 @@ Out[63]:
 <ol>
 <li>
 <p>直接使用列名(column name), 等价与df. <em>column_name_</em></p>
-<div class="highlight"><pre><span></span>In [64]: df3[&#39;w&#39;]
+<div class="highlight"><pre>In [64]: df3[&#39;w&#39;]
 Out[64]: 
 2016-03-01    0.189541
 2016-03-02   -2.268193
@@ -582,7 +582,7 @@ Freq: D, Name: w, dtype: float64
 </li>
 <li>
 <p>使用[], 可以对行(rows)进行切片, 集行选择</p>
-<div class="highlight"><pre><span></span>In [67]: df3[0:3]
+<div class="highlight"><pre>In [67]: df3[0:3]
 Out[67]: 
                    w         x         y         z
 2016-03-01  0.189541 -0.663132  1.143200  0.407860
@@ -606,7 +606,7 @@ Out[68]:
 </li>
 <li>
 <p><code>df.loc[df.index[i]]</code> 获得一个横截面, 也就是某一行(row)的数据, 获取某一行的数据</p>
-<div class="highlight"><pre><span></span>In [69]: df3.loc[df3.index[2]]
+<div class="highlight"><pre>In [69]: df3.loc[df3.index[2]]
 Out[69]: 
 w   -0.460397
 x   -0.099081
@@ -619,7 +619,7 @@ Name: 2016-03-03 00:00:00, dtype: float6
 </li>
 <li>
 <p><code>df.loc[:, ['A', 'B']]</code> 获取多列(columns)数据</p>
-<div class="highlight"><pre><span></span>In [70]: df3.loc[:, [&#39;x&#39;, &#39;z&#39;]]
+<div class="highlight"><pre>In [70]: df3.loc[:, [&#39;x&#39;, &#39;z&#39;]]
 Out[70]: 
                    x         z
 2016-03-01 -0.663132  0.407860
@@ -636,7 +636,7 @@ Out[70]:
 </li>
 <li>
 <p><code>df.loc[df.index[1]:df.index[3], ['w', 'x']]</code> 获取多行多列数据</p>
-<div class="highlight"><pre><span></span>In [73]: df3.loc[&#39;20160301&#39;:&#39;20160303&#39;, [&#39;w&#39;, &#39;x&#39;]]
+<div class="highlight"><pre>In [73]: df3.loc[&#39;20160301&#39;:&#39;20160303&#39;, [&#39;w&#39;, &#39;x&#39;]]
 Out[73]: 
                    w         x
 2016-03-01  0.189541 -0.663132
@@ -650,7 +650,7 @@ Out[73]:
 </li>
 <li>
 <p><code>df.loc[df.index[i], ['a', 'b']]</code> 获取指定行的多列数据, 放回的Series的name属性=df.index[i]</p>
-<div class="highlight"><pre><span></span>In [78]: df3.loc[df3.index[0], [&#39;x&#39;, &#39;y&#39;]]
+<div class="highlight"><pre>In [78]: df3.loc[df3.index[0], [&#39;x&#39;, &#39;y&#39;]]
 Out[78]: 
 x   -0.663132
 y    1.143200
@@ -661,7 +661,7 @@ Name: 2016-03-01 00:00:00, dtype: float64
 </li>
 <li>
 <p><code>df.loc[df.index[i], 'a']</code> or <code>df.at[df.index[i], 'a']</code> 获得对应行对应列的数据, 返回值为标量</p>
-<div class="highlight"><pre><span></span>In [80]: df3.loc[&#39;20160301&#39;, &#39;x&#39;]
+<div class="highlight"><pre>In [80]: df3.loc[&#39;20160301&#39;, &#39;x&#39;]
 Out[80]: -0.6631320997645348
 
 In [82]: df3.at[df3.index[0], &#39;x&#39;]
@@ -673,7 +673,7 @@ Out[82]: -0.6631320997645348
 <li>
 <p><code>df.iloc[]</code> 按位置选择, 相当于将<code>df.loc[]</code>值换成了位置索引, 唯一的区别在于使用<code>:</code>符号不包含后值, 在<code>df.loc[]</code>中,索引值使用<code>:</code>是包含后值的.
     <code>df.iat[ix, cx]</code>等价于 <code>df.iloc[ix, cx]</code></p>
-<div class="highlight"><pre><span></span># 等价于 df3.iloc[df3.index[1]], 下面类同
+<div class="highlight"><pre># 等价于 df3.iloc[df3.index[1]], 下面类同
 In [85]: df3.iloc[1]
 Out[85]: 
 w   -2.268193
@@ -725,7 +725,7 @@ Out[92]: -0.30557047056654313
 <ul>
 <li>
 <p><code>df[df['A'] &gt; 0]</code> 对某一列进行过滤</p>
-<div class="highlight"><pre><span></span>In [94]: df3[df3[&#39;x&#39;] &gt; 0]
+<div class="highlight"><pre>In [94]: df3[df3[&#39;x&#39;] &gt; 0]
 Out[94]: 
                    w         x         y         z
 2016-03-02 -2.268193  0.804897  0.371822  0.218351
@@ -739,7 +739,7 @@ Out[94]:
 </li>
 <li>
 <p><code>df[df &gt; 0]</code> 把不满足条件的数据转换为NaN</p>
-<div class="highlight"><pre><span></span>In [95]: df3[df3 &gt; 0]
+<div class="highlight"><pre>In [95]: df3[df3 &gt; 0]
 Out[95]: 
                    w         x         y         z
 2016-03-01  0.189541       NaN  1.143200  0.407860
@@ -756,7 +756,7 @@ Out[95]:
 </li>
 <li>
 <p><code>df[df['A'].isin(['1', '2', '3'])]</code> 过滤, 选取对应列(column)中出现在列表中的数据</p>
-<div class="highlight"><pre><span></span>In [96]: df4 = df3.copy()
+<div class="highlight"><pre>In [96]: df4 = df3.copy()
 
 In [98]: df4[&#39;v&#39;] = [&#39;one&#39;, &#39;two&#39;, &#39;three&#39;, &#39;four&#39;, &#39;five&#39;, &#39;six&#39;]
 
@@ -803,7 +803,7 @@ Out[100]:
 </li>
 <li>
 <p>A where operation with setting, 通过布林表达式来修改值, 过滤并修改之</p>
-<div class="highlight"><pre><span></span># 将所有指都转换为非正数
+<div class="highlight"><pre># 将所有指都转换为非正数
 In [104]: df3[df3 &gt; 0] = -df3
 
 In [105]: df3
@@ -826,7 +826,7 @@ Out[105]:
 <ol>
 <li>
 <p><code>df.dropna(how='any', subset=None)</code> 舍弃丢失的NaN值, how可以组织<code>any</code> or <code>all</code>, <code>subset</code>选择需要过滤的列(column)的列表</p>
-<div class="highlight"><pre><span></span>In [107]: df3 = df3 + 1
+<div class="highlight"><pre>In [107]: df3 = df3 + 1
 
 In [109]: df5 = df3[df3 &gt; 0]
 
@@ -863,7 +863,7 @@ Out[114]:
 </li>
 <li>
 <p><code>df.fillna(value=5)</code> 将NaN替换成指定的值, value可以是标量scalar, 或者字典, Series等键值对</p>
-<div class="highlight"><pre><span></span>In [120]: df5.fillna(value=5)
+<div class="highlight"><pre>In [120]: df5.fillna(value=5)
 Out[120]: 
                    w         x         y         z
 2016-03-01  0.810459  0.336868  5.000000  0.592140
@@ -892,7 +892,7 @@ Out[123]:
 </li>
 <li>
 <p><code>pd.isnull(df)</code> 获得哪些值是<code>nan</code></p>
-<div class="highlight"><pre><span></span>In [125]: df5.isnull()
+<div class="highlight"><pre>In [125]: df5.isnull()
 Out[125]: 
                 w      x      y      z
 2016-03-01  False  False   True  False
@@ -914,7 +914,7 @@ Out[125]:
 <ol>
 <li>
 <p>列均值<code>df.mean()</code> columns mean</p>
-<div class="highlight"><pre><span></span>In [126]: df5.mean()
+<div class="highlight"><pre>In [126]: df5.mean()
 Out[126]: 
 w    0.783518
 x    0.527967
@@ -927,7 +927,7 @@ dtype: float64
 </li>
 <li>
 <p>行均值<code>df.mean(1)</code> rows mean</p>
-<div class="highlight"><pre><span></span>In [127]: df5.mean(1)
+<div class="highlight"><pre>In [127]: df5.mean(1)
 Out[127]: 
 2016-03-01    0.579822
 2016-03-02    0.534977
@@ -979,7 +979,7 @@ Out[137]:
 <ol>
 <li>
 <p>累积和 <code>df.apply(np.cumsum)</code>, 不同于直接调用<code>np.cumsum(arr)</code>的地方是这里会忽略掉NaN值</p>
-<div class="highlight"><pre><span></span>In [138]: df5
+<div class="highlight"><pre>In [138]: df5
 Out[138]: 
                    w         x         y         z
 2016-03-01  0.810459  0.336868       NaN  0.592140
@@ -1008,7 +1008,7 @@ Out[140]:
 </li>
 <li>
 <p><code>lambda</code>函数, 匿名函数的参数对于对应的列(column)Series</p>
-<div class="highlight"><pre><span></span>In [141]: df5.apply(lambda x: x.max() - x.min())
+<div class="highlight"><pre>In [141]: df5.apply(lambda x: x.max() - x.min())
 Out[141]: 
 w    0.340510
 x    0.711808
@@ -1030,7 +1030,7 @@ dtype: float64
 <h3>Merge, 归并, 合并</h3>
 <h4>连接, concat</h4>
 <p><code>pd.concat(pandas_object_list)</code> 把元素连接在一起</p>
-<div class="highlight"><pre><span></span>In [171]: dfm = pd.DataFrame(np.random.randint(1, 10, size=(10, 4)))
+<div class="highlight"><pre>In [171]: dfm = pd.DataFrame(np.random.randint(1, 10, size=(10, 4)))
 
 In [172]: dfm
 Out[172]: 
@@ -1077,7 +1077,7 @@ Out[176]:
 
 <h4>join, 联合, 多表合并</h4>
 <p><code>pd.merge(df1, df2, on='key')</code></p>
-<div class="highlight"><pre><span></span>In [177]: left = pd.DataFrame({&#39;key&#39;: [&#39;foo&#39;, &#39;foo&#39;], &#39;lval&#39;: [1, 2]})
+<div class="highlight"><pre>In [177]: left = pd.DataFrame({&#39;key&#39;: [&#39;foo&#39;, &#39;foo&#39;], &#39;lval&#39;: [1, 2]})
 
 In [178]: right = pd.DataFrame({&#39;key&#39;: [&#39;foo&#39;, &#39;foo&#39;], &#39;rval&#39;: [4, 5]})
 
@@ -1124,7 +1124,7 @@ Out[183]:
 <h4>添加, Append</h4>
 <p><code>df.append(series-like, ignore_index=True)</code></p>
 <p><code>df.append({index: series-like.values})</code></p>
-<div class="highlight"><pre><span></span>In [184]: dfm
+<div class="highlight"><pre>In [184]: dfm
 Out[184]: 
    0  1  2  3
 0  7  1  3  4
@@ -1178,7 +1178,7 @@ Out[187]:
 
 <h3>Grouping, 分组联合, 合并</h3>
 <ol>
-<li><code>df.groupby(columns)</code><div class="highlight"><pre><span></span>In [188]:  dfg = pd.DataFrame({&#39;A&#39; : [&#39;foo&#39;, &#39;bar&#39;, &#39;foo&#39;, &#39;bar&#39;,
+<li><code>df.groupby(columns)</code><div class="highlight"><pre>In [188]:  dfg = pd.DataFrame({&#39;A&#39; : [&#39;foo&#39;, &#39;bar&#39;, &#39;foo&#39;, &#39;bar&#39;,
    ....:                           &#39;foo&#39;, &#39;bar&#39;, &#39;foo&#39;, &#39;foo&#39;],
    ....:                    &#39;B&#39; : [&#39;one&#39;, &#39;one&#39;, &#39;two&#39;, &#39;three&#39;,
    ....:                           &#39;two&#39;, &#39;two&#39;, &#39;one&#39;, &#39;three&#39;],
@@ -1299,7 +1299,7 @@ Out[201]: pandas.core.series.Series</p>
 </li>
 <li>
 <p><code>s.unstack()</code> 将Series默认按照最后一个level进行解栈,转换为DataFrame格式</p>
-<div class="highlight"><pre><span></span>In [202]: stacked.unstack()
+<div class="highlight"><pre>In [202]: stacked.unstack()
 Out[202]: 
                      A         B
 first second                    
@@ -1346,7 +1346,7 @@ qux   A -0.799181  0.111125
 </ol>
 <h3>数据透视表 Pivot Tables</h3>
 <p><code>pd.pivot_table(df, values='D', rows=['A', 'B'], cols=['C'])</code> rows使用哪几列的数据作为行(row)索引(index), cols表示使用哪几列的数据作为列(columns)索引(columns), values表是取哪一列的数据作为统计数据.</p>
-<div class="highlight"><pre><span></span>In [207]: dfp = pd.DataFrame({&#39;A&#39; : [&#39;one&#39;, &#39;one&#39;, &#39;two&#39;, &#39;three&#39;] * 3,
+<div class="highlight"><pre>In [207]: dfp = pd.DataFrame({&#39;A&#39; : [&#39;one&#39;, &#39;one&#39;, &#39;two&#39;, &#39;three&#39;] * 3,
    .....:                    &#39;B&#39; : [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;] * 4,
    .....:                    &#39;C&#39; : [&#39;foo&#39;, &#39;foo&#39;, &#39;foo&#39;, &#39;bar&#39;, &#39;bar&#39;, &#39;bar&#39;] * 2,
    .....:                    &#39;D&#39; : np.random.randn(12),

@@ -124,7 +124,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <section class="post-meta">
                 <span class="entry-author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
                     <span itemprop="name">forin-xyz</span></span>
-                <time class="post-date" itemprop="datePublished" datetime="2016YYY-00M-%DD">Wednesday, May 11, 2016</time>
+                <time class="post-date" itemprop="datePublished" datetime="2016YYY-00M-%DD">星期三, 五月 11, 2016</time>
 <nav role="navigation">
     <a class="newer-posts blink_me" href="http://forin-xyz.github.io/output">&larr; Back</a>
 </nav><br/>            </section>
@@ -133,7 +133,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <hr />
 <h2>模拟退火算法认识</h2>
 <p>爬山算法也是一个用来求解最优化问题的算法，每次都向着当前上升最快的方向往上爬，但是初始化不同可能会得到不同的局部最优值，模拟退火算法就可能跳出这种局部最优解的限制。模拟退火算法是模拟热力学系统中的退火过程。在退火过程中是将目标函数作为能量函数。大致过程如下</p>
-<div class="highlight"><pre><span></span>初始高温 =&gt; 温度缓慢下降=&gt; 终止在低温 （这时能量函数达到最小，目标函数最小）
+<div class="highlight"><pre>初始高温 =&gt; 温度缓慢下降=&gt; 终止在低温 （这时能量函数达到最小，目标函数最小）
 </pre></div>
 
 
@@ -149,7 +149,7 @@ if <span class="math">\(J(y_{i+1}) \leq J(y_i)\)</span>, 即移动后得到更�
 </p>
 <div class="math">$$P(dE) = \exp(\frac{-dE}{kT})$$</div>
 <p><a href="https://github.com/forin-xyz/statistical-learning-method/blob/master/simulated_anneal.py" title="github">模拟退火算法</a></p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">math</span>
 
 <span class="n">_exp</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span>
 
@@ -159,7 +159,7 @@ if <span class="math">\(J(y_{i+1}) \leq J(y_i)\)</span>, 即移动后得到更�
 
 <span class="n">_random</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span>
 
-<span class="c1"># 模拟退火算法</span>
+<span class="c"># 模拟退火算法</span>
 <span class="k">def</span> <span class="nf">simulated_anneal</span><span class="p">(</span><span class="n">J</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">get_next</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.98</span><span class="p">,</span> <span class="n">T_min</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    J: 目标函数</span>
@@ -172,26 +172,26 @@ if <span class="math">\(J(y_{i+1}) \leq J(y_i)\)</span>, 即移动后得到更�
     <span class="n">J_pre</span> <span class="o">=</span> <span class="n">J</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
     <span class="n">curp</span> <span class="o">=</span> <span class="n">p</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">T</span>
-    <span class="c1"># J_min 和 curp是保存临时最优解的地方</span>
+    <span class="c"># J_min 和 curp是保存临时最优解的地方</span>
     <span class="n">J_min</span> <span class="o">=</span> <span class="n">J_pre</span>
     <span class="n">minp</span> <span class="o">=</span> <span class="n">curp</span>
     <span class="k">while</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="n">T_min</span><span class="p">:</span>
         <span class="n">newp</span> <span class="o">=</span> <span class="n">get_next</span><span class="p">(</span><span class="n">curp</span><span class="p">)</span>
         <span class="n">J_new</span> <span class="o">=</span> <span class="n">J</span><span class="p">(</span><span class="n">newp</span><span class="p">)</span>
         <span class="n">dE</span> <span class="o">=</span> <span class="n">J_new</span> <span class="o">-</span> <span class="n">J_pre</span>
-        <span class="k">if</span> <span class="n">dE</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># 得到更优解, 更新之</span>
+        <span class="k">if</span> <span class="n">dE</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span> <span class="c"># 得到更优解, 更新之</span>
             <span class="n">curp</span> <span class="o">=</span> <span class="n">newp</span>
             <span class="n">J_pre</span> <span class="o">=</span> <span class="n">J_new</span>
             <span class="k">if</span> <span class="n">J_new</span> <span class="o">&lt;</span> <span class="n">J_min</span><span class="p">:</span>
                 <span class="n">J_min</span> <span class="o">=</span> <span class="n">J_new</span>
                 <span class="n">minp</span> <span class="o">=</span> <span class="n">curp</span>
-        <span class="k">elif</span> <span class="p">(</span><span class="n">_exp</span><span class="p">(</span><span class="o">-</span><span class="n">dE</span><span class="o">/</span><span class="n">t</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">_random</span><span class="p">()):</span><span class="c1"># 以一定概率新的搜索</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">_exp</span><span class="p">(</span><span class="o">-</span><span class="n">dE</span><span class="o">/</span><span class="n">t</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">_random</span><span class="p">()):</span><span class="c"># 以一定概率新的搜索</span>
             <span class="n">curp</span> <span class="o">=</span> <span class="n">newp</span>
             <span class="n">J_pre</span> <span class="o">=</span> <span class="n">J_new</span>
         <span class="n">t</span> <span class="o">*=</span> <span class="n">delta</span>
     <span class="k">return</span> <span class="n">J_min</span><span class="p">,</span> <span class="n">minp</span>
 
-<span class="c1"># TSP问题的求解</span>
+<span class="c"># TSP问题的求解</span>
 
 <span class="k">class</span> <span class="nc">Path</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -208,7 +208,7 @@ if <span class="math">\(J(y_{i+1}) \leq J(y_i)\)</span>, 即移动后得到更�
 
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 
-<span class="n">City</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;City&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">])</span>
+<span class="n">City</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">&#39;City&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;i&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">])</span>
 
 <span class="k">def</span> <span class="nf">dist</span><span class="p">(</span><span class="n">pa</span><span class="p">,</span> <span class="n">pb</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">_sqrt</span><span class="p">((</span><span class="n">pa</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">pb</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">pb</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
@@ -220,18 +220,18 @@ if <span class="math">\(J(y_{i+1}) \leq J(y_i)\)</span>, 即移动后得到更�
     <span class="k">while</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">:</span>
          <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">_random</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span>
          <span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">_random</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="c1"># swap, 也是用随机方法产生新的路径</span>
+    <span class="c"># swap, 也是用随机方法产生新的路径</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span> <span class="k">else</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
     <span class="n">nxtpth</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">City</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
     <span class="n">nxtpth</span><span class="p">[:</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">pth</span><span class="p">[:</span><span class="n">x</span><span class="p">]</span>
-    <span class="c1"># nxtpth[x], nxtpth[y] = pth[y], pth[x]</span>
+    <span class="c"># nxtpth[x], nxtpth[y] = pth[y], pth[x]</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">nxtpth</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">pth</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">-</span><span class="n">t</span><span class="p">]</span>
     <span class="n">nxtpth</span><span class="p">[</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">pth</span><span class="p">[</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
     <span class="k">return</span> <span class="n">nxtpth</span>
-    <span class="c1">#for t in range(x, (x+y+1)&gt;&gt;1):</span>
-    <span class="c1">#    pth[t], pth[x+y-t] = pth[x+y-t], pth[t]</span>
-    <span class="c1">#return pth</span>
+    <span class="c">#for t in range(x, (x+y+1)&gt;&gt;1):</span>
+    <span class="c">#    pth[t], pth[x+y-t] = pth[x+y-t], pth[t]</span>
+    <span class="c">#return pth</span>
 
 <span class="k">def</span> <span class="nf">TSP</span><span class="p">(</span><span class="n">pth</span><span class="p">):</span>
     <span class="n">ipth</span> <span class="o">=</span> <span class="n">pth</span>
@@ -246,7 +246,7 @@ if <span class="math">\(J(y_{i+1}) \leq J(y_i)\)</span>, 即移动后得到更�
     <span class="k">print</span><span class="p">(</span><span class="n">pt_path</span><span class="o">.</span><span class="n">length</span><span class="p">,</span> <span class="n">ml</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">pt_path</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">test_JSP</span><span class="p">()</span>
 </pre></div>
 

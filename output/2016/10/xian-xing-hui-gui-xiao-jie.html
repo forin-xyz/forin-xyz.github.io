@@ -120,30 +120,176 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <main id="content" class="content" role="main">
     <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting" itemprop="blogPost">
         <header class="post-header">
-            <h1 class="post-title" itemprop="headline">《统计学习方法》读书笔记6-EM算法与高斯混合模型,含python源码</h1>
+            <h1 class="post-title" itemprop="headline">机器学习之线性模型</h1>
             <section class="post-meta">
                 <span class="entry-author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
                     <span itemprop="name">forin-xyz</span></span>
-                <time class="post-date" itemprop="datePublished" datetime="2016YYY-00M-%DD">星期一, 二月 22, 2016</time>
+                <time class="post-date" itemprop="datePublished" datetime="2016YYY-08M-%DD">星期三, 十月 12, 2016</time>
 <nav role="navigation">
     <a class="newer-posts blink_me" href="http://forin-xyz.github.io/output">&larr; Back</a>
 </nav><br/>            </section>
         </header>
         <section class="post-content">
-            <h2>EM算法</h2>
-<h2>EM算法的应用--高斯混合模型</h2>
-<h2>EM算法的推广</h2>
-<h2>中英文对照表</h2>
-<p>期望</p>
-<p>极大</p>
-<p>隐变量</p>
-<p>观测变量</p>
-<p>潜在变量</p>
-<p>完全数据</p>
-<p>不完全数据</p>
-<p>高斯混合模型</p>
-<p>极大-极大算法</p>
-<p>广义期望极大算法</p>
+            <h2>Abastract</h2>
+<p>线性模型，故名司仪，就是预测值可以表达成特征的线性组合的模型。</p>
+<p>即
+</p>
+<div class="math">$$
+\widehat{y} = \mathbf{w}^{T} x + b
+$$</div>
+<h2>最小二乘法</h2>
+<div class="math">$$
+loss = \sum_{i=0}^{N}(\hat{y} - y)^2
+$$</div>
+<p>
+最小化loss可以得到唯一解,这就叫做最小二乘法。
+相当于认为模型的预测值和实际值的残差满足正态分布。
+</p>
+<div class="math">$$
+P(m|D) = \frac{P(m, D)}{P(D)} \varpropto P(m, D) = P(D|m)P(m)
+$$</div>
+<p>
+如果模型m是均匀分布,模型产生的数据残差满足正态分布的化,对上式进行求对数,取最大值就等价于损失函数求最小值。</p>
+<h2>岭回归　Ridge Regression</h2>
+<p>如果模型不是均匀分布的,那么我们就要在损失函数上增加一个惩罚项,代表贝叶斯公式里面的P(m),这也就是奥卡姆剃刀的原理，也就是越简单的模型他的先验概率越大。</p>
+<div class="math">$$
+loss = \sum_{i=0}^{N}(\hat{y} - y)^2 + \lambda{\lVert \mathbf{w} \rVert}^2
+$$</div>
+<p>
+最小二乘法是一种无偏估计,它容易产生过拟合,且在样本各数小于特征各数时,最小二乘法得不到有意义的结果,这时候就是岭回归发挥作用的时候了。</p>
+<h2>分位数回归 Quantile Regression</h2>
+<p>最小二乘法关注的是平均值,假定的是残差满足正态分布,分位数回归关注的是分位数,而且可以求出一系列的曲线,通过设定不同的分位数来观察整个数据的分布情况，它也就不要正态同分布的假设了。</p>
+<div class="math">$$
+loss = \sum_{i=0}^N{\rho_{\tau}
+}{(\widehat{y} - y)}
+$$</div>
+<p>
+其中
+</p>
+<div class="math">$$
+\rho_{\tau}(u)　＝　u(I(u \gt 0) - \tau)
+$$</div>
+<div class="math">$$
+0 \lt \tau \lt 1
+$$</div>
+<h2>泊松回归　Possion Regression</h2>
+<p>泊松回归是对响应变量是整数的回归模型,例如网页的点击次数,一个月下雨的天数,德国队和巴西队比赛结果会是几比几等。</p>
+<div class="math">$$
+loss = \sum{(\widehat{y}_i　+ \log(y_i!) - y_i\log{\widehat{y}_i})}
+$$</div>
+<p>泊松分布
+</p>
+<div class="math">$$
+Possion(y|\lambda) = \frac{{\lambda}^y{e^{-\lambda}}}{y!}
+$$</div>
+<p>
+假设
+</p>
+<div class="math">$${\lambda} = \mathbf{w}^T x +b $$</div>
+<p>
+或者
+</p>
+<div class="math">$$
+\log{\lambda} = \mathbf{w}^T x +b
+$$</div>
+<p>
+最后使用均值估计Y的预测值,也就是
+</p>
+<div class="math">$$
+\widehat{y} = var(\lambda) = \lambda
+$$</div>
+<p>
+然后使用MLE即可以得到上述的损失函数。</p>
+<p>泊松部分可以用来计算用户的CTR也就是
+</p>
+<div class="math">$$
+CTR = \frac{\lambda_{click}+\alpha}{\lambda_{view}+\beta}
+$$</div>
+<p>
+其中alpha, beta表示先验统计,用于平滑曲线的。</p>
+<h2>Logistic Regression</h2>
+<p>逻辑回归也是一种广义线性模型,使用于分类等判断是或者否的问题。
+</p>
+<div class="math">$$
+P(y=1|\mathbf{w},b) = \frac{1}{1+e^{-\mathbf{w}^Tx - b}} 
+$$</div>
+<p>
+然后使用交叉熵或者极大似然估计可以得到他的函数
+</p>
+<div class="math">$$
+loss = -\frac{1}{N}\sum_{i=0}^N(y\log{(\widehat{y}_i)} - (1-y_i)\log{(1-\widehat{y}_i)})
+$$</div>
+<h2>Softmax Regression</h2>
+<p>Softmax Regression属于逻辑回归的多类推广
+</p>
+<div class="math">$$
+P(y|m) =  \frac{e^{\mathbf{W}^Tx} + b}{Z}
+$$</div>
+<p>
+其中Z是规范化因子,保证概率和为1.</p>
+<h2>线性回归用在哪</h2>
+<p>深度学习模型比较适用于确定性事件,即一只猫的照片不可能变成一个人的照片,只要人类去标记,那就由0.99以上的可能可以标记出来。
+决策树是一个很好的模型,但是如果数据中存在极多的噪音的时候,决策树就会陷入无厘头的左右摇摆上。
+而线性模型就非常适合与上述的各种情况,可以对一个不可测的事件进行一定程度上的预测，又可以很好的适用于大量噪音存在的情况。</p>
+<p>而且深度学习的激活函数现在也普遍使用relu和maxout这样的激活函数取代过去的sigmoid,tanh这样的非线性函数,最终的输出层,深度学习也多考虑使用sigmoid和softmax这样的广义线性模型。
+可以说线性模型是机器学习的基础，特别适合于不确定性比较强的场合。</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             <br/>
             <br/>
 <nav class="pagination" role="navigation">
@@ -155,7 +301,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2>评论 !</h2>
 
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="《统计学习方法》读书笔记6-EM算法与高斯混合模型,含python源码" data-title="《统计学习方法》读书笔记6-EM算法与高斯混合模型,含python源码" data-url="2016/02/du-shu-bi-ji-6-emsuan-fa-yu-gao-si-hun-he-mo-xing.html"></div>
+	<div class="ds-thread" data-thread-key="机器学习之线性模型" data-title="机器学习之线性模型" data-url="2016/10/xian-xing-hui-gui-xiao-jie.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -172,7 +318,7 @@ var duoshuoQuery = {short_name:"forin-xyz"};
 <!-- 多说公共JS代码 end -->
 
 <!-- 分享 -->
-<div class="ds-share flat" data-thread-key="《统计学习方法》读书笔记6-EM算法与高斯混合模型,含python源码" data-title="《统计学习方法》读书笔记6-EM算法与高斯混合模型,含python源码" data-images="" data-content="<p>EM算法是一种迭代算法, 用于含有隐变量的概率模型参数的极大似然估计,或极大后验概率估计.EM算法的每次迭代由两步组成:E步求期望, M步求极大.</p>" data-url="2016/02/du-shu-bi-ji-6-emsuan-fa-yu-gao-si-hun-he-mo-xing.html">
+<div class="ds-share flat" data-thread-key="机器学习之线性模型" data-title="机器学习之线性模型" data-images="" data-content="<p>线性模型的机器学习的基础。</p>" data-url="2016/10/xian-xing-hui-gui-xiao-jie.html">
     <div class="ds-share-inline">
       <ul  class="ds-share-icons-16">
       	
