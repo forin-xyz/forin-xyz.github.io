@@ -100,7 +100,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a class="subscribe-button icon-feed" href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2FElBlogDeAbr4xas'  target='blank'>Subscribe</a>
 </nav>
 <span class="nav-cover"></span>    <div class="site-wrapper">
-        <header class="main-header " style="background-image: url(http://forin-xyz.github.io/output/theme/images/banner-bg.jpg)" itemscope itemtype="http://schema.org/WPHeader">
+        <header class="main-header post-head" style="background-image: url(http://forin-xyz.github.io/output/theme/images/bear.jpg)" itemscope itemtype="http://schema.org/WPHeader">
             <nav class="main-nav overlay clearfix">
                 <a class="menu-button" href="#">
                     <span class="burger">&#9776;</span>
@@ -117,47 +117,162 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <span class="hidden">Scroll Down</span>
             </a>
         </header>
-<main id="content" class="content" role="main" itemprop="mainContentOfPage" itemscope="" itemtype="http://schema.org/Blog">
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-            <header class="post-header" itemprop="headline">
-                <h2 class="post-title">
-                    <a href="http://forin-xyz.github.io/output/2015/07/duo-chong-pai-xu-fang-fa-he-pythonshi-xian.html" rel="bookmark">
-                        多种排序方法和python实现
-                    </a>
-                </h2>
-            </header>
-            <section class="post-excerpt">
-                <p>在计算机科学中,排序是一个非常重要的话题,也是计算算法中的基础,应用非常广泛。</p>
-                <p><a class="read-more" itemprop="url" href="http://forin-xyz.github.io/output/2015/07/duo-chong-pai-xu-fang-fa-he-pythonshi-xian.html" title="Read this article" rel="bookmark">更多</a></p>
-            </section>
-            <footer class="post-meta">
+<main id="content" class="content" role="main">
+    <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting" itemprop="blogPost">
+        <header class="post-header">
+            <h1 class="post-title" itemprop="headline">因子分解机器模型 Factorization Machine</h1>
+            <section class="post-meta">
                 <span class="entry-author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
                     <span itemprop="name">forin-xyz</span></span>
-                <time itemprop="datePublished" class="post-date" datetime="2015YYY-00M-%DD">星期五, 七月 31, 2015</time>
-            </footer>        
-        </article>
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-            <header class="post-header" itemprop="headline">
-                <h2 class="post-title">
-                    <a href="http://forin-xyz.github.io/output/2010/12/my-test-post.html" rel="bookmark">
-                        My test title
-                    </a>
-                </h2>
-            </header>
-            <section class="post-excerpt">
-                <p>Short version for index and feeds</p>
-                <p><a class="read-more" itemprop="url" href="http://forin-xyz.github.io/output/2010/12/my-test-post.html" title="Read this article" rel="bookmark">更多</a></p>
-            </section>
-            <footer class="post-meta">
-                <span class="entry-author" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
-                    <span itemprop="name">forin-xyz</span></span>
-                <time itemprop="datePublished" class="post-date" datetime="2010YYY-20M-%DD">星期五, 十二月 03, 2010</time>
-            </footer>        
-        </article>
-    <nav class="pagination" role="navigation">
-            <a rel="prev" class="newer-posts" href="http://forin-xyz.github.io/output/index.html">&larr; Newer Posts</a>
-            <span class="page-number">Page 2 of 2</span>
-    </nav>
+                <time class="post-date" itemprop="datePublished" datetime="2016YYY-38M-%DD">星期四, 十月 13, 2016</time>
+<nav role="navigation">
+    <a class="newer-posts blink_me" href="http://forin-xyz.github.io/output">&larr; Back</a>
+</nav><br/>            </section>
+        </header>
+        <section class="post-content">
+            <h2>模型介绍</h2>
+<p>下面是度为2的因子分解机的数学表达式
+</p>
+<div class="math">$$
+\widehat{y} = b + \mathbf{w}^Tx + \sum_{i=1}^{n-1}\sum_{j&gt;i}^n\mathbf{v}_i^T\mathbf{v}_jx_ix_j
+$$</div>
+<p>
+其中
+</p>
+<div class="math">$$
+Rank(v_i) = k
+$$</div>
+<p>
+是模型的超参数。</p>
+<p>因子分解机也可以推广到高阶模型，即将更多的互异特征向量之间的相互关系考虑进来。</p>
+<h2>使用范围</h2>
+<p>Regression</p>
+<p>Binary Classification</p>
+<p>Ranking</p>
+<h2>损失函数</h2>
+<p>回归问题使用残差的平方和
+</p>
+<div class="math">$$
+loss_r = \sum{(\widehat{y} - y) ^ 2}
+$$</div>
+<p>分类问题使用交叉熵
+</p>
+<div class="math">$$
+loss_r = -\sum{y\log{\widehat{y}}}
+$$</div>
+<p>
+其中<span class="math">\(\widehat{y}\)</span>使用了sigmoid函数(Binary Classfication) 或则　Softmax(Multi-Classfication)进行了归一化(Normalization)操作。</p>
+<h2>模型求解</h2>
+<p>由于上述两种模型的损失函数都是凸函数, 所以可以使用随机梯度下降法对模型进行求解。</p>
+<h2>优点</h2>
+<ol>
+<li>参数比Polynimal Regression少</li>
+<li>由于在Polynimal　Regression中的巨量稀疏性会导致许多项的系数无法预测导致过拟合,所以在这种情况下使用类似矩阵分解的方法来避免过拟合或者说无法预测。</li>
+</ol>
+<h2>开源库</h2>
+<p>www.libfm.org</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <br/>
+            <br/>
+<nav class="pagination" role="navigation">
+    <ul>
+    </ul>
+</nav>            <br/>
+        </section>
+        <footer class="post-footer">
+<h2>评论 !</h2>
+
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="因子分解机器模型　Factorization Machine" data-title="因子分解机器模型　Factorization Machine" data-url="2016/10/fm.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"forin-xyz"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 分享 -->
+<div class="ds-share flat" data-thread-key="因子分解机器模型　Factorization Machine" data-title="因子分解机器模型　Factorization Machine" data-images="" data-content="<p>Factorization Machine是将线性模型和矩阵分解相结合产生的一种新模型,广泛用于具有稀疏性的大型推荐系统</p>" data-url="2016/10/fm.html">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      	
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+        </footer>
+    </article>
 </main>
         <footer class="site-footer clearfix" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
             <section class="copyright">
